@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lustimacy - Where Open-Minded People Meet</title>
+    <meta name="description" content="Lustimacy is the dating app for open-minded adults. Express yourself freely, match your way, and make real connections.">
+    <meta name="theme-color" content="#1A1615">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lustimacy - Where Open-Minded People Meet">
+    <meta property="og:description" content="The dating app for open-minded adults. Express yourself freely, match your way, and make real connections.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lustimacy.com">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <svg class="nav-icon" viewBox="0 0 465 465" width="32" height="32">
+                    <circle cx="232.5" cy="232.5" r="232.5" fill="#2A1D3E"/>
+                    <path d="M289.13,232.5a106.29,106.29 135,1 0,-212.57 0a106.29,106.29 45,1 0,212.57 0z" fill="#7B2FBE" fill-opacity="0.6"/>
+                    <path d="M181.51,124.9C241.72,124.9 290.44,173.12 290.44,232.5C290.44,291.88 241.72,340.1 181.51,340.1C121.31,340.1 72.59,291.88 72.59,232.5C72.59,173.12 121.31,124.9 181.51,124.9Z" fill="none" stroke="#6B2FA0" stroke-width="8"/>
+                    <path d="M387.44,233.83a104.96,104.96 0,1 0,-209.91 0a104.96,104.96 0,1 0,209.91 0z" fill="#D41858" fill-opacity="0.6"/>
+                    <path d="M282.49,124.9C342.69,124.9 391.41,173.12 391.42,232.5C391.42,291.88 342.69,340.1 282.49,340.1C222.28,340.1 173.56,291.88 173.56,232.5C173.56,173.12 222.28,124.9 282.49,124.9Z" fill="none" stroke="#B0285A" stroke-width="8"/>
+                    <path d="M232.58,144.81C264.57,161.01 286.49,194.2 286.49,232.5C286.49,270.81 264.57,303.99 232.58,320.19C200.6,303.99 178.67,270.81 178.67,232.5C178.67,194.2 200.6,161.01 232.58,144.81Z" fill="#ffffff"/>
+                </svg>
+                <span>Lustimacy</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#download" class="nav-cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <div class="hero-icon fade-in">
+                <svg viewBox="0 0 465 465" width="120" height="120">
+                    <circle cx="232.5" cy="232.5" r="232.5" fill="#2A1D3E"/>
+                    <path d="M289.13,232.5a106.29,106.29 135,1 0,-212.57 0a106.29,106.29 45,1 0,212.57 0z" fill="#7B2FBE" fill-opacity="0.6"/>
+                    <path d="M181.51,124.9C241.72,124.9 290.44,173.12 290.44,232.5C290.44,291.88 241.72,340.1 181.51,340.1C121.31,340.1 72.59,291.88 72.59,232.5C72.59,173.12 121.31,124.9 181.51,124.9Z" fill="none" stroke="#6B2FA0" stroke-width="8"/>
+                    <path d="M387.44,233.83a104.96,104.96 0,1 0,-209.91 0a104.96,104.96 0,1 0,209.91 0z" fill="#D41858" fill-opacity="0.6"/>
+                    <path d="M282.49,124.9C342.69,124.9 391.41,173.12 391.42,232.5C391.42,291.88 342.69,340.1 282.49,340.1C222.28,340.1 173.56,291.88 173.56,232.5C173.56,173.12 222.28,124.9 282.49,124.9Z" fill="none" stroke="#B0285A" stroke-width="8"/>
+                    <path d="M232.58,144.81C264.57,161.01 286.49,194.2 286.49,232.5C286.49,270.81 264.57,303.99 232.58,320.19C200.6,303.99 178.67,270.81 178.67,232.5C178.67,194.2 200.6,161.01 232.58,144.81Z" fill="#ffffff"/>
+                    <g transform="translate(196,198.6) scale(3)">
+                        <path d="M13.5,0.67s0.74,2.65 0.74,4.8c0,2.06-1.35,3.73-3.41,3.73-2.07,0-3.63-1.67-3.63-3.73l0.03-0.36C5.21,7.51 4,10.62 4,14c0,4.42 3.58,8 8,8s8-3.58 8-8C20,8.61 17.41,3.8 13.5,0.67zM11.71,19c-1.78,0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-0.36 3.6-1.21 4.62-2.58 0.39,1.29 0.59,2.65 0.59,4.04 0,2.65-2.15,4.8-4.8,4.8z" fill="url(#flame-grad-hero)"/>
+                        <defs>
+                            <linearGradient id="flame-grad-hero" x1="6" y1="12" x2="18" y2="12">
+                                <stop offset="0" stop-color="#FF5C8A"/>
+                                <stop offset="1" stop-color="#7B1FA0"/>
+                            </linearGradient>
+                        </defs>
+                    </g>
+                </svg>
+            </div>
+            <h1 class="hero-title fade-in">Lustimacy</h1>
+            <p class="hero-tagline fade-in">Where open-minded people meet.</p>
+            <p class="hero-subtitle fade-in">Express your desires, find your match, and make real connections — all in a safe, judgment-free space.</p>
+            <a href="#download" class="btn btn-primary hero-cta fade-in">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                </svg>
+                Get it on Google Play
+            </a>
+            <a href="#features" class="scroll-indicator fade-in">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Lustimacy?</h2>
+            <p class="section-subtitle fade-in">A dating experience designed for people who know what they want.</p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h3>Express Yourself</h3>
+                    <p>10 gender options, sexual orientations, desires, and more. Your profile, your rules — no boxes to fit into.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                        </svg>
+                    </div>
+                    <h3>Match Your Way</h3>
+                    <p>Advanced filters for orientation, desires, body type, meeting preferences, and more. Find exactly who you're looking for.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <h3>Safe & Discreet</h3>
+                    <p>Profile verification, privacy controls, and a discreet design. Your personal life stays personal.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Real Connections</h3>
+                    <p>From deep conversations to romantic dates. Whether you're looking for intimacy or adventure — it starts here.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Location-Based</h3>
+                    <p>Discover open-minded people near you or search by country. Your next connection could be closer than you think.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h3>Premium Experience</h3>
+                    <p>See who likes you, get priority visibility, and unlock unlimited swipes. Stand out from the crowd.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How It Works</h2>
+            <p class="section-subtitle fade-in">Three simple steps to finding your match.</p>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Your Profile</h3>
+                        <p>Be authentic. Share your desires, interests, and what you're looking for. The more you share, the better your matches.</p>
+                    </div>
+                </div>
+                <div class="step-connector fade-in"></div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Discover & Match</h3>
+                        <p>Swipe through curated profiles filtered to your preferences. Like someone? Swipe right. It's that simple.</p>
+                    </div>
+                </div>
+                <div class="step-connector fade-in"></div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Connect</h3>
+                        <p>When the feeling is mutual, start chatting. Plan a date, get to know each other, and explore together.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <h2 class="section-title fade-in">See It In Action</h2>
+            <p class="section-subtitle fade-in">A glimpse of the Lustimacy experience.</p>
+            <div class="screenshots-carousel">
+                <div class="phone-mockup fade-in">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="mockup-header">Discover</div>
+                            <div class="mockup-card">
+                                <div class="mockup-photo"></div>
+                                <div class="mockup-info">
+                                    <div class="mockup-name">Alex, 28</div>
+                                    <div class="mockup-tag">Adventurous</div>
+                                </div>
+                            </div>
+                            <div class="mockup-actions">
+                                <div class="mockup-btn skip">Skip</div>
+                                <div class="mockup-btn like">Like</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mockup-label">Swipe & Discover</p>
+                </div>
+                <div class="phone-mockup fade-in">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="mockup-header">Profile</div>
+                            <div class="mockup-profile">
+                                <div class="mockup-avatar"></div>
+                                <div class="mockup-detail-name">Jordan</div>
+                                <div class="mockup-tags">
+                                    <span class="mockup-chip">Bisexual</span>
+                                    <span class="mockup-chip">ENM</span>
+                                    <span class="mockup-chip">Switch</span>
+                                </div>
+                                <div class="mockup-bio-lines">
+                                    <div class="mockup-line"></div>
+                                    <div class="mockup-line short"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mockup-label">Rich Profiles</p>
+                </div>
+                <div class="phone-mockup fade-in">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="mockup-header">Chats</div>
+                            <div class="mockup-chat">
+                                <div class="chat-bubble received">Hey! Love your profile</div>
+                                <div class="chat-bubble sent">Thanks! Your taste in music is great</div>
+                                <div class="chat-bubble received">Want to grab coffee?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mockup-label">Real Conversations</p>
+                </div>
+                <div class="phone-mockup fade-in">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="mockup-header">Filters</div>
+                            <div class="mockup-filters">
+                                <div class="mockup-filter-row">
+                                    <span>Distance</span>
+                                    <span class="mockup-slider"></span>
+                                </div>
+                                <div class="mockup-filter-row">
+                                    <span>Age Range</span>
+                                    <span class="mockup-slider"></span>
+                                </div>
+                                <div class="mockup-filter-row">
+                                    <span>Orientation</span>
+                                    <span class="mockup-filter-val">Any</span>
+                                </div>
+                                <div class="mockup-filter-row">
+                                    <span>Looking For</span>
+                                    <span class="mockup-filter-val">All</span>
+                                </div>
+                                <div class="mockup-filter-row">
+                                    <span>Body Type</span>
+                                    <span class="mockup-filter-val">Any</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mockup-label">Advanced Filters</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">What People Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <p class="testimonial-text">"Finally an app that gets it. I can be myself without judgment. The matching is spot-on and I've met amazing people."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div>
+                            <div class="testimonial-name">Sarah M.</div>
+                            <div class="testimonial-meta">Member since 2026</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <p class="testimonial-text">"The filters are incredible. I can find exactly what I'm looking for without wasting time. Best dating app I've used."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <div class="testimonial-name">Mike R.</div>
+                            <div class="testimonial-meta">Member since 2026</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <p class="testimonial-text">"Love how discreet and respectful the community is. The profile options let me express exactly who I am. Highly recommend."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div>
+                            <div class="testimonial-name">Jamie L.</div>
+                            <div class="testimonial-meta">Member since 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>What is Lustimacy?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lustimacy is a dating app designed for open-minded adults. It offers a safe, judgment-free space where you can express your desires, preferences, and identity freely while connecting with like-minded people.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Is Lustimacy free?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Lustimacy is free to download and use. You can create a profile, browse, swipe, and chat at no cost. We also offer a premium subscription that unlocks features like seeing who likes you and getting priority visibility.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>How does matching work?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Browse profiles tailored to your preferences using our advanced filters. Swipe right on someone you like. If they like you back, it's a match! You can then start chatting and get to know each other.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Is my information private?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. Your privacy is our top priority. Your profile is only visible to other Lustimacy members. We never share your personal data with third parties, and you have full control over what you share on your profile.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>What makes Lustimacy different from other dating apps?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lustimacy is built specifically for the open-minded community. We offer 10+ gender options, detailed desire preferences, power dynamics, meeting preferences, and much more. No other app gives you this level of expression and filtering to find truly compatible matches.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>How do I delete my account?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can delete your account at any time from the Settings page within the app. Go to Settings > Account > Delete Account. All your data will be permanently removed from our servers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA Section -->
+    <section class="download-cta" id="download">
+        <div class="container">
+            <h2 class="section-title fade-in">Ready to Explore?</h2>
+            <p class="section-subtitle fade-in">Join thousands of open-minded people already on Lustimacy.</p>
+            <a href="#" class="btn btn-primary btn-large fade-in">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                </svg>
+                Download Lustimacy
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <svg viewBox="0 0 465 465" width="40" height="40">
+                        <circle cx="232.5" cy="232.5" r="232.5" fill="#2A1D3E"/>
+                        <path d="M289.13,232.5a106.29,106.29 135,1 0,-212.57 0a106.29,106.29 45,1 0,212.57 0z" fill="#7B2FBE" fill-opacity="0.6"/>
+                        <path d="M387.44,233.83a104.96,104.96 0,1 0,-209.91 0a104.96,104.96 0,1 0,209.91 0z" fill="#D41858" fill-opacity="0.6"/>
+                        <path d="M232.58,144.81C264.57,161.01 286.49,194.2 286.49,232.5C286.49,270.81 264.57,303.99 232.58,320.19C200.6,303.99 178.67,270.81 178.67,232.5C178.67,194.2 200.6,161.01 232.58,144.81Z" fill="#ffffff"/>
+                    </svg>
+                    <span class="footer-name">Lustimacy</span>
+                    <p class="footer-tagline">Where open-minded people meet.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lustimacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

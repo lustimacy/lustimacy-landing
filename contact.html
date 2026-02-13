@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Lustimacy</title>
+    <meta name="description" content="Get in touch with the Lustimacy team. We'd love to hear from you.">
+    <meta name="theme-color" content="#1A1615">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg class="nav-icon" viewBox="0 0 465 465" width="32" height="32">
+                    <circle cx="232.5" cy="232.5" r="232.5" fill="#2A1D3E"/>
+                    <path d="M289.13,232.5a106.29,106.29 135,1 0,-212.57 0a106.29,106.29 45,1 0,212.57 0z" fill="#7B2FBE" fill-opacity="0.6"/>
+                    <path d="M387.44,233.83a104.96,104.96 0,1 0,-209.91 0a104.96,104.96 0,1 0,209.91 0z" fill="#D41858" fill-opacity="0.6"/>
+                    <path d="M232.58,144.81C264.57,161.01 286.49,194.2 286.49,232.5C286.49,270.81 264.57,303.99 232.58,320.19C200.6,303.99 178.67,270.81 178.67,232.5C178.67,194.2 200.6,161.01 232.58,144.81Z" fill="#ffffff"/>
+                </svg>
+                <span>Lustimacy</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Contact Us</h1>
+        </div>
+
+        <div class="page-content">
+            <a href="index.html" class="page-back">&larr; Back to home</a>
+
+            <p>Have a question, feedback, or need help? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+
+            <form class="contact-form" action="https://formsubmit.co/info@lustimacy.com" method="POST">
+                <input type="hidden" name="_subject" value="Lustimacy Contact Form">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://lustimacy.com/contact.html?submitted=true">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+
+            <h2>Other Ways to Reach Us</h2>
+
+            <p>For urgent matters or account issues, you can also reach us directly at:</p>
+            <p><a href="mailto:info@lustimacy.com">info@lustimacy.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lustimacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        if (new URLSearchParams(window.location.search).has('submitted')) {
+            var form = document.querySelector('.contact-form');
+            form.innerHTML = '<div style="text-align:center;padding:40px 0"><h2 style="margin-bottom:12px">Message Sent!</h2><p style="color:var(--color-text-secondary)">Thank you for reaching out. We\'ll get back to you soon.</p></div>';
+        }
+    </script>
+</body>
+</html>
