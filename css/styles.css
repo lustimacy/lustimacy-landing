@@ -425,9 +425,13 @@ img {
     overflow: hidden;
 }
 
+.screenshots-wrapper {
+    position: relative;
+}
+
 .screenshots-carousel {
     display: flex;
-    gap: 32px;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 20px 0 40px;
@@ -439,239 +443,65 @@ img {
     display: none;
 }
 
-.screenshots-carousel.dragging {
-    cursor: grabbing;
-    scroll-snap-type: none;
+/* Carousel arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 16px rgba(212, 24, 88, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    transition: opacity 0.3s ease, background 0.3s ease, color 0.3s ease;
+    backdrop-filter: blur(8px);
 }
 
-.phone-mockup {
+.carousel-arrow:hover {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(212, 24, 88, 0.35);
+}
+
+.carousel-arrow-left {
+    left: 8px;
+}
+
+.carousel-arrow-right {
+    right: 8px;
+}
+
+.carousel-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.screenshot-item {
     flex-shrink: 0;
     scroll-snap-align: center;
-    text-align: center;
-}
-
-.phone-frame {
-    width: 260px;
-    height: 520px;
-    background: var(--color-bg-card);
-    border-radius: 36px;
-    border: 3px solid var(--color-bg-card-hover);
-    padding: 16px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-}
-
-.phone-screen {
-    width: 100%;
-    height: 100%;
-    background: var(--color-bg-deep);
-    border-radius: 24px;
-    padding: 20px 16px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(212, 24, 88, 0.12);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.mockup-header {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    text-align: center;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--color-bg-card);
-    margin-bottom: 16px;
+.screenshot-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(212, 24, 88, 0.2);
 }
 
-.mockup-label {
-    margin-top: 16px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-}
-
-/* Mockup: Discover */
-.mockup-card {
-    flex: 1;
-    background: var(--color-bg-card);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.mockup-photo {
-    flex: 1;
-    background: linear-gradient(135deg, rgba(123, 47, 190, 0.3), rgba(212, 24, 88, 0.3));
-}
-
-.mockup-info {
-    padding: 12px 14px;
-}
-
-.mockup-name {
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-}
-
-.mockup-tag {
-    font-size: 0.75rem;
-    color: var(--color-accent);
-    background: rgba(227, 68, 113, 0.15);
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 20px;
-}
-
-.mockup-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.mockup-btn {
-    flex: 1;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.mockup-btn.skip {
-    background: var(--color-bg-card);
-    color: var(--color-text-secondary);
-}
-
-.mockup-btn.like {
-    background: var(--color-primary);
-    color: white;
-}
-
-/* Mockup: Profile */
-.mockup-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-}
-
-.mockup-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(123, 47, 190, 0.4), rgba(212, 24, 88, 0.4));
-}
-
-.mockup-detail-name {
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.mockup-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.mockup-chip {
-    font-size: 0.7rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    background: rgba(227, 68, 113, 0.15);
-    color: var(--color-accent);
-}
-
-.mockup-bio-lines {
-    width: 100%;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.mockup-line {
-    height: 8px;
-    background: var(--color-bg-card);
-    border-radius: 4px;
-}
-
-.mockup-line.short {
-    width: 60%;
-}
-
-/* Mockup: Chat */
-.mockup-chat {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-}
-
-.chat-bubble {
-    max-width: 80%;
-    padding: 10px 14px;
-    border-radius: 16px;
-    font-size: 0.8rem;
-    line-height: 1.4;
-}
-
-.chat-bubble.received {
-    background: var(--color-bg-card);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-}
-
-.chat-bubble.sent {
-    background: var(--color-primary);
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-}
-
-/* Mockup: Filters */
-.mockup-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    flex: 1;
-}
-
-.mockup-filter-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-bg-card);
-}
-
-.mockup-slider {
+.screenshot-item img {
     display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--color-bg-card);
-    border-radius: 2px;
-    position: relative;
-}
-
-.mockup-slider::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 60%;
-    height: 100%;
-    background: var(--color-primary);
-    border-radius: 2px;
-}
-
-.mockup-filter-val {
-    color: var(--color-accent);
-    font-weight: 600;
+    width: auto;
+    height: 480px;
+    object-fit: contain;
 }
 
 /* ===== Testimonials ===== */
@@ -1034,6 +864,20 @@ img {
 
     .screenshots-carousel {
         padding-left: 24px;
+    }
+
+    .screenshot-item img {
+        height: 400px;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-arrow svg {
+        width: 18px;
+        height: 18px;
     }
 }
 

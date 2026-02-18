@@ -93,36 +93,78 @@
         });
     });
 
-    // ——— Screenshots horizontal scroll with drag ———
+    // ——— Screenshots carousel: arrows + drag + scroll hint ———
     var carousel = document.querySelector('.screenshots-carousel');
     if (carousel) {
-        var isDown = false;
-        var startX;
-        var scrollLeft;
+        carousel.scrollLeft = 0;
 
+        var leftBtn = document.querySelector('.carousel-arrow-left');
+        var rightBtn = document.querySelector('.carousel-arrow-right');
+        var scrollStep = 300;
+
+        // Arrow clicks
+        if (leftBtn) {
+            leftBtn.addEventListener('click', function () {
+                carousel.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+            });
+        }
+        if (rightBtn) {
+            rightBtn.addEventListener('click', function () {
+                carousel.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            });
+        }
+
+        // Arrow visibility
+        function updateArrows() {
+            if (!leftBtn || !rightBtn) return;
+            var sl = carousel.scrollLeft;
+            var max = carousel.scrollWidth - carousel.clientWidth;
+            leftBtn.classList.toggle('hidden', sl <= 10);
+            rightBtn.classList.toggle('hidden', sl >= max - 10);
+        }
+        carousel.addEventListener('scroll', updateArrows);
+        setTimeout(updateArrows, 100);
+
+        // Drag to scroll
+        var isDown = false, startX, scrollLeftPos;
         carousel.addEventListener('mousedown', function (e) {
             isDown = true;
-            carousel.classList.add('dragging');
+            carousel.style.scrollSnapType = 'none';
             startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
+            scrollLeftPos = carousel.scrollLeft;
         });
-
         carousel.addEventListener('mouseleave', function () {
             isDown = false;
-            carousel.classList.remove('dragging');
+            carousel.style.scrollSnapType = '';
         });
-
         carousel.addEventListener('mouseup', function () {
             isDown = false;
-            carousel.classList.remove('dragging');
+            carousel.style.scrollSnapType = '';
         });
-
         carousel.addEventListener('mousemove', function (e) {
             if (!isDown) return;
             e.preventDefault();
             var x = e.pageX - carousel.offsetLeft;
-            var walk = (x - startX) * 1.5;
-            carousel.scrollLeft = scrollLeft - walk;
+            carousel.scrollLeft = scrollLeftPos - (x - startX) * 1.5;
         });
+
+        // One-time scroll hint when section enters viewport
+        var hintDone = false;
+        var screenshotsSection = document.getElementById('screenshots');
+        if (screenshotsSection) {
+            var hintObserver = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting && !hintDone) {
+                    hintDone = true;
+                    hintObserver.disconnect();
+                    setTimeout(function () {
+                        carousel.scrollBy({ left: 250, behavior: 'smooth' });
+                        setTimeout(function () {
+                            carousel.scrollBy({ left: -250, behavior: 'smooth' });
+                        }, 500);
+                    }, 300);
+                }
+            }, { threshold: 0.3 });
+            hintObserver.observe(screenshotsSection);
+        }
     }
 })();
