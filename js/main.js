@@ -21,6 +21,14 @@
         });
     });
 
+    // Close mobile menu when tapping outside
+    document.addEventListener('click', function (e) {
+        if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('active');
+        }
+    });
+
     // ——— Navbar scroll background ———
     function updateNavbar() {
         if (window.scrollY > 50) {
