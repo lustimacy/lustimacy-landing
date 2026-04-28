@@ -1,9 +1,8 @@
 // Cloudflare Pages Function — renders the public profile page at
-// https://lustimacy.com/p/<token>. Visual structure mirrors the in-app
-// UserProfileFragment layout: 1:1 hero photo carousel → name + verified
-// badge → age/location line → highlight chips → "Story" section → multiple
-// nested sections (Identity / Desires / Interests / Meeting / Positions),
-// each with its own purple-circle icon header. Dark theme.
+// https://lustimacy.com/p/<token>. Vertical photo stack → name + verified
+// badge → age → highlight chips → "Story" + multiple grouped sections
+// (Identity / Desires / Interests / Meeting / Positions), each with its
+// own purple-circle icon header. Dark theme.
 
 import {
   BODY_TYPE,
@@ -58,7 +57,29 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
-const VERIFIED_SVG = `<svg class="verified-badge" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Verified"><path d="M12 1.5l2.4 2.1 3.2-.4.9 3.1 3 1.3-1 3 1 3-3 1.3-.9 3.1-3.2-.4L12 19.7l-2.4-2.1-3.2.4-.9-3.1-3-1.3 1-3-1-3 3-1.3.9-3.1 3.2.4L12 1.5z" fill="#1C64F2"/><path d="M9.7 12.4l1.7 1.7 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function extractPhotoIds(v: unknown): string[] {
+  let arr: unknown[] = [];
+  if (Array.isArray(v)) arr = v;
+  else if (typeof v === "string") {
+    try {
+      const j = JSON.parse(v);
+      if (Array.isArray(j)) arr = j;
+    } catch { /* ignore */ }
+  }
+  return arr
+    .map((x) => {
+      if (typeof x === "string") return x;
+      if (x && typeof x === "object") {
+        const o = x as Record<string, unknown>;
+        const candidate = o.id ?? o.photoId ?? o.photo_id ?? o.path ?? o.name;
+        return typeof candidate === "string" ? candidate : null;
+      }
+      return null;
+    })
+    .filter((x): x is string => Boolean(x));
+}
+
+const VERIFIED_SVG = `<svg class="verified-badge" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Verified"><path d="M12 1l2.39 2.06 3.13-.4.91 3.04 2.96 1.31-.94 3 1 3-3 1.3-.91 3.04-3.13-.4L12 19.7l-2.4-2.06-3.13.4-.91-3.04-3-1.3 1-3-1-3 3-1.3.91-3.04 3.13.4L12 1z" fill="#1C64F2"/><path d="M8.4 12.2l2.5 2.5 4.9-5" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const ICON_STORY = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a2 2 0 012-2h7l5 5v13a2 2 0 01-2 2H7a2 2 0 01-2-2V4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v5h5M9 13h6M9 17h6M9 9h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ICON_IDENTITY = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
@@ -132,8 +153,8 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     }).catch(() => undefined),
   );
 
-  const photos = Array.isArray(p.profile_photos) ? p.profile_photos : [];
-  const photoCount = photos.length;
+  const photoIds = extractPhotoIds(p.profile_photos);
+  const photoCount = photoIds.length;
   const ogImageUrl = photoCount > 0
     ? `https://${host}/p/${token}/img/0.jpg`
     : `https://${host}/assets/og-default.jpg`;
@@ -144,10 +165,6 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     : `I'm using ${appName} to connect.`;
 
   const cityLine = [p.city, p.country_code].filter(Boolean).join(", ");
-  const ageCityLine = [
-    typeof p.age === "number" ? `${p.age}` : null,
-    cityLine || null,
-  ].filter(Boolean).join(" · ");
 
   const playStoreUrl = env.PLAY_STORE_URL ??
     `https://play.google.com/store/apps/details?id=com.lustimacy`;
@@ -155,29 +172,23 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     `https://apps.apple.com/app/lustimacy`;
   const shareUrl = `https://${host}/p/${token}`;
 
-  // Photo carousel slides + dot indicators
-  const slides = photoCount > 0
-    ? photos
+  const photoStack = photoCount > 0
+    ? photoIds
         .map((_, i) =>
-          `<div class="slide"><img src="/p/${token}/img/${i}.jpg" alt="${escapeHtml(p.name)}" loading="${i === 0 ? "eager" : "lazy"}"></div>`
+          `<div class="photo"><img src="/p/${token}/img/${i}.jpg" alt="${escapeHtml(p.name)}" loading="${i === 0 ? "eager" : "lazy"}"></div>`
         )
         .join("")
-    : `<div class="slide"></div>`;
-  const indicators = photoCount > 1
-    ? `<div class="indicators">${
-        photos.map((_, i) => `<span class="dot${i === 0 ? " active" : ""}" data-i="${i}"></span>`).join("")
-      }</div>`
-    : "";
+    : `<div class="photo photo--empty"></div>`;
 
-  // Highlight chips: gender, height, city — same as Android Lustimacy.
+  // Highlights: city, gender, height.
   const highlights: string[] = [];
+  if (cityLine) highlights.push(`<span class="chip"><span class="icon">📍</span>${escapeHtml(cityLine)}</span>`);
   const genderLabel = lookup(GENDER, p.gender);
-  if (genderLabel) highlights.push(`<span class="highlight"><span class="icon">⚥</span>${escapeHtml(genderLabel)}</span>`);
+  if (genderLabel) highlights.push(`<span class="chip"><span class="icon">⚥</span>${escapeHtml(genderLabel)}</span>`);
   if (typeof p.height === "number" && p.height > 0) {
-    highlights.push(`<span class="highlight"><span class="icon">📏</span>${p.height} cm</span>`);
+    highlights.push(`<span class="chip"><span class="icon">📏</span>${p.height} cm</span>`);
   }
 
-  // Sections rendered as separate cards with their own circle-icon header.
   const sectionsHtml: string[] = [];
 
   if (bio) {
@@ -191,7 +202,6 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       </section>`);
   }
 
-  // Identity section: orientation, relationship status, body type, power dynamic
   const identityTags: string[] = [];
   const orient = lookup(SEXUAL_ORIENTATION, p.sexual_orientation);
   if (orient) identityTags.push(orient);
@@ -208,7 +218,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
           <div class="section-circle">${ICON_IDENTITY}</div>
           <div class="section-title">Identity</div>
         </div>
-        <div class="tags">${identityTags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="chips">${identityTags.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
       </section>`);
   }
 
@@ -220,7 +230,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
           <div class="section-circle">${ICON_HEART}</div>
           <div class="section-title">Desires</div>
         </div>
-        <div class="tags">${desires.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="chips">${desires.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
       </section>`);
   }
 
@@ -232,7 +242,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
           <div class="section-circle">${ICON_STAR}</div>
           <div class="section-title">Interests</div>
         </div>
-        <div class="tags">${interests.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="chips">${interests.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
       </section>`);
   }
 
@@ -244,7 +254,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
           <div class="section-circle">${ICON_PIN}</div>
           <div class="section-title">Meeting</div>
         </div>
-        <div class="tags">${meets.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="chips">${meets.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
       </section>`);
   }
 
@@ -256,7 +266,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
           <div class="section-circle">${ICON_FLAME}</div>
           <div class="section-title">Positions</div>
         </div>
-        <div class="tags">${positions.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        <div class="chips">${positions.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>
       </section>`);
   }
 
@@ -287,7 +297,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 </head>
 <body>
 <div class="shell">
-  <div class="photos" id="photos">${slides}${indicators}</div>
+  <div class="photos">${photoStack}</div>
   <div class="transition"></div>
 
   <div class="content">
@@ -295,18 +305,12 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       <h1 class="name">${escapeHtml(p.name)}</h1>
       ${p.is_verified ? VERIFIED_SVG : ""}
     </div>
-    ${ageCityLine ? `<div class="age-line">${escapeHtml(ageCityLine)}</div>` : ""}
+    ${typeof p.age === "number" ? `<div class="age-line">${p.age}</div>` : ""}
 
-    ${highlights.length ? `<div class="highlights">${highlights.join("")}</div>` : ""}
+    ${highlights.length ? `<div class="chips">${highlights.join("")}</div>` : ""}
 
     ${sectionsHtml.join("")}
   </div>
-
-  <footer class="foot">
-    <a href="mailto:report@${host}?subject=Report%20profile%20${encodeURIComponent(token)}">Report this profile</a>
-    <span>·</span>
-    <a href="https://${host}/privacy.html">Privacy</a>
-  </footer>
 </div>
 
 <div class="cta-bar">
@@ -323,17 +327,6 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 </div>
 
 <script>
-  (function () {
-    var el = document.getElementById('photos');
-    if (!el) return;
-    var dots = el.querySelectorAll('.dot');
-    if (!dots.length) return;
-    el.addEventListener('scroll', function () {
-      var i = Math.round(el.scrollLeft / el.clientWidth);
-      dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
-    }, { passive: true });
-  })();
-  // CTA routing — see janerek-landing/[token].ts for full design notes.
   (function () {
     var btn = document.getElementById('open-app');
     if (!btn) return;

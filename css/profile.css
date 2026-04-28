@@ -2,16 +2,16 @@
    Dark theme, grey_700 background, purple-tinted chips, light text. */
 
 :root {
-  --color-primary: #C3A8FC;          /* purple_primary_300 (light for dark theme) */
+  --color-primary: #C3A8FC;
   --color-primary-pressed: #A581FA;
-  --color-bg: #374151;               /* grey_700, color_background dark */
-  --color-text: #F9FAFB;             /* grey_50 */
-  --color-text-soft: #9CA3AF;        /* grey_400 */
-  --color-text-purple-light: #F3EEFF;/* purple_primary_50 / text_purple_darkest */
-  --color-chip-bg: #553990;          /* purple_primary_700 / container_purple_lighter */
-  --color-circle-bg: #4C338A;        /* slightly darker purple */
-  --color-divider: #4B5563;          /* grey_600 */
-  --color-verified: #1C64F2;
+  --color-bg: #374151;
+  --color-text: #F9FAFB;
+  --color-text-soft: #9CA3AF;
+  --color-text-purple-light: #F3EEFF;
+  --color-chip-bg: #553990;
+  --color-circle-bg: #4C338A;
+  --color-card-fallback: #1F2937;
+  --color-divider: #4B5563;
   --space-1x: 4px;
   --space-2x: 8px;
   --space-4x: 16px;
@@ -46,53 +46,27 @@ button { font: inherit; }
   min-height: 100vh;
 }
 
-/* =================== Photo carousel (1:1 full-width) =================== */
+/* =================== Vertical photo stack =================== */
 .photos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--color-card-fallback);
+}
+.photos .photo {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: flex;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  background: var(--color-card-fallback);
+  overflow: hidden;
 }
-.photos::-webkit-scrollbar { display: none; }
-.photos .slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  width: 100%;
-  height: 100%;
-  background: #1F2937;
-}
-.photos .slide img {
+.photos .photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.photos .indicators {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: var(--space-4x);
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  pointer-events: none;
-}
-.photos .indicators .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-  transition: width 0.2s, background 0.2s;
-}
-.photos .indicators .dot.active {
-  width: 18px;
-  border-radius: var(--radius-pill);
-  background: white;
+.photos .photo--empty {
+  background: var(--color-card-fallback);
 }
 
 .transition {
@@ -105,7 +79,6 @@ button { font: inherit; }
   z-index: 1;
 }
 
-/* =================== Content =================== */
 .content {
   padding: var(--space-2x) var(--space-4x) var(--space-4x);
 }
@@ -116,49 +89,51 @@ button { font: inherit; }
   gap: var(--space-1x);
 }
 .name {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-text);
   line-height: 1.2;
 }
 .verified-badge {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
   margin-left: var(--space-1x);
 }
 
 .age-line {
   margin-top: var(--space-1x);
-  font-size: 14px;
-  color: var(--color-text-soft);
+  font-size: 16px;
+  color: var(--color-text);
+  font-weight: 500;
 }
 
-/* =================== Highlight chips =================== */
-.highlights {
+/* =================== Chips =================== */
+.chips {
   margin-top: var(--space-4x);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2x);
 }
-.highlight {
+.chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 10px;
-  border-radius: var(--radius-pill);
   background: var(--color-chip-bg);
   color: var(--color-text-purple-light);
+  border-radius: var(--radius-sm);
+  padding: 6px var(--space-4x);
   font-size: 13px;
   font-weight: 500;
+  line-height: 1.3;
 }
-.highlight .icon {
+.chip .icon {
   font-size: 14px;
   line-height: 1;
 }
 
-/* =================== Section (story + each Lustimacy section uses this) ====== */
+/* =================== Section =================== */
 .section {
   margin-top: var(--space-6x);
 }
@@ -194,20 +169,8 @@ button { font: inherit; }
   white-space: pre-wrap;
   word-break: break-word;
 }
-
-/* Tag flexbox inside a section */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2x);
-}
-.tag {
-  background: var(--color-chip-bg);
-  color: var(--color-text-purple-light);
-  border-radius: var(--radius-sm);
-  padding: 6px var(--space-4x);
-  font-size: 13px;
-  font-weight: 500;
+.section .chips {
+  margin-top: 0;
 }
 
 /* =================== Sticky CTA =================== */
@@ -243,20 +206,6 @@ button { font: inherit; }
 }
 .cta:active { background: var(--color-primary-pressed); }
 
-/* =================== Footer =================== */
-.foot {
-  margin-top: var(--space-6x);
-  padding: 0 var(--space-4x);
-  text-align: center;
-  font-size: 12px;
-  color: var(--color-text-soft);
-}
-.foot a {
-  color: var(--color-text-soft);
-  margin: 0 var(--space-2x);
-  text-decoration: none;
-}
-
 /* =================== Not-found =================== */
 .notfound {
   text-align: center;
@@ -282,7 +231,7 @@ button { font: inherit; }
 /* =================== Tablet + desktop responsive ============= */
 @media (min-width: 640px) {
   body {
-    background: #1F2937;                /* darker page backdrop */
+    background: #1F2937;
     padding: 32px 16px;
   }
   .shell {
@@ -297,14 +246,10 @@ button { font: inherit; }
     position: sticky;
     bottom: 0;
     margin: 0 -16px -16px;
-    background: linear-gradient(to top, var(--color-bg) 70%, rgba(55,65,81,0));
+    background: linear-gradient(to top, var(--color-bg) 70%, rgba(55, 65, 81, 0));
   }
 }
 @media (min-width: 1024px) {
-  body {
-    padding: 48px 16px;
-  }
-  .shell {
-    max-width: 520px;
-  }
+  body { padding: 48px 16px; }
+  .shell { max-width: 520px; }
 }
