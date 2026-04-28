@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["87UL927H55.com.lustimacy"],
+        "components": [
+          {
+            "/": "/p/*",
+            "comment": "Public profile share links"
+          }
+        ]
+      }
+    ]
+  }
+}

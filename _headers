@@ -1,0 +1,5 @@
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+/p/*/img/*
+  Cache-Control: public, max-age=86400, s-maxage=604800
