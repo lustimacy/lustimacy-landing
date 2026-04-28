@@ -278,3 +278,33 @@ button { font: inherit; }
   font-weight: 600;
   text-decoration: none;
 }
+
+/* =================== Tablet + desktop responsive ============= */
+@media (min-width: 640px) {
+  body {
+    background: #1F2937;                /* darker page backdrop */
+    padding: 32px 16px;
+  }
+  .shell {
+    margin: 0 auto 80px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.4);
+    min-height: auto;
+  }
+  .cta-bar {
+    position: sticky;
+    bottom: 0;
+    margin: 0 -16px -16px;
+    background: linear-gradient(to top, var(--color-bg) 70%, rgba(55,65,81,0));
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    padding: 48px 16px;
+  }
+  .shell {
+    max-width: 520px;
+  }
+}
