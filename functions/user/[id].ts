@@ -141,9 +141,18 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     },
   );
 
-  if (!rpcRes.ok) return notFound(host, appName);
+  if (!rpcRes.ok) {
+    const body = await rpcRes.text().catch(() => "");
+    console.error(
+      `[user/${userId}] get_public_profile RPC error status=${rpcRes.status} body=${body.slice(0, 300)}`,
+    );
+    return notFound(host, appName);
+  }
   const rows = (await rpcRes.json()) as PublicProfile[];
   if (!Array.isArray(rows) || rows.length === 0) {
+    console.warn(
+      `[user/${userId}] RPC returned 0 rows — user is likely not setup-complete or has is_publicly_shareable=false`,
+    );
     return notFound(host, appName);
   }
   const p = rows[0];
