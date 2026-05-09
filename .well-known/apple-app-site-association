@@ -5,7 +5,7 @@
         "appIDs": ["87UL927H55.com.lustimacy"],
         "components": [
           {
-            "/": "/p/*",
+            "/": "/user/*",
             "comment": "Public profile share links"
           }
         ]
