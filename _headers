@@ -1,24 +1,39 @@
+# Apple's CDN expects the AASA file to be served as JSON even though it has
+# no extension. Cloudflare Pages can't infer the type from the filename, so
+# we set it explicitly here.
 /.well-known/apple-app-site-association
   Content-Type: application/json
 
+# Long cache for profile-photo proxy responses
 /p/*/img/*
   Cache-Control: public, max-age=86400, s-maxage=604800
 
-/assets/*
-  Cache-Control: public, max-age=2592000, immutable
+# Images — long cache; if we re-upload at the same path we'll bump
+# the URL with a query-string or rename the file.
+/assets/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+/assets/*
+  Cache-Control: public, max-age=86400
+
+# CSS / JS — short fresh window with stale-while-revalidate so deploys
+# propagate within an hour. NEVER use `immutable` here unless the URL
+# itself is content-hashed.
 /css/*
-  Cache-Control: public, max-age=2592000, immutable
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /js/*
-  Cache-Control: public, max-age=2592000, immutable
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
+# Sitemap — short cache so updates propagate
 /sitemap.xml
   Cache-Control: public, max-age=3600
 
+# API endpoints — never cache
 /api/*
   Cache-Control: no-store
 
+# Security headers globally
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
