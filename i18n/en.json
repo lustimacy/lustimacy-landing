@@ -138,6 +138,34 @@
       "name": "Eva & Tom",
       "detail": "Couple · Solo + Together · Hamburg"
     },
+    "card4": {
+      "name": "Sky & Riley",
+      "detail": "Couple · Together · Cologne"
+    },
+    "card5": {
+      "name": "Naima",
+      "detail": "Single · Verified · Frankfurt"
+    },
+    "card6": {
+      "name": "Noah & Liv",
+      "detail": "Couple · Together · Munich"
+    },
+    "card7": {
+      "name": "Felix",
+      "detail": "Single · Verified · Vienna"
+    },
+    "card8": {
+      "name": "Priya",
+      "detail": "Single · Verified · Rotterdam"
+    },
+    "card9": {
+      "name": "Mateo & Sara",
+      "detail": "Couple · Solo + Together · Düsseldorf"
+    },
+    "card10": {
+      "name": "Yuki",
+      "detail": "Single · Verified · Stuttgart"
+    },
     "beat1": {
       "title": "Right means yes.",
       "body": "Mutual likes open a chat — same as you'd expect, no surprises."
