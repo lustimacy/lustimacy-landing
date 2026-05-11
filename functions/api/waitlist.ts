@@ -90,7 +90,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         'Content-Type': 'application/json',
         apikey: env.SUPABASE_ANON_KEY,
         Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
-        Prefer: 'resolution=ignore-duplicates,return=minimal',
+        // Just minimal — `resolution=ignore-duplicates` makes PostgREST
+        // run an upsert which requires SELECT on the table, and anon
+        // intentionally doesn't have SELECT (subscriber emails stay
+        // private). We let the unique-email constraint return 409, which
+        // we handle as success below.
+        Prefer: 'return=minimal',
       },
       body: JSON.stringify(row),
     });
