@@ -1,180 +1,345 @@
-// Lustimacy Landing Page — main.js
+// Lustimacy landing — main.js
+// Vanilla, ES2017+. Loaded with `defer`. No frameworks.
 
-(function () {
-    'use strict';
+(() => {
+  'use strict';
 
-    // ——— Mobile Navigation Toggle ———
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    const navbar = document.getElementById('navbar');
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-    navToggle.addEventListener('click', function () {
-        navLinks.classList.toggle('open');
-        navToggle.classList.toggle('active');
-    });
-
-    // Close mobile menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            navLinks.classList.remove('open');
-            navToggle.classList.remove('active');
-        });
-    });
-
-    // Close mobile menu when tapping outside
-    function closeMenuOutside(e) {
-        if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-            navLinks.classList.remove('open');
-            navToggle.classList.remove('active');
-        }
+  // Plausible event helper. No-op until the script is loaded (Phase 4).
+  const track = (name, props = {}) => {
+    if (typeof window.plausible === 'function') {
+      window.plausible(name, { props });
     }
-    document.addEventListener('click', closeMenuOutside);
-    document.addEventListener('touchstart', closeMenuOutside);
+  };
 
-    // ——— Navbar scroll background ———
-    function updateNavbar() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+  // --- Locale highlight + cookie pin ---------------------------------------
+  // The user's manual choice persists in a cookie so the middleware respects
+  // it on subsequent visits and doesn't auto-redirect by Accept-Language.
+  function initLocaleSwitcher() {
+    const path = window.location.pathname;
+    let active = 'en';
+    if (path.startsWith('/de/')) active = 'de';
+    else if (path.startsWith('/nl/')) active = 'nl';
+    $$('.nav__locale').forEach((el) => {
+      if (el.dataset.locale === active) el.classList.add('is-active');
+      el.addEventListener('click', (e) => {
+        const target = el.dataset.locale;
+        document.cookie = `lustimacy-locale=${target}; Path=/; Max-Age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+        track('LocaleSwitch', { from: active, to: target });
+      });
+    });
+  }
+
+  // --- Mobile nav ----------------------------------------------------------
+  function initNav() {
+    const toggle = $('#navToggle');
+    const menu = $('#navMenu');
+    const nav = $('#nav');
+    if (!toggle || !menu || !nav) return;
+
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('is-open');
+      toggle.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        menu.classList.remove('is-open');
+        toggle.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+    document.addEventListener('click', (e) => {
+      if (!menu.classList.contains('is-open')) return;
+      if (menu.contains(e.target) || toggle.contains(e.target)) return;
+      menu.classList.remove('is-open');
+      toggle.classList.remove('is-active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+
+    const onScroll = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 30);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // --- Smooth anchor scroll (account for sticky nav) -----------------------
+  function initSmoothAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id === '#' || id.length < 2) return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const navH = $('#nav')?.offsetHeight || 0;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // --- Reveal on scroll ----------------------------------------------------
+  function initReveals() {
+    const els = $$('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
+    );
+    els.forEach((el) => obs.observe(el));
+  }
+
+  // --- Country detection ---------------------------------------------------
+  // Cloudflare Function /api/country returns { country, locale, available }.
+  // We use the result to swap the hero badge if the visitor isn't in DE/NL,
+  // so the gating story is concrete and personal.
+  async function initCountryBanner() {
+    const els = $$('[data-country-text]');
+    if (els.length === 0) return;
+    try {
+      const res = await fetch('/api/country', { headers: { Accept: 'application/json' } });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data || !data.country) return;
+      const locale = (document.documentElement.lang || 'en').toLowerCase();
+      const messages = {
+        en: {
+          de: 'Available now in your country (Germany)',
+          nl: 'Available now in your country (Netherlands)',
+          other: (c) => `Coming to ${c} soon — join the waitlist`,
+        },
+        de: {
+          de: 'Verfügbar in Deutschland — sicher dir deinen Platz',
+          nl: 'Verfügbar in den Niederlanden — sicher dir deinen Platz',
+          other: (c) => `Bald in ${c} — jetzt auf die Warteliste`,
+        },
+        nl: {
+          de: 'Beschikbaar in Duitsland — reserveer je plek',
+          nl: 'Nu beschikbaar in Nederland — reserveer je plek',
+          other: (c) => `Binnenkort in ${c} — meld je aan voor de wachtlijst`,
+        },
+      };
+      const m = messages[locale] || messages.en;
+      const code = data.country.toUpperCase();
+      let text;
+      if (code === 'DE') text = m.de;
+      else if (code === 'NL') text = m.nl;
+      else text = m.other(data.countryName || code);
+      els.forEach((el) => (el.textContent = text));
+    } catch (err) {
+      // silently keep the default badge text
+    }
+  }
+
+  // --- Waitlist form -------------------------------------------------------
+  function initWaitlistForms() {
+    const forms = $$('form.waitlist');
+    if (forms.length === 0) return;
+
+    const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+    const errEmail = {
+      en: "That doesn't look like an email.",
+      de: 'Das sieht nicht nach einer gültigen E-Mail aus.',
+      nl: 'Dit lijkt geen geldig e-mailadres.',
+    };
+    const errGeneric = {
+      en: 'Something went wrong. Try again in a moment?',
+      de: 'Etwas ist schiefgegangen. Bitte gleich noch einmal versuchen.',
+      nl: 'Er ging iets mis. Probeer het zo nog eens.',
+    };
+    const locale = (document.documentElement.lang || 'en').toLowerCase();
+
+    forms.forEach((form) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        form.classList.remove('is-error', 'is-success');
+        const email = form.querySelector('input[name="email"]')?.value.trim() || '';
+        const hp = form.querySelector('input[name="hp"]')?.value.trim() || '';
+        const errorEl = form.querySelector('[data-error]');
+
+        if (!isEmail(email)) {
+          if (errorEl) errorEl.textContent = errEmail[locale] || errEmail.en;
+          form.classList.add('is-error');
+          return;
+        }
+        // Honeypot tripped — silently accept and bail.
+        if (hp) {
+          form.classList.add('is-success');
+          return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const res = await fetch('/api/waitlist', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              locale,
+              source: form.id || 'unknown',
+              referrer: document.referrer || '',
+            }),
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          form.classList.add('is-success');
+          track('WaitlistSubmit', { source: form.id || 'unknown', locale });
+        } catch (err) {
+          if (errorEl) errorEl.textContent = errGeneric[locale] || errGeneric.en;
+          form.classList.add('is-error');
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+    });
+  }
+
+  // --- Card-stack demo -----------------------------------------------------
+  // Lightweight pointer-driven swipe. No gestures library.
+  function initCardStack() {
+    const stack = $('#cardStack');
+    if (!stack) return;
+    const cards = $$('.card-stack__card', stack);
+    let queue = cards.slice();
+    let dragging = null;
+    let startX = 0, startY = 0, dx = 0;
+    const interactedKey = 'lustimacy_demo_interacted';
+    let interacted = false;
+
+    function applyZ() {
+      cards.forEach((c) => {
+        const idx = queue.indexOf(c);
+        if (idx === -1) {
+          c.style.display = 'none';
+          c.classList.remove('is-leaving-left', 'is-leaving-right');
+          c.style.transform = '';
+          c.style.opacity = '';
         } else {
-            navbar.classList.remove('scrolled');
+          c.style.display = '';
+          c.dataset.card = String(idx);
+          c.classList.remove('is-leaving-left', 'is-leaving-right');
+          c.style.transform = '';
+          c.style.opacity = '';
         }
+      });
     }
-    window.addEventListener('scroll', updateNavbar, { passive: true });
-    updateNavbar();
+    applyZ();
 
-    // ——— Smooth scrolling for anchor links ———
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-            var targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            var target = document.querySelector(targetId);
-            if (!target) return;
-            e.preventDefault();
-            var navHeight = navbar.offsetHeight;
-            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        });
+    function fling(card, direction) {
+      card.classList.add(direction === 1 ? 'is-leaving-right' : 'is-leaving-left');
+      window.setTimeout(() => {
+        const i = queue.indexOf(card);
+        if (i !== -1) queue.splice(i, 1);
+        // recycle: push to end so the demo loops
+        queue.push(card);
+        applyZ();
+      }, 500);
+      if (!interacted) {
+        interacted = true;
+        try { sessionStorage.setItem(interactedKey, '1'); } catch (_) {}
+        track('CardStackInteract', { direction: direction === 1 ? 'like' : 'pass' });
+      }
+    }
+
+    function getTopCard() {
+      return queue[0];
+    }
+
+    function onPointerDown(e) {
+      const top = getTopCard();
+      if (!top || !top.contains(e.target)) return;
+      dragging = top;
+      startX = e.clientX;
+      startY = e.clientY;
+      dx = 0;
+      top.style.transition = 'none';
+      top.setPointerCapture?.(e.pointerId);
+    }
+    function onPointerMove(e) {
+      if (!dragging) return;
+      dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      const rot = dx / 20;
+      dragging.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+    }
+    function onPointerUp() {
+      if (!dragging) return;
+      const card = dragging;
+      dragging = null;
+      card.style.transition = '';
+      const threshold = 80;
+      if (dx > threshold) fling(card, 1);
+      else if (dx < -threshold) fling(card, -1);
+      else card.style.transform = '';
+      dx = 0;
+    }
+
+    stack.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
+
+    // Buttons
+    $$('.card-stack__btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const top = getTopCard();
+        if (!top) return;
+        fling(top, btn.dataset.action === 'like' ? 1 : -1);
+      });
     });
+  }
 
-    // ——— Scroll-triggered fade-in animations ———
-    var fadeElements = document.querySelectorAll('.fade-in');
+  // --- Screens carousel ----------------------------------------------------
+  function initScreens() {
+    const rail = $('#screensRail');
+    if (!rail) return;
+    const prev = $('.screens__nav--prev');
+    const next = $('.screens__nav--next');
+    const step = 280;
+    const update = () => {
+      const max = rail.scrollWidth - rail.clientWidth;
+      prev?.classList.toggle('is-hidden', rail.scrollLeft <= 8);
+      next?.classList.toggle('is-hidden', rail.scrollLeft >= max - 8);
+    };
+    prev?.addEventListener('click', () =>
+      rail.scrollBy({ left: -step, behavior: 'smooth' })
+    );
+    next?.addEventListener('click', () =>
+      rail.scrollBy({ left: step, behavior: 'smooth' })
+    );
+    rail.addEventListener('scroll', update, { passive: true });
+    setTimeout(update, 200);
+  }
 
-    if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -40px 0px'
-        });
+  // --- Run -----------------------------------------------------------------
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
 
-        fadeElements.forEach(function (el) {
-            observer.observe(el);
-        });
-    } else {
-        // Fallback: just show everything
-        fadeElements.forEach(function (el) {
-            el.classList.add('visible');
-        });
-    }
-
-    // ——— FAQ Accordion ———
-    document.querySelectorAll('.faq-question').forEach(function (button) {
-        button.addEventListener('click', function () {
-            var faqItem = this.parentElement;
-            var isOpen = faqItem.classList.contains('open');
-
-            // Close all other items
-            document.querySelectorAll('.faq-item.open').forEach(function (item) {
-                item.classList.remove('open');
-            });
-
-            // Toggle the clicked item
-            if (!isOpen) {
-                faqItem.classList.add('open');
-            }
-        });
-    });
-
-    // ——— Screenshots carousel: arrows + drag + scroll hint ———
-    var carousel = document.querySelector('.screenshots-carousel');
-    if (carousel) {
-        carousel.scrollLeft = 0;
-
-        var leftBtn = document.querySelector('.carousel-arrow-left');
-        var rightBtn = document.querySelector('.carousel-arrow-right');
-        var scrollStep = 300;
-
-        // Arrow clicks
-        if (leftBtn) {
-            leftBtn.addEventListener('click', function () {
-                carousel.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-            });
-        }
-        if (rightBtn) {
-            rightBtn.addEventListener('click', function () {
-                carousel.scrollBy({ left: scrollStep, behavior: 'smooth' });
-            });
-        }
-
-        // Arrow visibility
-        function updateArrows() {
-            if (!leftBtn || !rightBtn) return;
-            var sl = carousel.scrollLeft;
-            var max = carousel.scrollWidth - carousel.clientWidth;
-            leftBtn.classList.toggle('hidden', sl <= 10);
-            rightBtn.classList.toggle('hidden', sl >= max - 10);
-        }
-        carousel.addEventListener('scroll', updateArrows);
-        setTimeout(updateArrows, 100);
-
-        // Drag to scroll
-        var isDown = false, startX, scrollLeftPos;
-        carousel.addEventListener('mousedown', function (e) {
-            isDown = true;
-            carousel.style.scrollSnapType = 'none';
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeftPos = carousel.scrollLeft;
-        });
-        carousel.addEventListener('mouseleave', function () {
-            isDown = false;
-            carousel.style.scrollSnapType = '';
-        });
-        carousel.addEventListener('mouseup', function () {
-            isDown = false;
-            carousel.style.scrollSnapType = '';
-        });
-        carousel.addEventListener('mousemove', function (e) {
-            if (!isDown) return;
-            e.preventDefault();
-            var x = e.pageX - carousel.offsetLeft;
-            carousel.scrollLeft = scrollLeftPos - (x - startX) * 1.5;
-        });
-
-        // One-time scroll hint when section enters viewport
-        var hintDone = false;
-        var screenshotsSection = document.getElementById('screenshots');
-        if (screenshotsSection) {
-            var hintObserver = new IntersectionObserver(function (entries) {
-                if (entries[0].isIntersecting && !hintDone) {
-                    hintDone = true;
-                    hintObserver.disconnect();
-                    setTimeout(function () {
-                        carousel.scrollBy({ left: 250, behavior: 'smooth' });
-                        setTimeout(function () {
-                            carousel.scrollBy({ left: -250, behavior: 'smooth' });
-                        }, 500);
-                    }, 300);
-                }
-            }, { threshold: 0.3 });
-            hintObserver.observe(screenshotsSection);
-        }
-    }
+  ready(() => {
+    initLocaleSwitcher();
+    initNav();
+    initSmoothAnchors();
+    initReveals();
+    initCountryBanner();
+    initWaitlistForms();
+    initCardStack();
+    initScreens();
+  });
 })();

@@ -1,2 +1,7 @@
 User-agent: *
+Allow: /
 Disallow: /p/
+Disallow: /api/
+Disallow: /functions/
+
+Sitemap: https://lustimacy.com/sitemap.xml

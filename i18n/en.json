@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "localeCode": "en",
+    "ogLocale": "en_US",
+    "title": "Lustimacy — Lifestyle Dating for Couples & Open-Minded Singles",
+    "description": "The lifestyle dating app for couples and open-minded singles. Linked couple profiles, private photos that unlock at the match, travel mode. Now opening in Germany & the Netherlands — join the waitlist.",
+    "keywords": "lifestyle dating, dating for couples, open-minded singles, ethical non-monogamy, ENM, swinger app, couples dating app, private photos dating, travel mode dating",
+    "ogImageAlt": "Lustimacy — lifestyle dating app for couples and open-minded singles"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary",
+    "menuToggle": "Menu",
+    "localeSwitcher": "Language",
+    "legalNav": "Legal",
+    "cardStack": "Profile preview, sample card",
+    "pass": "Pass",
+    "like": "Like",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "urls": {
+    "home": "/"
+  },
+  "nav": {
+    "who": "Who it's for",
+    "features": "Features",
+    "how": "How it works",
+    "cities": "Cities",
+    "faq": "FAQ",
+    "cta": "Join the waitlist"
+  },
+  "hero": {
+    "badgeDefault": "Now opening in Germany & the Netherlands",
+    "title1": "A space for the",
+    "title2": "deliberately curious.",
+    "title3": "",
+    "lede": "Lustimacy is the lifestyle dating app for couples — together or solo — and open-minded singles. Discreet by design, verified at the door, built around what you actually want.",
+    "trust1": "Verified profiles only",
+    "trust2": "Couples appear as one",
+    "trust3": "Private photos, your control"
+  },
+  "waitlist": {
+    "placeholder": "Your email",
+    "cta": "Reserve my spot",
+    "hintScarcity": "Early access opens in waves. The first 1,000 founding members get a lifetime badge and zero-fee verification.",
+    "legal": "We'll only use your email to invite you in. No spam, no resale. Cancel any time.",
+    "success": "You're on the list. We'll be in touch from a lustimacy.com address — check your inbox (and Promotions tab).",
+    "errorGeneric": "Something went wrong. Try again in a moment?",
+    "errorEmail": "That doesn't look like an email."
+  },
+  "personas": {
+    "eyebrow": "Built for",
+    "title": "Three kinds of curious",
+    "lede": "Lustimacy was designed from day one for the lifestyle community — couples in the scene, singles who play with couples, and adults exploring ethical non-monogamy on their own terms.",
+    "couples": {
+      "title": "Couples in the lifestyle",
+      "body": "Link two accounts into one shared profile. Either of you can swipe, match, and chat — your matches see you as a couple from the very first message. Switch to solo any time, no second account needed."
+    },
+    "singles": {
+      "title": "Open-minded singles",
+      "body": "Filter for couples, singles, or both. See who's playing solo tonight and who's together. Detailed profiles tell you the lifestyle, the dynamic, and the energy before you ever start a chat."
+    },
+    "curious": {
+      "title": "Curious, careful, kind",
+      "body": "New to the scene? Lustimacy is a low-pressure, judgment-free space to learn the language, ask questions, and meet people who'll meet you where you are. No tourists, no creeps, no rush."
+    }
+  },
+  "features": {
+    "eyebrow": "Signature features",
+    "title": "What makes Lustimacy different",
+    "lede": "Five things every other dating app gets wrong for the lifestyle. We built them from scratch.",
+    "couple": {
+      "title": "Linked couple profiles",
+      "body": "One profile, two accounts. Both partners log in with their own credentials, but the world sees one couple. Swipe, match, and chat together — or unlink in a single tap if life changes.",
+      "cardSolo": "Two separate profiles",
+      "cardLinked": "One linked couple"
+    },
+    "mode": {
+      "title": "Together or solo, your call",
+      "body": "Tonight you're together. Tomorrow one of you is in another city playing solo. Switch modes from the home screen — your partner sees the change, your matches see the right version of you.",
+      "solo": "Solo",
+      "together": "Together"
+    },
+    "privatePhotos": {
+      "title": "Private photos, unlocked at the match",
+      "body": "Upload the photos you only want a real connection to see. Non-matches see a tasteful BlurHash gradient — they know there's more, but the photo stays yours. The moment you match, it unlocks. No grant flow, no leaks."
+    },
+    "travel": {
+      "title": "Travel mode",
+      "body": "Heading to Berlin for the weekend? Visiting a club on the Cap d'Agde corridor? Set a destination and a return date — match with locals before you land, then disappear from the local feed when you fly home."
+    },
+    "filters": {
+      "title": "Filters that actually filter",
+      "body": "Looking for couples, singles, or both? Solo or together mode? Body type, lifestyle, dynamic, distance, age. Every filter we built is one we use ourselves.",
+      "chip1": "Couples",
+      "chip2": "Singles",
+      "chip3": "Together mode",
+      "chip4": "Solo mode",
+      "chip5": "Verified only",
+      "chip6": "≤ 50 km"
+    }
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "From sign-up to first chat",
+    "lede": "Four steps. No filler, no questionnaires, no algorithm voodoo.",
+    "step1": {
+      "title": "Reserve your spot",
+      "body": "Drop your email. We'll email you the moment your country opens — and you keep your founding-member status forever."
+    },
+    "step2": {
+      "title": "Build a profile that says it",
+      "body": "Tell us who you are, who you're with, what you're into. Couples link up; solos get the full filter set."
+    },
+    "step3": {
+      "title": "Verify, in 30 seconds",
+      "body": "A simple selfie check. Verified profiles get a badge and end up in front of more matches. Verified-only filtering is one tap away."
+    },
+    "step4": {
+      "title": "Match and meet",
+      "body": "When the feeling is mutual, the chat opens. Private photos unlock automatically. Take it from there."
+    }
+  },
+  "demo": {
+    "eyebrow": "Try the rhythm",
+    "title": "How a swipe feels",
+    "lede": "A real Lustimacy feed is filtered, verified, and curated. This is just a taste — drag a card or use the buttons.",
+    "card1": {
+      "name": "Anna & Luca",
+      "detail": "Couple · Together · Berlin"
+    },
+    "card2": {
+      "name": "Mira",
+      "detail": "Single · Verified · Amsterdam"
+    },
+    "card3": {
+      "name": "Eva & Tom",
+      "detail": "Couple · Solo + Together · Hamburg"
+    },
+    "beat1": {
+      "title": "Right means yes.",
+      "body": "Mutual likes open a chat — same as you'd expect, no surprises."
+    },
+    "beat2": {
+      "title": "Couples appear as one.",
+      "body": "When a couple is in Together mode, you see one profile with both partners up front."
+    },
+    "beat3": {
+      "title": "Private photos unlock instantly.",
+      "body": "The blurred panels become the real photo the moment you match."
+    }
+  },
+  "screens": {
+    "eyebrow": "Inside the app",
+    "title": "Built for grown-ups",
+    "alt1": "Lustimacy home feed showing couple and single profiles",
+    "alt2": "Profile detail with verified badge, lifestyle preferences and orientation",
+    "alt3": "Linked couple invite screen — share a link with your partner",
+    "alt4": "Private photo gallery with BlurHash placeholders, unlocked on match",
+    "alt5": "Search filters — couples, singles, mode, body, distance",
+    "alt6": "Match modal — both partners visible, chat opens",
+    "alt7": "Travel mode setup — destination city and return date",
+    "alt8": "In-app chat with a verified Lustimacy match"
+  },
+  "cities": {
+    "eyebrow": "We're starting here",
+    "title": "Germany & the Netherlands first",
+    "lede": "Two countries with the most welcoming, established lifestyle scenes in Europe. We're going deep before we go wide — every founding member shapes the community before the gates open elsewhere.",
+    "deTitle": "Germany",
+    "de1": "Berlin",
+    "de2": "Hamburg",
+    "de3": "Munich · München",
+    "de4": "Cologne · Köln",
+    "de5": "Frankfurt am Main",
+    "de6": "Stuttgart, Düsseldorf & beyond",
+    "nlTitle": "Netherlands",
+    "nl1": "Amsterdam",
+    "nl2": "Rotterdam",
+    "nl3": "The Hague · Den Haag",
+    "nl4": "Utrecht",
+    "nl5": "Eindhoven",
+    "nl6": "Groningen, Maastricht & beyond",
+    "elsewhereTitle": "Everywhere else",
+    "elsewhereBody": "Outside Germany or the Netherlands? Drop your email — we open new countries based on demand, and waitlist members in your country go first when we do.",
+    "elsewhereCta": "Join the waitlist"
+  },
+  "trust": {
+    "eyebrow": "Trust & safety",
+    "title": "Built on consent, verified at the door",
+    "verified": {
+      "title": "Real people only",
+      "body": "Every member completes a selfie verification before they can fully match. Verified-only filtering is one tap. Fakes are removed within hours, not days."
+    },
+    "discreet": {
+      "title": "Discreet by design",
+      "body": "No social-media linking. No public profile pages. Your account doesn't show up in Google searches. You decide what's visible and to whom."
+    },
+    "consent": {
+      "title": "Consent, always",
+      "body": "Boundaries belong on every profile and we make them easy to set. Block, mute, and report tools take one tap. A human reads every report."
+    },
+    "support": {
+      "title": "Real support",
+      "body": "Reach a real person at info@lustimacy.com. We answer in hours during European working days, not weeks."
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Common questions",
+    "items": [
+      {
+        "q": "When does Lustimacy launch in my country?",
+        "a": "We are currently opening in Germany and the Netherlands. Other countries roll out in waves through 2026 — waitlist members in each country go first when we open. Drop your email to be notified the moment your country goes live."
+      },
+      {
+        "q": "What does Lustimacy actually do for couples?",
+        "a": "Two partners link their accounts into one shared profile. Either of you can swipe, match, and message; your matches always know they're talking to a couple. Switch to solo mode whenever one of you wants to play independently — no second account needed."
+      },
+      {
+        "q": "How do private photos work?",
+        "a": "You upload private photos in your profile. People who haven't matched with you see only an elegant BlurHash gradient — they know more exists, but the photo itself stays yours. The moment you match, the photos unlock automatically for both of you. There's no grant flow to manage."
+      },
+      {
+        "q": "What is travel mode?",
+        "a": "Set a destination city and a return date. Lustimacy shows you matches in that city before you arrive, and removes you from your home feed for the duration. Perfect for a lifestyle weekend in Berlin, Amsterdam, or anywhere on the European circuit."
+      },
+      {
+        "q": "Is Lustimacy free?",
+        "a": "Yes. Sign-up, swipe, match, and chat are free. A premium tier (Lustimacy Plus) adds priority visibility and 'who liked you,' similar to other dating apps. Founding members from the waitlist get a lifetime founder badge and zero-fee verification."
+      },
+      {
+        "q": "How is my privacy protected?",
+        "a": "We never link to your social media, never sell your data, and never make your profile crawlable by search engines. Verification photos are checked then discarded. You can delete your account in two taps and your data is permanently removed within 30 days."
+      },
+      {
+        "q": "What does ENM mean?",
+        "a": "Ethical non-monogamy — relationships built on mutual awareness and consent. It includes the lifestyle, swinging, polyamory, open relationships, and everything in between. Lustimacy is a home for the whole spectrum."
+      },
+      {
+        "q": "Is this a hookup app?",
+        "a": "Lustimacy is what you make of it. Some people are here for a weekend in Cap d'Agde; others are here to find a long-term play partner or a third for their relationship. The filters and detailed profiles let you find the speed and shape that fits you."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Be among the first 1,000.",
+    "lede": "Founding members get lifetime status, zero-fee verification, and the first message into the community. The list closes at 1,000 per country."
+  },
+  "footer": {
+    "tagline": "Lifestyle dating for couples and open-minded singles.",
+    "legalTitle": "Company",
+    "languageTitle": "Language",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "childSafety": "Child Safety Standards",
+    "rights": "All rights reserved."
+  }
+}
