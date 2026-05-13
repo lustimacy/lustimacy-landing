@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Lustimacy waitlist position</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+.status-wrap { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+.status-card {
+    background: linear-gradient(180deg, #1a1428 0%, #150f24 100%);
+    border: 1px solid #2c2440;
+    border-radius: 18px;
+    padding: 40px 36px;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+}
+.status-card h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: #fbe6d5;
+    margin: 0 0 8px;
+    letter-spacing: 0.5px;
+}
+.status-card .lede { color: #c5b8d8; margin: 0 0 32px; font-size: 16px; }
+.position-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 88px;
+    line-height: 1;
+    color: #e8d3ff;
+    font-weight: 500;
+    margin: 8px 0 4px;
+}
+.position-label { color: #8c80a8; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 28px; }
+.share-block {
+    background: #100b1c;
+    border: 1px solid #2c2440;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0 16px;
+}
+.share-label { font-size: 12px; color: #8c80a8; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 10px; }
+.share-link {
+    font-family: 'SF Mono', Menlo, monospace;
+    background: #0c0a14;
+    border: 1px solid #2c2440;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fbe6d5;
+    font-size: 13px;
+    word-break: break-all;
+    margin: 0 0 12px;
+    user-select: all;
+}
+.copy-btn, .share-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #c44574 0%, #a4365a 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 9px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 4px 6px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.copy-btn:hover, .share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(196, 69, 116, 0.35); }
+.copied { background: linear-gradient(135deg, #4a8a52 0%, #3a6e42 100%); }
+.help { font-size: 13px; color: #8c80a8; margin: 24px 0 0; line-height: 1.6; }
+.loading, .err { color: #8c80a8; font-size: 14px; margin: 24px 0; }
+.err { color: #d97b9c; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+    <a href="/" class="topbar__brand">Lustimacy</a>
+</header>
+
+<main class="status-wrap">
+<div class="status-card">
+    <h1>Your spot</h1>
+    <p class="lede">on the Lustimacy waitlist</p>
+
+    <div id="status-content" class="loading">Looking up your position…</div>
+</div>
+</main>
+
+<script>
+(function () {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('c');
+    const container = document.getElementById('status-content');
+
+    if (!code || !/^[a-z0-9]{6,20}$/.test(code)) {
+        container.innerHTML = '<p class="err">No referral code in the link. <a href="/">Sign up here</a> to get one.</p>';
+        return;
+    }
+
+    const SUPABASE_URL = window.LUSTIMACY_SUPABASE_URL || '';
+    const SUPABASE_ANON_KEY = window.LUSTIMACY_SUPABASE_ANON_KEY || '';
+
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        // Fallback: fetch from a /api endpoint server-side (TODO: implement /api/waitlist-status if you want to avoid embedding the anon key)
+        fetchViaApi();
+    } else {
+        fetchDirect();
+    }
+
+    function fetchDirect() {
+        fetch(`${SUPABASE_URL}/rest/v1/rpc/get_waitlist_position_by_code`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({ p_code: code }),
+        })
+            .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+            .then(handleResult)
+            .catch(() => fetchViaApi());
+    }
+
+    function fetchViaApi() {
+        fetch(`/api/waitlist-status?c=${encodeURIComponent(code)}`)
+            .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+            .then(handleResult)
+            .catch(() => {
+                container.innerHTML = '<p class="err">We couldn\'t find your position. Try the link from your most recent email, or <a href="/">sign up again</a>.</p>';
+            });
+    }
+
+    function handleResult(data) {
+        const row = Array.isArray(data) ? data[0] : data;
+        if (!row || row.position == null) {
+            container.innerHTML = '<p class="err">We couldn\'t find your position. Try the link from your most recent email.</p>';
+            return;
+        }
+        const pos = Number(row.position);
+        const refUrl = `https://lustimacy.com/r/${row.referral_code}`;
+        const country = row.country || '';
+        const totalCopy = country
+            ? `You're <strong>#${pos}</strong> on the list for ${country}.`
+            : `You're <strong>#${pos}</strong> on the waitlist.`;
+        container.classList.remove('loading');
+        container.innerHTML = `
+            <div class="position-num">#${pos}</div>
+            <div class="position-label">your position</div>
+            <p class="lede" style="margin-top:0;">${totalCopy}</p>
+            <div class="share-block">
+                <div class="share-label">Share your link → jump 10 spots per friend</div>
+                <div class="share-link" id="ref-link">${refUrl}</div>
+                <button class="copy-btn" id="copy-btn">Copy link</button>
+                <button class="share-btn" id="share-btn">Share…</button>
+            </div>
+            <p class="help">The first 1,000 founding members per country get a lifetime badge and zero-fee verification. Every friend who joins through your link bumps you up 10 spots — refer a couple and you both come in together.</p>
+        `;
+
+        document.getElementById('copy-btn').addEventListener('click', function () {
+            const link = refUrl;
+            const btn = this;
+            const fallback = () => {
+                const ta = document.createElement('textarea');
+                ta.value = link;
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (_) {}
+                document.body.removeChild(ta);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(link).catch(fallback);
+            } else {
+                fallback();
+            }
+            btn.textContent = 'Copied ✓';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy link';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+
+        document.getElementById('share-btn').addEventListener('click', function () {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Join me on Lustimacy',
+                    text: 'Lifestyle dating for couples and open-minded singles — DE & NL.',
+                    url: refUrl,
+                });
+            } else {
+                document.getElementById('copy-btn').click();
+            }
+        });
+
+        if (window.plausible) {
+            window.plausible('WaitlistStatusView');
+        }
+    }
+})();
+</script>
+</body>
+</html>

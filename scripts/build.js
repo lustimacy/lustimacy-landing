@@ -210,7 +210,7 @@ function buildSitemap() {
     lines.push('  </url>');
   }
   // Static pages (English only — privacy/terms/contact are EN single-source).
-  for (const slug of ['privacy.html', 'terms.html', 'contact.html', 'child-safety.html']) {
+  for (const slug of ['privacy.html', 'terms.html', 'contact.html', 'child-safety.html', 'press.html']) {
     lines.push('  <url>');
     lines.push(`    <loc>${SITE_URL}/${slug}</loc>`);
     lines.push(`    <lastmod>${today}</lastmod>`);
@@ -218,6 +218,45 @@ function buildSitemap() {
     lines.push('    <priority>0.4</priority>');
     lines.push('  </url>');
   }
+
+  // City pages
+  for (const city of ['berlin', 'amsterdam']) {
+    lines.push('  <url>');
+    lines.push(`    <loc>${SITE_URL}/city/${city}/</loc>`);
+    lines.push(`    <lastmod>${today}</lastmod>`);
+    lines.push('    <changefreq>weekly</changefreq>');
+    lines.push('    <priority>0.6</priority>');
+    lines.push('  </url>');
+  }
+
+  // Blog: read posts dir if it exists
+  const postsDir = path.join(ROOT, 'blog/posts');
+  if (fs.existsSync(postsDir)) {
+    // Blog index
+    lines.push('  <url>');
+    lines.push(`    <loc>${SITE_URL}/blog/</loc>`);
+    lines.push(`    <lastmod>${today}</lastmod>`);
+    lines.push('    <changefreq>weekly</changefreq>');
+    lines.push('    <priority>0.7</priority>');
+    lines.push('  </url>');
+    for (const file of fs.readdirSync(postsDir)) {
+      if (!file.endsWith('.md')) continue;
+      const raw = fs.readFileSync(path.join(postsDir, file), 'utf8');
+      const slugMatch = raw.match(/^slug:\s*(.+)$/m);
+      const updatedMatch = raw.match(/^updated:\s*(.+)$/m);
+      const publishedMatch = raw.match(/^published:\s*(.+)$/m);
+      if (!slugMatch) continue;
+      const slug = slugMatch[1].trim();
+      const lastmod = (updatedMatch?.[1] || publishedMatch?.[1] || today).trim();
+      lines.push('  <url>');
+      lines.push(`    <loc>${SITE_URL}/blog/${slug}/</loc>`);
+      lines.push(`    <lastmod>${lastmod}</lastmod>`);
+      lines.push('    <changefreq>monthly</changefreq>');
+      lines.push('    <priority>0.7</priority>');
+      lines.push('  </url>');
+    }
+  }
+
   lines.push('</urlset>');
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), lines.join('\n') + '\n', 'utf8');
   console.log('  ✓ sitemap.xml');

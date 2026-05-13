@@ -1,124 +1,219 @@
-// /api/waitlist — accepts a POST { email, locale, source, referrer } and
-// inserts a row into the public.lustimacy_waitlist table via Supabase REST.
+// /api/waitlist — POST { email, locale, source, referrer } → enroll on the
+// Lustimacy waitlist.
 //
-// RLS allows anon INSERT only; the table is not selectable by anon, so the
-// SUPABASE_ANON_KEY is enough. Duplicates collapse silently
-// (Prefer: resolution=ignore-duplicates) so we never leak whether an email
-// is already on the list.
+// Switched to the public.enroll_in_waitlist RPC (migration 20260512120000)
+// which atomically:
+//   1. Checks for duplicate by email
+//   2. Inserts the row (BEFORE trigger generates referral_code)
+//   3. Credits the referrer (AFTER trigger adds bonus_points)
+//   4. Returns { referral_code, position, is_duplicate }
 //
-// Country is read from Cloudflare's request.cf metadata server-side, so
-// clients can't spoof it.
+// Referral attribution: the visitor's referral cookie (lustimacy_ref) is
+// set by /r/[code] Pages function. We read it server-side here.
+//
+// Welcome email: after a successful (non-duplicate) enrollment we call the
+// Supabase Edge Function send-waitlist-email to send sequence 0 (welcome).
+// Failures are logged but don't fail the response — signup is the priority.
 
 interface Env {
-  SUPABASE_URL: string;
-  SUPABASE_ANON_KEY: string;
+    SUPABASE_URL: string;
+    SUPABASE_ANON_KEY: string;
 }
 
 interface Body {
-  email?: unknown;
-  locale?: unknown;
-  source?: unknown;
-  referrer?: unknown;
+    email?: unknown;
+    locale?: unknown;
+    source?: unknown;
+    referrer?: unknown;
+}
+
+interface EnrollResult {
+    referral_code: string;
+    position: number;
+    is_duplicate: boolean;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const SUPPORTED_LOCALES = new Set(['en', 'de', 'nl']);
+const SUPPORTED_LOCALES = new Set(["en", "de", "nl"]);
+const REFERRAL_COOKIE = "lustimacy_ref";
 
 function jsonResponse(data: unknown, status = 200): Response {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-store',
-    },
-  });
+    return new Response(JSON.stringify(data), {
+        status,
+        headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-store",
+        },
+    });
 }
 
 async function hashIp(ip: string): Promise<string> {
-  const enc = new TextEncoder().encode(`lustimacy:${ip}`);
-  const buf = await crypto.subtle.digest('SHA-256', enc);
-  return Array.from(new Uint8Array(buf))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
-    .slice(0, 32);
+    const enc = new TextEncoder().encode(`lustimacy:${ip}`);
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    return Array.from(new Uint8Array(buf))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("")
+        .slice(0, 32);
+}
+
+function readReferralCookie(request: Request): string | null {
+    const header = request.headers.get("cookie") || "";
+    const parts = header.split(/;\s*/);
+    for (const p of parts) {
+        const [k, v] = p.split("=");
+        if (k === REFERRAL_COOKIE && v) {
+            try {
+                return decodeURIComponent(v).slice(0, 32);
+            } catch (_) {
+                return null;
+            }
+        }
+    }
+    return null;
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
-    return jsonResponse({ error: 'misconfigured' }, 500);
-  }
+    if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
+        return jsonResponse({ error: "misconfigured" }, 500);
+    }
 
-  let body: Body;
-  try {
-    body = await request.json();
-  } catch (_) {
-    return jsonResponse({ error: 'invalid_json' }, 400);
-  }
+    let body: Body;
+    try {
+        body = await request.json();
+    } catch (_) {
+        return jsonResponse({ error: "invalid_json" }, 400);
+    }
 
-  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
-  const locale = typeof body.locale === 'string' && SUPPORTED_LOCALES.has(body.locale) ? body.locale : 'en';
-  const source = typeof body.source === 'string' ? body.source.slice(0, 64) : null;
-  const referrer = typeof body.referrer === 'string' ? body.referrer.slice(0, 256) : null;
+    const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+    const locale =
+        typeof body.locale === "string" && SUPPORTED_LOCALES.has(body.locale)
+            ? body.locale
+            : "en";
+    const source = typeof body.source === "string" ? body.source.slice(0, 64) : null;
+    const referrer = typeof body.referrer === "string" ? body.referrer.slice(0, 256) : null;
 
-  if (!EMAIL_RE.test(email) || email.length > 254) {
-    return jsonResponse({ error: 'invalid_email' }, 400);
-  }
+    if (!EMAIL_RE.test(email) || email.length > 254) {
+        return jsonResponse({ error: "invalid_email" }, 400);
+    }
 
-  const cf = (request as any).cf as { country?: string } | undefined;
-  const country = cf?.country?.toUpperCase() || null;
+    const cf = (request as any).cf as { country?: string } | undefined;
+    const country = cf?.country?.toUpperCase() || null;
+    const ip = request.headers.get("cf-connecting-ip") || "0.0.0.0";
+    const ipHash = await hashIp(ip);
+    const userAgent = (request.headers.get("user-agent") || "").slice(0, 256);
+    const referredByCode = readReferralCookie(request);
 
-  const ip = request.headers.get('cf-connecting-ip') || '0.0.0.0';
-  const ipHash = await hashIp(ip);
-  const userAgent = (request.headers.get('user-agent') || '').slice(0, 256);
+    const rpcUrl = `${env.SUPABASE_URL}/rest/v1/rpc/enroll_in_waitlist`;
+    let rpcRes: Response;
+    try {
+        rpcRes = await fetch(rpcUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                apikey: env.SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({
+                p_email: email,
+                p_locale: locale,
+                p_source: source,
+                p_referrer: referrer,
+                p_country: country,
+                p_ip_hash: ipHash,
+                p_user_agent: userAgent,
+                p_referred_by_code: referredByCode,
+            }),
+        });
+    } catch (err) {
+        return jsonResponse({ error: "network" }, 502);
+    }
 
-  const row = {
-    email,
-    locale,
-    source,
-    referrer,
-    country,
-    ip_hash: ipHash,
-    user_agent: userAgent,
-  };
+    if (rpcRes.status < 200 || rpcRes.status >= 300) {
+        return jsonResponse({ error: "upstream" }, 502);
+    }
 
-  const url = `${env.SUPABASE_URL}/rest/v1/lustimacy_waitlist`;
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        apikey: env.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
-        // Just minimal — `resolution=ignore-duplicates` makes PostgREST
-        // run an upsert which requires SELECT on the table, and anon
-        // intentionally doesn't have SELECT (subscriber emails stay
-        // private). We let the unique-email constraint return 409, which
-        // we handle as success below.
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify(row),
+    let enrollResult: EnrollResult | null = null;
+    try {
+        const data = await rpcRes.json();
+        // Supabase returns an array of rows from a set-returning function
+        if (Array.isArray(data) && data.length > 0) {
+            enrollResult = data[0] as EnrollResult;
+        } else if (data && typeof data === "object" && "referral_code" in data) {
+            enrollResult = data as EnrollResult;
+        }
+    } catch (_) {
+        /* ignore */
+    }
+
+    if (!enrollResult) {
+        return jsonResponse({ ok: true });
+    }
+
+    // Send welcome email (fire-and-forget — don't block the response)
+    if (!enrollResult.is_duplicate) {
+        // We don't await this; the signup response is the priority.
+        sendWelcomeEmail(env, email, locale, enrollResult.referral_code).catch((err) => {
+            console.log("welcome email send failed (non-fatal):", err);
+        });
+    }
+
+    // Clear the referral cookie now that it's been used
+    const responseHeaders = new Headers({
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store",
     });
-  } catch (err) {
-    return jsonResponse({ error: 'network' }, 502);
-  }
+    if (referredByCode) {
+        responseHeaders.append(
+            "Set-Cookie",
+            `${REFERRAL_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`,
+        );
+    }
 
-  if (res.status === 201 || res.status === 200) {
-    return jsonResponse({ ok: true });
-  }
-  // PostgREST returns 409 on unique conflict; ignore-duplicates should
-  // suppress that to 201, but treat it as success either way.
-  if (res.status === 409) {
-    return jsonResponse({ ok: true, duplicate: true });
-  }
-  // Don't leak Supabase error bodies to the client.
-  return jsonResponse({ error: 'upstream' }, 502);
+    return new Response(
+        JSON.stringify({
+            ok: true,
+            duplicate: enrollResult.is_duplicate,
+            referral_code: enrollResult.referral_code,
+            position: enrollResult.position,
+        }),
+        { status: 200, headers: responseHeaders },
+    );
 };
 
+async function sendWelcomeEmail(
+    env: Env,
+    email: string,
+    locale: string,
+    referralCode: string,
+): Promise<void> {
+    // Calls the Supabase Edge Function. Auth: anon key (function allows anon).
+    const url = `${env.SUPABASE_URL}/functions/v1/send-waitlist-email`;
+    try {
+        const r = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+                apikey: env.SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify({
+                email,
+                sequence_index: 0,
+                locale,
+                referral_code: referralCode,
+            }),
+        });
+        if (r.status < 200 || r.status >= 300) {
+            console.log("send-waitlist-email returned", r.status);
+        }
+    } catch (err) {
+        console.log("send-waitlist-email network error", err);
+    }
+}
+
 export const onRequest: PagesFunction = async ({ request }) => {
-  // Reject anything that's not POST.
-  if (request.method !== 'POST') {
-    return jsonResponse({ error: 'method_not_allowed' }, 405);
-  }
-  return jsonResponse({ error: 'method_not_allowed' }, 405);
+    if (request.method !== "POST") {
+        return jsonResponse({ error: "method_not_allowed" }, 405);
+    }
+    return jsonResponse({ error: "method_not_allowed" }, 405);
 };
