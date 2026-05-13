@@ -210,7 +210,9 @@ function buildSitemap() {
     lines.push('  </url>');
   }
   // Static pages (English only — privacy/terms/contact are EN single-source).
-  for (const slug of ['privacy.html', 'terms.html', 'contact.html', 'child-safety.html', 'press.html']) {
+  // press.html intentionally excluded — page hidden from nav + sitemap
+  // until it's worked on. File remains in repo with noindex meta.
+  for (const slug of ['privacy.html', 'terms.html', 'contact.html', 'child-safety.html']) {
     lines.push('  <url>');
     lines.push(`    <loc>${SITE_URL}/${slug}</loc>`);
     lines.push(`    <lastmod>${today}</lastmod>`);

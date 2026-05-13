@@ -56,22 +56,31 @@
     margin: 0 0 12px;
     user-select: all;
 }
-.copy-btn, .share-btn {
+.share-btn, .copy-btn {
     display: inline-block;
-    background: linear-gradient(135deg, #c44574 0%, #a4365a 100%);
-    color: #fff;
     text-decoration: none;
-    padding: 12px 22px;
+    padding: 13px 24px;
     border-radius: 9px;
     font-weight: 600;
-    border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     margin: 4px 6px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
-.copy-btn:hover, .share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(196, 69, 116, 0.35); }
-.copied { background: linear-gradient(135deg, #4a8a52 0%, #3a6e42 100%); }
+.share-btn {
+    background: linear-gradient(135deg, #c44574 0%, #a4365a 100%);
+    color: #fff;
+    border: none;
+}
+.share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(196, 69, 116, 0.35); }
+.copy-btn {
+    background: transparent;
+    color: #e8d3ff;
+    border: 1px solid #2c2440;
+}
+.copy-btn:hover { border-color: #c44574; background: rgba(196, 69, 116, 0.08); }
+.copied { background: rgba(74, 138, 82, 0.15) !important; border-color: #4a8a52 !important; color: #a4eaa9 !important; }
+@keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196,69,116,0.6); } 50% { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(196,69,116,0); } }
 .help { font-size: 13px; color: #8c80a8; margin: 24px 0 0; line-height: 1.6; }
 .loading, .err { color: #8c80a8; font-size: 14px; margin: 24px 0; }
 .err { color: #d97b9c; }
@@ -158,50 +167,67 @@
             <div class="share-block">
                 <div class="share-label">Share your link → jump 10 spots per friend</div>
                 <div class="share-link" id="ref-link">${refUrl}</div>
-                <button class="copy-btn" id="copy-btn">Copy link</button>
-                <button class="share-btn" id="share-btn">Share…</button>
+                <button class="share-btn" id="share-btn">Share my link</button>
+                <button class="copy-btn" id="copy-btn">Copy</button>
             </div>
             <p class="help">The first 1,000 founding members per country get a lifetime badge and zero-fee verification. Every friend who joins through your link bumps you up 10 spots — refer a couple and you both come in together.</p>
         `;
 
-        document.getElementById('copy-btn').addEventListener('click', function () {
-            const link = refUrl;
-            const btn = this;
+        function doCopy() {
+            const btn = document.getElementById('copy-btn');
             const fallback = () => {
                 const ta = document.createElement('textarea');
-                ta.value = link;
+                ta.value = refUrl;
                 document.body.appendChild(ta);
                 ta.select();
                 try { document.execCommand('copy'); } catch (_) {}
                 document.body.removeChild(ta);
             };
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(link).catch(fallback);
+                navigator.clipboard.writeText(refUrl).catch(fallback);
             } else {
                 fallback();
             }
             btn.textContent = 'Copied ✓';
             btn.classList.add('copied');
             setTimeout(() => {
-                btn.textContent = 'Copy link';
+                btn.textContent = 'Copy';
                 btn.classList.remove('copied');
             }, 2000);
-        });
+        }
 
-        document.getElementById('share-btn').addEventListener('click', function () {
+        function doShare() {
             if (navigator.share) {
                 navigator.share({
                     title: 'Join me on Lustimacy',
-                    text: 'Lifestyle dating for couples and open-minded singles — DE & NL.',
+                    text: 'Lifestyle dating for couples, polycules, and open-minded singles — DE & NL.',
                     url: refUrl,
-                });
+                }).then(() => {
+                    if (window.plausible) window.plausible('ReferralShared', { props: { method: 'native' } });
+                }).catch(() => { /* user cancelled — no-op */ });
             } else {
-                document.getElementById('copy-btn').click();
+                // Desktop fallback: copy + show inline message
+                doCopy();
+                const btn = document.getElementById('share-btn');
+                btn.textContent = 'Link copied — share anywhere';
+                setTimeout(() => { btn.textContent = 'Share my link'; }, 2200);
+                if (window.plausible) window.plausible('ReferralShared', { props: { method: 'copy_fallback' } });
             }
-        });
+        }
+
+        document.getElementById('share-btn').addEventListener('click', doShare);
+        document.getElementById('copy-btn').addEventListener('click', doCopy);
 
         if (window.plausible) {
             window.plausible('WaitlistStatusView');
+        }
+
+        // If arrived with ?action=share (from email button), pulse the Share
+        // button to draw attention. Cannot auto-trigger navigator.share()
+        // without a user gesture, so we just visually emphasize it.
+        if (params.get('action') === 'share') {
+            const btn = document.getElementById('share-btn');
+            btn.style.animation = 'pulse 1.2s ease-in-out 3';
         }
     }
 })();
