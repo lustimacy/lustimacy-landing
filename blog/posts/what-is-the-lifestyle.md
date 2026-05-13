@@ -84,7 +84,7 @@ If you're new and want to explore, start with **events and conversations**, not 
 
 We built Lustimacy because every existing tool was missing one of three things:
 
-1. **Linked couple profiles.** Most apps still treat you as two individuals with a couple tag. We made one identity, two logins.
+1. **Linked partner profiles.** Most apps still treat couples as two individuals with a meaningless tag, and polycules as "fill in 'It's complicated' and hope." We made it a real profile field: link up to 3 partners to your account, their photos appear on yours, matches see your relationship structure upfront. Each partner still swipes from their own deck.
 2. **Trust-by-default.** Our verification is real (selfie matched to profile, by hand), not a checkbox. And private photos unlock at the mutual match, not before.
 3. **A community-first feel.** We're starting in DE and NL specifically because those are the markets with real existing communities to root in. The app should be the digital extension of what's already happening offline — not a replacement for it.
 

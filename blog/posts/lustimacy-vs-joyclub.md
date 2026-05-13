@@ -16,7 +16,7 @@ A note before we start: I have no axe to grind against Joyclub. They've built so
 ## TL;DR
 
 - **Joyclub** is a community platform with a strong forum, events, and very deep DACH presence. It's web-first, paid-subscription, and best for people who want a full ecosystem.
-- **Lustimacy** is a mobile-first dating app, focused on the swipe-match-chat flow, with **linked couple profiles** and **private photos that unlock at the mutual match**. It's launching first in DE + NL in 2026 and is currently invite-only via waitlist.
+- **Lustimacy** is a mobile-first dating app, focused on the swipe-match-chat flow, with **linked partner profiles** (link up to 3 partners to your profile; matches see them upfront) and **private photos that unlock at the mutual match**. It's launching first in DE + NL in 2026 and is currently invite-only via waitlist.
 
 If you want a forum and a deep community history, you want Joyclub. If you want a dating app built around the way couples and singles actually meet on phones in 2026, that's us.
 
@@ -33,7 +33,7 @@ Joyclub has been around since 2003. That's ~23 years of community capital, and y
 ## Where Joyclub has limitations (in our view)
 
 - **Web-first UI.** The mobile experience is functional but feels like a port of the web. Modern mobile expectations — swipe, instant chat, photo-first design — aren't the core.
-- **Single accounts only.** Couples on Joyclub maintain two separate accounts and use a "we are a couple" tag. When you match, you're matching with one or the other; the couple identity is a label, not a structural feature.
+- **Single accounts only.** Couples on Joyclub maintain two separate accounts and use a "we are a couple" tag. There's no built-in way to show your partner on your profile — the couple identity is a label, not a profile-level structural field.
 - **Paid model.** The free tier is significantly limited; full usage requires a paid Premium subscription (€10–25/month depending on tier). Reasonable for serious users; a barrier for the curious.
 - **Geographic concentration.** Strong in DACH, thinner outside. If you're in NL, FR, or further west, the active user count drops fast.
 - **Profile-heavy, not signal-heavy.** Profiles are detailed but reading them is work. Match quality depends on you doing that work.
@@ -42,17 +42,17 @@ Joyclub has been around since 2003. That's ~23 years of community capital, and y
 
 We're a much younger product (we're literally building it as you read this), so claiming "we do this better" would be premature. But here's what we designed differently, on purpose:
 
-### Linked couple profiles
+### Linked partner profiles
 
-When a couple signs up to Lustimacy, both partners create accounts and then **link them together** in settings. Once linked:
+Lustimacy lets you **link up to 3 partners to your profile**. Once linked:
 
-- You appear as **one couple** to everyone else, not two individuals with a tag.
-- Either partner can swipe, match, and chat — the conversations are shared.
-- Your match queue is unified. The matches your partner makes show up for you.
-- You can switch to "solo mode" temporarily — useful when one of you is traveling or wants to explore alone with mutual agreement.
+- Your partner's photo appears on your profile card. Matches see the relationship structure before they swipe — no surprise reveal in the first chat.
+- The same is true in reverse: when your partner's profile is shown to someone, you appear on it.
+- Each partner has their own login and swipes from their own deck. The connection is **visible, not shared** — your matches and chats are your own.
+- Up to three linked partners means triads, V's, quads, and small polycules all get a real representation, not "It's complicated."
 - Unlink in one tap if life changes.
 
-This is a foundational design difference, not a feature you bolt on. It changes how you experience the app.
+This is the cleanest answer we could find to a structural problem every other lifestyle app punts on: how do you let people show their relationships honestly without flattening them into one account?
 
 ### Private photos that unlock at the mutual match
 
@@ -91,7 +91,7 @@ Honestly, you might want both. They're not exclusive.
 - You're already a Premium subscriber and it's working
 
 **Use Lustimacy if:**
-- You're a couple who wants to match as a couple, not as two individuals
+- You're a couple or polycule who wants your relationship structure visible on your profile, not hidden in a bio tag
 - You care about private-photos-at-match-only as a built-in feature
 - You're in DE or NL (we're not in other markets yet)
 - You want a mobile-native swipe app and a smaller community to start

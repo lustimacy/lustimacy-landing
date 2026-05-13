@@ -83,7 +83,7 @@ radar" stories.
 couples and open-minded singles, launching in Germany and the Netherlands
 in 2026. Three things make this an unusual story:
 
-1. **It's the first serious mobile-first challenger to Joyclub.** Joyclub has dominated the German lifestyle market since 2003 — 4M registered users, forum architecture, web-centric. Lustimacy is the conceptual antithesis: mobile-native, swipe-based, with **linked couple profiles** (two logins, one identity), **private photos that auto-unlock on the mutual match**, and **hand-verification** by a human team.
+1. **It's the first serious mobile-first challenger to Joyclub.** Joyclub has dominated the German lifestyle market since 2003 — 4M registered users, forum architecture, web-centric. Lustimacy is the conceptual antithesis: mobile-native, swipe-based, with **linked partner profiles** (link up to 3 partners to your account so matches see your relationship structure upfront; each partner still swipes independently), **private photos that auto-unlock on the mutual match**, and **hand-verification** by a human team.
 
 2. **It can't be advertised by any of the mainstream growth platforms.** Meta, Google Ads, TikTok, Apple Search Ads — all reject lifestyle. How do you launch an app in 2026 when 95% of the modern growth toolkit is closed? The answer is a return to methods that have looked obsolete since ~2010: long-form SEO content, community partnerships with clubs and venues, founder-to-founder DMs, no paid acquisition. A genuine cultural-technical tension.
 

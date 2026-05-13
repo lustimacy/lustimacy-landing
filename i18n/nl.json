@@ -36,9 +36,9 @@
     "title1": "Een plek voor",
     "title2": "de bewust nieuwsgierigen.",
     "title3": "",
-    "lede": "Lustimacy is de lifestyle dating-app voor stellen — samen of solo — en open-minded singles. Discreet ontworpen, geverifieerd aan de deur, gebouwd rond wat je écht wilt.",
+    "lede": "Lustimacy is de lifestyle dating-app voor stellen, polycules en open-minded singles. Koppel tot 3 partners aan je profiel. Discreet ontworpen, geverifieerd aan de deur, gebouwd rond wat je écht wilt.",
     "trust1": "Alleen geverifieerde profielen",
-    "trust2": "Stellen verschijnen als één",
+    "trust2": "Tot 3 gekoppelde partners",
     "trust3": "Privé foto's, jouw controle"
   },
   "waitlist": {
@@ -56,11 +56,11 @@
     "lede": "Lustimacy is vanaf dag één gebouwd voor de lifestyle community — stellen in de scene, singles die met stellen daten, en volwassenen die ENM op hun eigen tempo verkennen.",
     "couples": {
       "title": "Stellen in de lifestyle",
-      "body": "Koppel twee accounts tot één gedeeld profiel. Wie van jullie ook swipt, matcht en chat — jullie matches zien jullie als stel vanaf het eerste bericht. Schakel naar solo-modus met één tap, geen tweede account nodig."
+      "body": "Koppel tot 3 partners aan je profiel zodat matches je relatiestructuur zien voor het eerste bericht. Ieder houdt zijn eigen account en swiped onafhankelijk — de verbinding is zichtbaar, niet gedeeld. Lustimacy is de eerste app die dit standaard eerlijk maakt."
     },
     "singles": {
       "title": "Open-minded singles",
-      "body": "Filter op stellen, singles of allebei. Zie wie er vanavond solo speelt en wie als stel zoekt. Gedetailleerde profielen tonen lifestyle, dynamiek en sfeer — voordat het eerste woord valt."
+      "body": "Filter op stellen, singles of allebei. Zie vóór het swipen wie solo is en wie gekoppelde partners heeft. Gedetailleerde profielen tonen lifestyle, dynamiek en sfeer — voordat het eerste woord valt."
     },
     "curious": {
       "title": "Nieuwsgierig, voorzichtig, respectvol",
@@ -72,16 +72,16 @@
     "title": "Wat Lustimacy anders maakt",
     "lede": "Vijf dingen die elke andere dating-app verkeerd doet voor de lifestyle. We hebben ze vanaf nul gebouwd.",
     "couple": {
-      "title": "Gekoppelde stel-profielen",
-      "body": "Eén profiel, twee accounts. Beide partners loggen in met eigen gegevens, maar de wereld ziet één stel. Swipe, match en chat samen — of ontkoppel met één tap als het leven verandert.",
-      "cardSolo": "Twee aparte profielen",
-      "cardLinked": "Eén gekoppeld stel"
+      "title": "Gekoppelde partnerprofielen",
+      "body": "Koppel tot 3 partners aan je profiel. Hun foto's verschijnen op het jouwe, zodat matches zien met wie je al bent — voor het eerste bericht. Iedere partner heeft een eigen login en swiped uit eigen deck — de relatie is zichtbaar, niet gedeeld.",
+      "cardSolo": "Profiel zonder gekoppelde partners",
+      "cardLinked": "Profiel met gekoppelde partners"
     },
     "mode": {
-      "title": "Samen of solo, jullie keus",
-      "body": "Vanavond samen. Morgen is een van jullie in een andere stad solo aan het spelen. Wissel modus vanaf het home-scherm — je partner ziet de wijziging, je matches zien de juiste versie van jou.",
-      "solo": "Solo",
-      "together": "Samen"
+      "title": "Echte verificatie",
+      "body": "Elke founding member wordt persoonlijk door ons geverifieerd — selfie tegen profielfoto, handmatig gecontroleerd. Verificatie is gratis voor founding members. Geen AI-blackbox, geen vinkje. Alleen-geverifieerd-filteren is één tap weg.",
+      "solo": "Niet geverifieerd",
+      "together": "Geverifieerd"
     },
     "privatePhotos": {
       "title": "Privé foto's, vrij bij een match",
@@ -93,11 +93,11 @@
     },
     "filters": {
       "title": "Filters die echt filteren",
-      "body": "Stellen, singles of allebei? Solo of samen modus? Lichaamstype, lifestyle, dynamiek, afstand, leeftijd. Elke filter die we bouwden gebruiken we zelf.",
+      "body": "Stellen, singles of allebei? Gekoppelde partners of solo? Lichaamstype, lifestyle, dynamiek, afstand, leeftijd. Elke filter die we bouwden gebruiken we zelf.",
       "chip1": "Stellen",
       "chip2": "Singles",
-      "chip3": "Samen-modus",
-      "chip4": "Solo-modus",
+      "chip3": "Gekoppelde partners",
+      "chip4": "Solo profielen",
       "chip5": "Alleen geverifieerd",
       "chip6": "≤ 50 km"
     }
@@ -112,7 +112,7 @@
     },
     "step2": {
       "title": "Een profiel dat het zegt",
-      "body": "Wie ben je, met wie ben je, waar sta je voor open. Stellen koppelen; solos krijgen de volledige filterset."
+      "body": "Wie ben je, met wie ben je, waar sta je voor open. Koppel tot 3 partners aan je profiel; solos krijgen de volledige filterset."
     },
     "step3": {
       "title": "Verifiëren in 30 seconden",
@@ -129,7 +129,7 @@
     "lede": "Een echte Lustimacy-feed is gefilterd, geverifieerd en gecureerd. Dit is een voorproefje — sleep een kaart of gebruik de knoppen.",
     "card1": {
       "name": "Anna & Luca",
-      "detail": "Stel · Samen · Amsterdam"
+      "detail": "Stel · Geverifieerd · Amsterdam"
     },
     "card2": {
       "name": "Mira",
@@ -137,11 +137,11 @@
     },
     "card3": {
       "name": "Eva & Tom",
-      "detail": "Stel · Solo + Samen · Utrecht"
+      "detail": "Stel · Gekoppeld profiel · Utrecht"
     },
     "card4": {
       "name": "Sky & Riley",
-      "detail": "Stel · Samen · Den Haag"
+      "detail": "Stel · Geverifieerd · Den Haag"
     },
     "card5": {
       "name": "Naima",
@@ -149,7 +149,7 @@
     },
     "card6": {
       "name": "Noah & Liv",
-      "detail": "Stel · Samen · Groningen"
+      "detail": "Stel · Geverifieerd · Groningen"
     },
     "card7": {
       "name": "Felix",
@@ -161,7 +161,7 @@
     },
     "card9": {
       "name": "Mateo & Sara",
-      "detail": "Stel · Solo + Samen · Maastricht"
+      "detail": "Stel · Gekoppeld profiel · Maastricht"
     },
     "card10": {
       "name": "Yuki",
@@ -172,8 +172,8 @@
       "body": "Wederzijdse likes openen een chat — zoals je verwacht, geen verrassingen."
     },
     "beat2": {
-      "title": "Stellen verschijnen als één.",
-      "body": "In Samen-modus zie je één profiel met beide partners voorop — niet twee aparte accounts."
+      "title": "Gekoppelde partners zichtbaar.",
+      "body": "Elk profiel toont gekoppelde partners op de kaart — stellen, triades, polycules, allemaal direct zichtbaar."
     },
     "beat3": {
       "title": "Privé foto's gaan direct open.",
@@ -183,12 +183,12 @@
   "screens": {
     "eyebrow": "In de app",
     "title": "Gebouwd voor volwassenen",
-    "alt1": "Lustimacy home-feed met stel- en single-profielen",
+    "alt1": "Lustimacy home-feed met profielen die gekoppelde partners tonen, en singles",
     "alt2": "Profieldetail met verificatie-badge, lifestyle-voorkeuren en oriëntatie",
-    "alt3": "Stel-koppelscherm — deel een link met je partner",
+    "alt3": "Partner-koppelscherm — nodig tot 3 partners uit voor je profiel",
     "alt4": "Privé fotogalerij met BlurHash-placeholders, ontgrendeld bij match",
-    "alt5": "Zoekfilters — stellen, singles, modus, lichaam, afstand",
-    "alt6": "Match-modal — beide partners zichtbaar, chat opent",
+    "alt5": "Zoekfilters — stellen, singles, gekoppelde partners, lichaam, afstand",
+    "alt6": "Match-modal — partner met koppel-indicator, chat opent",
     "alt7": "Travel mode setup — bestemmingsstad en terugkeerdatum",
     "alt8": "In-app chat met een geverifieerde Lustimacy-match"
   },
@@ -246,7 +246,7 @@
       },
       {
         "q": "Wat doet Lustimacy concreet voor stellen?",
-        "a": "Twee partners koppelen hun accounts tot één gedeeld profiel. Wie van jullie ook swipt, matcht of bericht stuurt — jullie matches weten dat ze met een stel praten. Schakel naar solo-modus wanneer een van jullie onafhankelijk wil spelen. Geen tweede account nodig."
+        "a": "Je kunt tot 3 partners aan je profiel koppelen — hun foto's verschijnen op het jouwe, zodat matches al voor het eerste bericht zien met wie je bent. Iedere partner heeft een eigen account en swiped uit eigen deck; de verbinding is zichtbaar, niet gedeeld. De eerste app die stellen/polycule-transparantie standaard maakt, niet als tag."
       },
       {
         "q": "Hoe werken privé foto's?",

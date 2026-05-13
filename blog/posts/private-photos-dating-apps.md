@@ -79,7 +79,7 @@ Most dating apps compete on match quality, profile quality, conversation feature
 
 If the answer is no, no amount of swipe quality matters. The app becomes useless past the curiosity phase.
 
-We think of private-photos-at-match as a *baseline*, not a feature. Verification: baseline. Real moderation: baseline. Private photos at match: baseline. The match quality, the linked-couple-profiles, the travel mode — those are *features*, and we'll keep building them. But the baseline is non-negotiable.
+We think of private-photos-at-match as a *baseline*, not a feature. Verification: baseline. Real moderation: baseline. Private photos at match: baseline. The match quality, the linked-partner profiles, the travel mode — those are *features*, and we'll keep building them. But the baseline is non-negotiable.
 
 If a lifestyle dating app launched in 2026 doesn't have something like this, it's missing the point of the entire category.
 

@@ -54,8 +54,9 @@ Three angles I think could be fun for the show:
 2. **What I learned building this app.** Things I got wrong, things I
    got right. The strangest feature requests from lifestyle users.
    What the Tinder/Hinge generation gets wrong about couple matching.
-   The decision to build "linked couple profiles" (both partners,
-   one identity) instead of the standard "couple tag" approach.
+   The decision to build "linked partner profiles" — up to 3 partners
+   visible on your card — instead of the standard "couple tag" approach.
+   Each partner still swipes independently.
 
 3. **Solo entrepreneurship as a lifestyle person, in 2026.** Building
    alone, raising no money, in a niche that gets rejected by every

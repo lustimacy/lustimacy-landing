@@ -103,7 +103,7 @@ A dating app is *not* a good place to have the first conversation. It's tempting
 
 Apps come later. Conversation first, by months.
 
-That said, when you're ready: Lustimacy is built for exactly this kind of couple. Linked profiles, private photos that unlock at the match, real verification. It's quiet by design.
+That said, when you're ready: Lustimacy is built for exactly this kind of couple. Link your partner to your profile (up to 3 partners total), private photos that unlock at the match, real verification. It's quiet by design.
 
 ---
 

@@ -3,7 +3,7 @@
     "localeCode": "en",
     "ogLocale": "en_US",
     "title": "Lustimacy — Lifestyle Dating for Couples & Open-Minded Singles",
-    "description": "The lifestyle dating app for couples and open-minded singles. Linked couple profiles, private photos that unlock at the match, travel mode. Now opening in Germany & the Netherlands — join the waitlist.",
+    "description": "The lifestyle dating app for couples and open-minded singles. Link up to 3 partners on your profile, private photos that unlock at the match, travel mode. Now opening in Germany & the Netherlands — join the waitlist.",
     "keywords": "lifestyle dating, dating for couples, open-minded singles, ethical non-monogamy, ENM, swinger app, couples dating app, private photos dating, travel mode dating",
     "ogImageAlt": "Lustimacy — lifestyle dating app for couples and open-minded singles"
   },
@@ -36,9 +36,9 @@
     "title1": "A space for the",
     "title2": "deliberately curious.",
     "title3": "",
-    "lede": "Lustimacy is the lifestyle dating app for couples — together or solo — and open-minded singles. Discreet by design, verified at the door, built around what you actually want.",
+    "lede": "Lustimacy is the lifestyle dating app for couples, polycules, and open-minded singles. Link up to 3 partners on your profile. Discreet by design, verified at the door, built around what you actually want.",
     "trust1": "Verified profiles only",
-    "trust2": "Couples appear as one",
+    "trust2": "Up to 3 linked partners",
     "trust3": "Private photos, your control"
   },
   "waitlist": {
@@ -56,11 +56,11 @@
     "lede": "Lustimacy was designed from day one for the lifestyle community — couples in the scene, singles who play with couples, and adults exploring ethical non-monogamy on their own terms.",
     "couples": {
       "title": "Couples in the lifestyle",
-      "body": "Link two accounts into one shared profile. Either of you can swipe, match, and chat — your matches see you as a couple from the very first message. Switch to solo any time, no second account needed."
+      "body": "Link up to 3 partners to your profile so matches see your relationship structure before the first message. Each of you keeps your own account and swipes independently — the connection is visible, not shared. Lustimacy is the first app to make this honest by default."
     },
     "singles": {
       "title": "Open-minded singles",
-      "body": "Filter for couples, singles, or both. See who's playing solo tonight and who's together. Detailed profiles tell you the lifestyle, the dynamic, and the energy before you ever start a chat."
+      "body": "Filter for couples, singles, or both. See who's solo and who's got linked partners before you swipe. Detailed profiles tell you the lifestyle, the dynamic, and the energy before you ever start a chat."
     },
     "curious": {
       "title": "Curious, careful, kind",
@@ -72,16 +72,16 @@
     "title": "What makes Lustimacy different",
     "lede": "Five things every other dating app gets wrong for the lifestyle. We built them from scratch.",
     "couple": {
-      "title": "Linked couple profiles",
-      "body": "One profile, two accounts. Both partners log in with their own credentials, but the world sees one couple. Swipe, match, and chat together — or unlink in a single tap if life changes.",
-      "cardSolo": "Two separate profiles",
-      "cardLinked": "One linked couple"
+      "title": "Linked partner profiles",
+      "body": "Link up to 3 partners to your profile. Their photos appear on yours, so matches see who you're already with before the first message. Each partner has their own login and swipes from their own deck — the relationship is visible, not shared.",
+      "cardSolo": "Profile without linked partners",
+      "cardLinked": "Profile with linked partners"
     },
     "mode": {
-      "title": "Together or solo, your call",
-      "body": "Tonight you're together. Tomorrow one of you is in another city playing solo. Switch modes from the home screen — your partner sees the change, your matches see the right version of you.",
-      "solo": "Solo",
-      "together": "Together"
+      "title": "Real verification",
+      "body": "Every founding member is hand-verified by us — a selfie matched to a profile photo, reviewed by a human. Verification is free for founding members; no AI black-box, no checkbox. Verified-only filtering is one tap away.",
+      "solo": "Unverified",
+      "together": "Verified"
     },
     "privatePhotos": {
       "title": "Private photos, unlocked at the match",
@@ -93,11 +93,11 @@
     },
     "filters": {
       "title": "Filters that actually filter",
-      "body": "Looking for couples, singles, or both? Solo or together mode? Body type, lifestyle, dynamic, distance, age. Every filter we built is one we use ourselves.",
+      "body": "Looking for couples, singles, or both? Linked partners or solo? Body type, lifestyle, dynamic, distance, age. Every filter we built is one we use ourselves.",
       "chip1": "Couples",
       "chip2": "Singles",
-      "chip3": "Together mode",
-      "chip4": "Solo mode",
+      "chip3": "Linked partners",
+      "chip4": "Solo profiles",
       "chip5": "Verified only",
       "chip6": "≤ 50 km"
     }
@@ -112,7 +112,7 @@
     },
     "step2": {
       "title": "Build a profile that says it",
-      "body": "Tell us who you are, who you're with, what you're into. Couples link up; solos get the full filter set."
+      "body": "Tell us who you are, who you're with, what you're into. Link up to 3 partners to your profile; solos get the full filter set."
     },
     "step3": {
       "title": "Verify, in 30 seconds",
@@ -129,7 +129,7 @@
     "lede": "A real Lustimacy feed is filtered, verified, and curated. This is just a taste — drag a card or use the buttons.",
     "card1": {
       "name": "Anna & Luca",
-      "detail": "Couple · Together · Berlin"
+      "detail": "Couple · Verified · Berlin"
     },
     "card2": {
       "name": "Mira",
@@ -137,11 +137,11 @@
     },
     "card3": {
       "name": "Eva & Tom",
-      "detail": "Couple · Solo + Together · Hamburg"
+      "detail": "Couple · Linked profile · Hamburg"
     },
     "card4": {
       "name": "Sky & Riley",
-      "detail": "Couple · Together · Cologne"
+      "detail": "Couple · Verified · Cologne"
     },
     "card5": {
       "name": "Naima",
@@ -149,7 +149,7 @@
     },
     "card6": {
       "name": "Noah & Liv",
-      "detail": "Couple · Together · Munich"
+      "detail": "Couple · Verified · Munich"
     },
     "card7": {
       "name": "Felix",
@@ -161,7 +161,7 @@
     },
     "card9": {
       "name": "Mateo & Sara",
-      "detail": "Couple · Solo + Together · Düsseldorf"
+      "detail": "Couple · Linked profile · Düsseldorf"
     },
     "card10": {
       "name": "Yuki",
@@ -172,8 +172,8 @@
       "body": "Mutual likes open a chat — same as you'd expect, no surprises."
     },
     "beat2": {
-      "title": "Couples appear as one.",
-      "body": "When a couple is in Together mode, you see one profile with both partners up front."
+      "title": "Linked partners visible.",
+      "body": "Every profile shows linked partners on the card — couples, triads, polycules, all upfront."
     },
     "beat3": {
       "title": "Private photos unlock instantly.",
@@ -183,12 +183,12 @@
   "screens": {
     "eyebrow": "Inside the app",
     "title": "Built for grown-ups",
-    "alt1": "Lustimacy home feed showing couple and single profiles",
+    "alt1": "Lustimacy home feed showing profiles with linked partners and singles",
     "alt2": "Profile detail with verified badge, lifestyle preferences and orientation",
-    "alt3": "Linked couple invite screen — share a link with your partner",
+    "alt3": "Link partners screen — invite up to 3 partners to your profile",
     "alt4": "Private photo gallery with BlurHash placeholders, unlocked on match",
-    "alt5": "Search filters — couples, singles, mode, body, distance",
-    "alt6": "Match modal — both partners visible, chat opens",
+    "alt5": "Search filters — couples, singles, linked partners, body, distance",
+    "alt6": "Match modal — partner shown with linked-profile indicator, chat opens",
     "alt7": "Travel mode setup — destination city and return date",
     "alt8": "In-app chat with a verified Lustimacy match"
   },
@@ -246,7 +246,7 @@
       },
       {
         "q": "What does Lustimacy actually do for couples?",
-        "a": "Two partners link their accounts into one shared profile. Either of you can swipe, match, and message; your matches always know they're talking to a couple. Switch to solo mode whenever one of you wants to play independently — no second account needed."
+        "a": "You can link up to 3 partners to your profile — their photos appear on yours, so matches see who you're already with before the first message. Each partner has their own account and swipes from their own deck; the connection is visible, not shared. It's the first app to make couple/polycule transparency a default, not a tag."
       },
       {
         "q": "How do private photos work?",
