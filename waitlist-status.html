@@ -139,11 +139,12 @@
 
     function handleResult(data) {
         const row = Array.isArray(data) ? data[0] : data;
-        if (!row || row.position == null) {
+        const positionValue = row && (row.waitlist_position != null ? row.waitlist_position : row.position);
+        if (!row || positionValue == null) {
             container.innerHTML = '<p class="err">We couldn\'t find your position. Try the link from your most recent email.</p>';
             return;
         }
-        const pos = Number(row.position);
+        const pos = Number(positionValue);
         const refUrl = `https://lustimacy.com/r/${row.referral_code}`;
         const country = row.country || '';
         const totalCopy = country

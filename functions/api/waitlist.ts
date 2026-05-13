@@ -29,7 +29,7 @@ interface Body {
 
 interface EnrollResult {
     referral_code: string;
-    position: number;
+    waitlist_position: number;
     is_duplicate: boolean;
 }
 
@@ -174,7 +174,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
             ok: true,
             duplicate: enrollResult.is_duplicate,
             referral_code: enrollResult.referral_code,
-            position: enrollResult.position,
+            position: enrollResult.waitlist_position,
         }),
         { status: 200, headers: responseHeaders },
     );
