@@ -142,8 +142,26 @@
                     </svg>
                 </button>
                 <p class="waitlist__hint">{{ waitlist.hintScarcity }}</p>
-                <p class="waitlist__success" data-success>{{ waitlist.success }}</p>
                 <p class="waitlist__error" data-error></p>
+
+                <div class="waitlist__success-panel" data-success-panel hidden>
+                    <div class="waitlist__success-head">
+                        <svg class="waitlist__success-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <strong>{{ waitlist.successHeadline }}</strong>
+                    </div>
+                    <div class="waitlist__position">
+                        <span class="waitlist__position-num" data-position>—</span>
+                        <span class="waitlist__position-label">{{ waitlist.positionLabel }}</span>
+                    </div>
+                    <p class="waitlist__inbox">{{ waitlist.successInbox }}</p>
+                    <p class="waitlist__share-label">{{ waitlist.referralLabel }}</p>
+                    <div class="waitlist__share-link" data-share-link>—</div>
+                    <div class="waitlist__share-buttons">
+                        <button type="button" class="waitlist__share-btn" data-share-btn>{{ waitlist.shareCta }}</button>
+                        <button type="button" class="waitlist__copy-btn" data-copy-btn data-copy-label="{{ waitlist.copyCta }}" data-copied-label="{{ waitlist.copiedCta }}">{{ waitlist.copyCta }}</button>
+                    </div>
+                    <a class="waitlist__status-link" data-status-link href="/waitlist-status.html">{{ waitlist.statusLink }}</a>
+                </div>
             </form>
 
             <ul class="hero__trust reveal">
@@ -594,8 +612,26 @@
                         <span class="waitlist__submit-label">{{ waitlist.cta }}</span>
                     </button>
                     <p class="waitlist__hint">{{ waitlist.legal }}</p>
-                    <p class="waitlist__success" data-success>{{ waitlist.success }}</p>
                     <p class="waitlist__error" data-error></p>
+
+                    <div class="waitlist__success-panel" data-success-panel hidden>
+                        <div class="waitlist__success-head">
+                            <svg class="waitlist__success-check" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <strong>{{ waitlist.successHeadline }}</strong>
+                        </div>
+                        <div class="waitlist__position">
+                            <span class="waitlist__position-num" data-position>—</span>
+                            <span class="waitlist__position-label">{{ waitlist.positionLabel }}</span>
+                        </div>
+                        <p class="waitlist__inbox">{{ waitlist.successInbox }}</p>
+                        <p class="waitlist__share-label">{{ waitlist.referralLabel }}</p>
+                        <div class="waitlist__share-link" data-share-link>—</div>
+                        <div class="waitlist__share-buttons">
+                            <button type="button" class="waitlist__share-btn" data-share-btn>{{ waitlist.shareCta }}</button>
+                            <button type="button" class="waitlist__copy-btn" data-copy-btn data-copy-label="{{ waitlist.copyCta }}" data-copied-label="{{ waitlist.copiedCta }}">{{ waitlist.copyCta }}</button>
+                        </div>
+                        <a class="waitlist__status-link" data-status-link href="/waitlist-status.html">{{ waitlist.statusLink }}</a>
+                    </div>
                 </form>
             </div>
         </div>

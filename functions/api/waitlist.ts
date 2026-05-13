@@ -33,6 +33,8 @@ interface EnrollResult {
     is_duplicate: boolean;
 }
 
+const WELCOME_TIMEOUT_MS = 4500;
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SUPPORTED_LOCALES = new Set(["en", "de", "nl"]);
 const REFERRAL_COOKIE = "lustimacy_ref";
@@ -149,12 +151,18 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         return jsonResponse({ ok: true });
     }
 
-    // Send welcome email (fire-and-forget — don't block the response)
+    // Send welcome email — AWAITED. Cloudflare Pages kills the worker
+    // when the response goes out, so fire-and-forget cuts the fetch
+    // mid-flight and Resend may never receive the request. We accept
+    // the ~400ms added latency in exchange for reliable delivery.
+    // Email failure is non-fatal: we still return success to the
+    // client. The drip cron will pick up sequence 1+ regardless.
     if (!enrollResult.is_duplicate) {
-        // We don't await this; the signup response is the priority.
-        sendWelcomeEmail(env, email, locale, enrollResult.referral_code).catch((err) => {
+        try {
+            await sendWelcomeEmail(env, email, locale, enrollResult.referral_code);
+        } catch (err) {
             console.log("welcome email send failed (non-fatal):", err);
-        });
+        }
     }
 
     // Clear the referral cookie now that it's been used
@@ -187,7 +195,11 @@ async function sendWelcomeEmail(
     referralCode: string,
 ): Promise<void> {
     // Calls the Supabase Edge Function. Auth: anon key (function allows anon).
+    // Bounded timeout so an unresponsive edge fn doesn't stall the whole
+    // signup response indefinitely.
     const url = `${env.SUPABASE_URL}/functions/v1/send-waitlist-email`;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), WELCOME_TIMEOUT_MS);
     try {
         const r = await fetch(url, {
             method: "POST",
@@ -202,12 +214,13 @@ async function sendWelcomeEmail(
                 locale,
                 referral_code: referralCode,
             }),
+            signal: controller.signal,
         });
         if (r.status < 200 || r.status >= 300) {
             console.log("send-waitlist-email returned", r.status);
         }
-    } catch (err) {
-        console.log("send-waitlist-email network error", err);
+    } finally {
+        clearTimeout(timer);
     }
 }
 

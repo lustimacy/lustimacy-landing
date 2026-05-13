@@ -568,6 +568,122 @@ section { padding: var(--s-9) 0; position: relative; }
 .waitlist.is-success .waitlist__submit { opacity: 0.4; pointer-events: none; }
 .waitlist.is-error .waitlist__error { display: block; color: var(--c-accent-hi); }
 
+/* Success panel — shown after a successful signup. Replaces the input. */
+.waitlist__success-panel {
+    grid-column: 1 / -1;
+    margin-top: var(--s-3);
+    padding: clamp(20px, 3vw, 28px);
+    background: linear-gradient(180deg, rgba(196, 69, 116, 0.08) 0%, rgba(168, 85, 247, 0.04) 100%);
+    border: 1px solid rgba(196, 69, 116, 0.35);
+    border-radius: 14px;
+    text-align: left;
+    animation: waitlistSuccessFadeIn 0.4s ease-out;
+}
+@keyframes waitlistSuccessFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.waitlist.is-success .waitlist__input,
+.waitlist.is-success .waitlist__submit { display: none; }
+.waitlist.is-success .waitlist__hint { display: none; }
+.waitlist__success-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--c-gold, #fbe6d5);
+    margin-bottom: 12px;
+}
+.waitlist__success-check { color: #a4eaa9; flex-shrink: 0; }
+.waitlist__position {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.waitlist__position-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(36px, 7vw, 56px);
+    font-weight: 500;
+    color: #e8d3ff;
+    line-height: 1;
+}
+.waitlist__position-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-text-soft);
+}
+.waitlist__inbox {
+    font-size: 0.85rem;
+    color: var(--c-text-soft);
+    margin: 0 0 18px;
+    line-height: 1.6;
+}
+.waitlist__share-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-soft);
+    margin: 0 0 8px;
+}
+.waitlist__share-link {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    background: rgba(12, 10, 20, 0.5);
+    border: 1px solid rgba(232, 211, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--c-gold, #fbe6d5);
+    font-size: 0.82rem;
+    word-break: break-all;
+    margin-bottom: 12px;
+    user-select: all;
+}
+.waitlist__share-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.waitlist__share-btn, .waitlist__copy-btn {
+    padding: 11px 20px;
+    border-radius: 9px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.waitlist__share-btn {
+    background: linear-gradient(135deg, #c44574 0%, #a4365a 100%);
+    color: #fff;
+    border: none;
+    flex: 1 1 auto;
+    min-width: 140px;
+}
+.waitlist__share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(196, 69, 116, 0.35); }
+.waitlist__copy-btn {
+    background: transparent;
+    color: var(--c-gold, #e8d3ff);
+    border: 1px solid rgba(232, 211, 255, 0.2);
+}
+.waitlist__copy-btn:hover { border-color: #c44574; background: rgba(196, 69, 116, 0.08); }
+.waitlist__copy-btn.is-copied {
+    background: rgba(74, 138, 82, 0.15);
+    border-color: #4a8a52;
+    color: #a4eaa9;
+}
+.waitlist__status-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--c-gold, #e8d3ff);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 211, 255, 0.25);
+    padding-bottom: 1px;
+    transition: border-color 0.15s ease;
+}
+.waitlist__status-link:hover { border-color: #c44574; }
+[hidden] { display: none !important; }
+
 /* ===== 8. Personas ======================================================= */
 .personas__grid {
     display: grid;

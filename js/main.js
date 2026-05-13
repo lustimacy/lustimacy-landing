@@ -197,7 +197,9 @@
             }),
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json().catch(() => ({}));
           form.classList.add('is-success');
+          renderSuccessPanel(form, data);
           track('WaitlistSubmit', { source: form.id || 'unknown', locale });
         } catch (err) {
           if (errorEl) errorEl.textContent = errGeneric[locale] || errGeneric.en;
@@ -207,6 +209,97 @@
         }
       });
     });
+  }
+
+  // Build the referral URL preferring the current locale path
+  function buildReferralUrl(code) {
+    const path = (document.documentElement.lang || 'en').toLowerCase();
+    const prefix = path === 'de' ? '/de/' : path === 'nl' ? '/nl/' : '/';
+    return `https://lustimacy.com${prefix}?ref=${encodeURIComponent(code)}`;
+  }
+
+  function buildStatusUrl(code) {
+    return `https://lustimacy.com/waitlist-status.html?c=${encodeURIComponent(code)}`;
+  }
+
+  function renderSuccessPanel(form, data) {
+    const panel = form.querySelector('[data-success-panel]');
+    if (!panel) return;
+    const code = data && data.referral_code;
+    const position = data && (data.position != null ? data.position : null);
+    const refUrl = code ? buildReferralUrl(code) : '';
+
+    const posEl = panel.querySelector('[data-position]');
+    const linkEl = panel.querySelector('[data-share-link]');
+    const statusEl = panel.querySelector('[data-status-link]');
+    const shareBtn = panel.querySelector('[data-share-btn]');
+    const copyBtn = panel.querySelector('[data-copy-btn]');
+
+    if (posEl) posEl.textContent = position != null ? `#${position}` : '—';
+    if (linkEl) linkEl.textContent = refUrl || '—';
+    if (statusEl && code) statusEl.setAttribute('href', buildStatusUrl(code));
+
+    if (shareBtn) {
+      shareBtn.onclick = async () => {
+        if (!refUrl) return;
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'Join me on Lustimacy',
+              text: 'Lifestyle dating for couples, polycules, and open-minded singles — DE & NL.',
+              url: refUrl,
+            });
+            track('ReferralShared', { method: 'native' });
+          } catch (_) { /* user cancelled */ }
+        } else {
+          // Desktop fallback: copy to clipboard
+          copyToClipboard(refUrl);
+          shareBtn.dataset.originalText = shareBtn.dataset.originalText || shareBtn.textContent;
+          shareBtn.textContent = copyBtn ? (copyBtn.dataset.copiedLabel || 'Copied ✓') : 'Copied ✓';
+          setTimeout(() => { shareBtn.textContent = shareBtn.dataset.originalText; }, 2200);
+          track('ReferralShared', { method: 'copy_fallback' });
+        }
+      };
+    }
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        if (!refUrl) return;
+        copyToClipboard(refUrl);
+        const copied = copyBtn.dataset.copiedLabel || 'Copied ✓';
+        const original = copyBtn.dataset.copyLabel || 'Copy';
+        copyBtn.textContent = copied;
+        copyBtn.classList.add('is-copied');
+        setTimeout(() => {
+          copyBtn.textContent = original;
+          copyBtn.classList.remove('is-copied');
+        }, 2200);
+      };
+    }
+
+    panel.hidden = false;
+    // Smoothly scroll the panel into view so the user sees the new content
+    setTimeout(() => {
+      try { panel.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
+    }, 80);
+  }
+
+  function copyToClipboard(text) {
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (_) {}
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(fallback);
+    } else {
+      fallback();
+    }
   }
 
   // --- Card-stack demo -----------------------------------------------------
