@@ -1,8 +1,30 @@
 # Club outreach — German template
 
-Use this for clubs in DE, AT, CH. Personalize the bracketed parts. Send
-from your real personal name (not "Lustimacy Marketing Team"). Reply
-from the same address you receive at.
+Use this for clubs in DE, AT, CH. Personalize the bracketed parts.
+
+## Identity decision per club (read first)
+
+Club outreach is different from press. **You will likely meet these
+people in person** (visit the venue, drop QR cards, shake hands at the
+door). Walking in as "Albert" when your ID says otherwise is awkward.
+
+Two approaches — pick per recipient:
+
+- **Use your real first name** with clubs you intend to visit personally
+  in the next 1–3 months. Keep it casual: just first name, no last name.
+  Sign off "[Your first name]" and use a real email like
+  `[firstname]@lustimacy.com`. This is the default and what most clubs
+  expect from a founder building a long-term partnership.
+- **Use "Albert"** only for clubs you don't plan to physically visit
+  (e.g., remote follow-ups, partnerships that stay digital). Sign off
+  "Albert" and use `albert@lustimacy.com`.
+
+The templates below use `[YOUR_FIRST_NAME]` as a placeholder — fill in
+per recipient. Reply from the same address you write from so the thread
+doesn't fork.
+
+Send from a person, not a marketing team. Reply from the same address
+you receive at.
 
 ---
 
@@ -12,7 +34,7 @@ from the same address you receive at.
 
 Hallo [NAME / "Team von [CLUB_NAME]"],
 
-mein Name ist Abed. Ich baue gerade eine kleine Lifestyle-Dating-App namens **Lustimacy**, die im 2026 in Deutschland und den Niederlanden startet. Vor dem Launch versuche ich, die Locations in der Szene besser kennenzulernen — euer Club steht auf meiner Liste, weil [CONCRETE_REASON: z.B. "ich euren Freitag schon mehrfach von Bekannten empfohlen bekommen habe" / "euer letzter Insta-Post über [EVENT] mir aufgefallen ist" / "ihr seit Jahren einer der ernsthaftesten Couples-Only Spots in [CITY] seid"].
+mein Name ist [YOUR_FIRST_NAME]. Ich baue gerade eine kleine Lifestyle-Dating-App namens **Lustimacy**, die im 2026 in Deutschland und den Niederlanden startet. Vor dem Launch versuche ich, die Locations in der Szene besser kennenzulernen — euer Club steht auf meiner Liste, weil [CONCRETE_REASON: z.B. "ich euren Freitag schon mehrfach von Bekannten empfohlen bekommen habe" / "euer letzter Insta-Post über [EVENT] mir aufgefallen ist" / "ihr seit Jahren einer der ernsthaftesten Couples-Only Spots in [CITY] seid"].
 
 Zwei kurze Fragen, falls du / ihr kurz Zeit habt:
 
@@ -24,8 +46,8 @@ Ich will keine bezahlte Kooperation oder Provision — ich versuche nur, die App
 Falls das nichts für euch ist, kein Problem — danke für die Zeit. Falls ja, freue ich mich über eine kurze Antwort.
 
 Liebe Grüße,
-Abed
-[lustimacy.com](https://lustimacy.com) · abed@lustimacy.com
+[YOUR_FIRST_NAME]
+[lustimacy.com](https://lustimacy.com) · [YOUR_FIRST_NAME]@lustimacy.com
 
 ---
 
@@ -50,7 +72,7 @@ Kein Geld, keine Provision — nur gegenseitiges Cross-Posting in unseren jeweil
 Lust auf einen 15-min Call diese oder nächste Woche?
 
 Liebe Grüße,
-Abed
+[YOUR_FIRST_NAME]
 [lustimacy.com](https://lustimacy.com)
 
 ---
@@ -68,7 +90,7 @@ Falls die Partnerschaft-Idee von letztem Mal für euch nicht passt — auch ok, 
 Falls doch noch was geht: ich bin diesen Donnerstag in [CITY] und könnte gerne vorbeikommen, kurz Hallo sagen, die Karten persönlich übergeben (falls das hilft).
 
 Grüße,
-Abed
+[YOUR_FIRST_NAME]
 
 ---
 

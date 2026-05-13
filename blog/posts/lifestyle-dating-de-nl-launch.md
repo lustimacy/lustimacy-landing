@@ -5,7 +5,7 @@ slug: lifestyle-dating-de-nl-launch
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Founder Notes]
 ---
 
@@ -82,4 +82,4 @@ Thanks for being here this early. It matters.
 
 ---
 
-*Written by Abed, founder of [Lustimacy](/). DE + NL launching first in 2026. [Waitlist is open](/).*
+*Written by Albert A., founder of [Lustimacy](/). DE + NL launching first in 2026. [Waitlist is open](/).*

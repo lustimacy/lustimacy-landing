@@ -124,9 +124,9 @@ drafts, not final copy.
 
 ## Tweet 15 — Press / story
 
-> Solo dev. Two dating apps in production for two completely different communities (Arabic diaspora marriage + European lifestyle). Both bootstrapped. Both launching in 2026.
+> Solo dev. No funding. Building Lustimacy specifically for European lifestyle daters — a community of millions that every VC has spent the last decade ignoring.
 >
-> Living in the niches that every VC ignores.
+> Living in the niches that none of the big platforms will serve.
 
 ## Tweet 16 — Roadmap thought
 
@@ -153,13 +153,13 @@ drafts, not final copy.
 >
 > But you should also try Lustimacy if you're a couple — because we're the first app to actually treat you as one.
 
-## Tweet 19 — Lessons from Janerek
+## Tweet 19 — How niche communities actually behave
 
-> Built Janerek (marriage app for Arab diaspora) first. It taught me: niche communities use the apps differently than the apps expect them to.
+> Building for a niche community teaches you fast: people don't use apps the way the app expects.
 >
-> Janerek users don't swipe casually. They take 3 weeks to send the first message. The whole UX has to slow down.
+> Lifestyle daters don't swipe like singles do. They read profiles for 90 seconds, not 4. They want to know the dynamic before the photos.
 >
-> Lustimacy users are different but the lesson holds: build for how your community actually behaves.
+> The default Tinder UX is wrong for half the world's daters.
 
 ## Tweet 20 — CTA tweet (occasional)
 

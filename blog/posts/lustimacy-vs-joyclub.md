@@ -5,7 +5,7 @@ slug: lustimacy-vs-joyclub
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Comparison]
 ---
 
@@ -104,4 +104,4 @@ That's our honest take. We're new. We'll prove ourselves over time. In the meant
 
 ---
 
-*Written by Abed, founder of [Lustimacy](/). The Joyclub team are good people building something durable; we're just building a different shape.*
+*Written by Albert A., founder of [Lustimacy](/). The Joyclub team are good people building something durable; we're just building a different shape.*

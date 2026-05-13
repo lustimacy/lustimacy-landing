@@ -2,6 +2,16 @@
 
 Use for clubs in NL + BE. Same structure as the DE template, in Dutch.
 
+## Identity decision per club (read first)
+
+Same as the DE template — pick per recipient:
+
+- **Real first name** for clubs you intend to visit personally
+- **"Albert"** for purely-digital partnerships
+
+The templates below use `[YOUR_FIRST_NAME]` as a placeholder. Use the
+same address you sign with for the contact line so threads don't fork.
+
 ---
 
 ## Template A — short, warm, no ask
@@ -10,7 +20,7 @@ Use for clubs in NL + BE. Same structure as the DE template, in Dutch.
 
 Hoi [NAME / "team van [CLUB_NAME]"],
 
-mijn naam is Abed. Ik bouw op dit moment een kleine lifestyle dating app, **Lustimacy**, die in 2026 lanceert in Duitsland en Nederland. Voor de lancering probeer ik de community offline beter te leren kennen — jullie club staat op mijn lijst omdat [CONCRETE_REASON: bv. "ik jullie Friday-avond meerdere keren aanbevolen heb gekregen" / "jullie laatste Insta-post over [EVENT] me opviel" / "jullie al jaren een van de meest serieuze stellen-only plekken in [CITY] zijn"].
+mijn naam is [YOUR_FIRST_NAME]. Ik bouw op dit moment een kleine lifestyle dating app, **Lustimacy**, die in 2026 lanceert in Duitsland en Nederland. Voor de lancering probeer ik de community offline beter te leren kennen — jullie club staat op mijn lijst omdat [CONCRETE_REASON: bv. "ik jullie Friday-avond meerdere keren aanbevolen heb gekregen" / "jullie laatste Insta-post over [EVENT] me opviel" / "jullie al jaren een van de meest serieuze stellen-only plekken in [CITY] zijn"].
 
 Twee korte vragen als je een momentje hebt:
 
@@ -22,8 +32,8 @@ Ik vraag geen betaalde samenwerking of commissie — ik probeer alleen de app te
 Als het niets voor jullie is — geen probleem, bedankt voor je tijd. Zo ja, dan hoor ik graag van je.
 
 Groet,
-Abed
-[lustimacy.com](https://lustimacy.com) · abed@lustimacy.com
+[YOUR_FIRST_NAME]
+[lustimacy.com](https://lustimacy.com) · [YOUR_FIRST_NAME]@lustimacy.com
 
 ---
 
@@ -48,7 +58,7 @@ Geen geld, geen commissie — alleen wederzijdse cross-posting in onze respectie
 Lust voor een 15-min call deze of volgende week?
 
 Groet,
-Abed
+[YOUR_FIRST_NAME]
 [lustimacy.com](https://lustimacy.com)
 
 ---
@@ -66,4 +76,4 @@ Als het partnership-idee niet werkt voor jullie — geen probleem, geen reactie 
 Mocht er toch iets mogelijk zijn: ik ben donderdag in [CITY] en zou graag even langskomen, hallo zeggen, de kaartjes persoonlijk afgeven (als dat helpt).
 
 Groet,
-Abed
+[YOUR_FIRST_NAME]

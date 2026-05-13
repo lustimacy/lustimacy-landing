@@ -97,6 +97,7 @@
                     <li><a href="#features">{{ nav.features }}</a></li>
                     <li><a href="#how">{{ nav.how }}</a></li>
                     <li><a href="#cities">{{ nav.cities }}</a></li>
+                    <li><a href="/blog/">{{ nav.journal }}</a></li>
                     <li><a href="#faq">{{ nav.faq }}</a></li>
                 </ul>
                 <div class="nav__locales" role="group" aria-label="{{ a11y.localeSwitcher }}">
@@ -498,6 +499,9 @@
                         <li>{{ cities.de5 }}</li>
                         <li>{{ cities.de6 }}</li>
                     </ul>
+                    <a href="/city/berlin/" class="link-arrow" style="margin-top:14px;display:inline-flex;">{{ cities.berlinCta }}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
                 </div>
                 <div class="cities__col reveal">
                     <h3><span class="cities__flag" aria-hidden="true">🇳🇱</span>{{ cities.nlTitle }}</h3>
@@ -509,6 +513,9 @@
                         <li>{{ cities.nl5 }}</li>
                         <li>{{ cities.nl6 }}</li>
                     </ul>
+                    <a href="/city/amsterdam/" class="link-arrow" style="margin-top:14px;display:inline-flex;">{{ cities.amsterdamCta }}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
                 </div>
                 <div class="cities__col cities__col--note reveal">
                     <h3>{{ cities.elsewhereTitle }}</h3>
@@ -603,6 +610,15 @@
                 <div class="footer__brand">
                     <span class="footer__name">Lustimacy</span>
                     <p class="footer__tagline">{{ footer.tagline }}</p>
+                </div>
+                <div class="footer__col">
+                    <h4>{{ footer.exploreTitle }}</h4>
+                    <ul>
+                        <li><a href="/blog/">{{ footer.journal }}</a></li>
+                        <li><a href="/press.html">{{ footer.press }}</a></li>
+                        <li><a href="/city/berlin/">{{ footer.cityBerlin }}</a></li>
+                        <li><a href="/city/amsterdam/">{{ footer.cityAmsterdam }}</a></li>
+                    </ul>
                 </div>
                 <nav class="footer__col" aria-label="{{ a11y.legalNav }}">
                     <h4>{{ footer.legalTitle }}</h4>

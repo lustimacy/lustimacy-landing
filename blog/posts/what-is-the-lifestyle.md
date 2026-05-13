@@ -5,7 +5,7 @@ slug: what-is-the-lifestyle
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Lifestyle 101, Glossary]
 ---
 
@@ -94,4 +94,4 @@ If you're curious and on the waitlist, that's enough for now. Talk to your partn
 
 ---
 
-*Written by Abed, founder of Lustimacy. We're opening first in Germany and the Netherlands in 2026. If you're not on the waitlist yet, you can [reserve a spot in 30 seconds](/).*
+*Written by Albert A., founder of Lustimacy. We're opening first in Germany and the Netherlands in 2026. If you're not on the waitlist yet, you can [reserve a spot in 30 seconds](/).*

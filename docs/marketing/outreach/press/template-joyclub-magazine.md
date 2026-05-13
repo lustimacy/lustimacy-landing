@@ -16,6 +16,10 @@ themselves as journalists, not marketers. They will absolutely cover a
 new entrant if the story is good. Don't try to hide the competitive
 angle — be honest about it.
 
+## Identity in this pitch
+
+You are **Albert A.** in correspondence. Contact: `press@lustimacy.com`.
+
 ## Pitch (DE)
 
 **Subject:** Neuer Lifestyle-App-Konkurrent — Pitch für ein Magazin-Stück?
@@ -52,5 +56,5 @@ Anker:
 - Launch-Hintergrund: https://lustimacy.com/blog/lifestyle-dating-de-nl-launch
 
 Danke fürs Lesen.
-Abed
-abed@lustimacy.com
+Albert A.
+press@lustimacy.com

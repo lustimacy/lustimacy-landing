@@ -5,7 +5,7 @@ slug: talking-to-your-partner-about-opening
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Couples, Communication]
 ---
 
@@ -107,4 +107,4 @@ That said, when you're ready: Lustimacy is built for exactly this kind of couple
 
 ---
 
-*Written by Abed, founder of [Lustimacy](/). We're opening first in DE & NL in 2026. The waitlist is open if this resonates.*
+*Written by Albert A., founder of [Lustimacy](/). We're opening first in DE & NL in 2026. The waitlist is open if this resonates.*

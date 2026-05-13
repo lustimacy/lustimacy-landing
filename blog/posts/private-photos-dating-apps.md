@@ -5,7 +5,7 @@ slug: private-photos-dating-apps
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Privacy, Product]
 ---
 
@@ -107,4 +107,4 @@ This is what we mean when we say private photos are a *baseline*. They work like
 
 ---
 
-*Written by Abed, founder of [Lustimacy](/). The waitlist is open if this is the kind of design thinking you want in a dating app you trust.*
+*Written by Albert A., founder of [Lustimacy](/). The waitlist is open if this is the kind of design thinking you want in a dating app you trust.*

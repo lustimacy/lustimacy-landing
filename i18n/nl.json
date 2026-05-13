@@ -27,6 +27,7 @@
     "features": "Functies",
     "how": "Zo werkt het",
     "cities": "Steden",
+    "journal": "Journal",
     "faq": "FAQ",
     "cta": "Op de wachtlijst"
   },
@@ -211,7 +212,9 @@
     "nl6": "Groningen, Maastricht & verder",
     "elsewhereTitle": "Overal anders",
     "elsewhereBody": "Buiten Nederland of Duitsland? Laat je e-mail achter — we openen nieuwe landen op basis van vraag, en wachtlijst-leden in jouw land gaan eerst als we openen.",
-    "elsewhereCta": "Op de wachtlijst"
+    "elsewhereCta": "Op de wachtlijst",
+    "berlinCta": "Lustimacy in Berlijn",
+    "amsterdamCta": "Lustimacy in Amsterdam"
   },
   "trust": {
     "eyebrow": "Vertrouwen & veiligheid",
@@ -277,6 +280,11 @@
   },
   "footer": {
     "tagline": "Lifestyle dating voor stellen en open-minded singles.",
+    "exploreTitle": "Ontdek",
+    "journal": "Journal",
+    "press": "Pers",
+    "cityBerlin": "Berlijn",
+    "cityAmsterdam": "Amsterdam",
     "legalTitle": "Bedrijf",
     "languageTitle": "Taal",
     "privacy": "Privacybeleid",

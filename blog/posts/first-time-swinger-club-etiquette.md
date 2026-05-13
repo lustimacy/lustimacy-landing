@@ -5,7 +5,7 @@ slug: first-time-swinger-club-etiquette
 locale: en
 published: 2026-05-12
 updated: 2026-05-12
-author: Abed
+author: Albert A.
 tags: [Etiquette, Clubs]
 ---
 
@@ -128,4 +128,4 @@ This is the principle Lustimacy is built around. We're a layer on top of communi
 
 ---
 
-*Written by Abed, founder of [Lustimacy](/). We're launching first in Germany and the Netherlands in 2026. [Join the waitlist](/) if this guide felt useful.*
+*Written by Albert A., founder of [Lustimacy](/). We're launching first in Germany and the Netherlands in 2026. [Join the waitlist](/) if this guide felt useful.*

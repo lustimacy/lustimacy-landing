@@ -12,22 +12,31 @@ They've had founders of dating apps on before (3Fun, Feeld, smaller
 European players). Their format is conversational, hour-long, and they
 reward founders who tell honest stories about building.
 
+## Identity in this pitch
+
+You are **Albert A.** in correspondence. Contact: `press@lustimacy.com`.
+Pen name is in the open — the lifestyle space is comfortable with
+pseudonyms (Casual Swinger hosts themselves use stage names, so this
+should land smoothly with these hosts in particular).
+
 ## Angle
 
-**A solo founder in Europe building a lifestyle dating app — and what
-the European scene looks like in 2026 compared to the US.**
+**An anonymous European solo founder building a lifestyle dating app —
+and what the European scene looks like in 2026 compared to the US.**
 
 ## Pitch
 
-**Subject:** Guest pitch: solo founder building a European lifestyle dating app
+**Subject:** Guest pitch: anonymous European founder building a lifestyle dating app
 
 Hi Mickey and Mallory,
 
 Longtime listener. The episode with [SPECIFIC_RECENT_EPISODE_or_GUEST]
 was one of my favorites this year because [1 SENTENCE REASON].
 
-I'd love to pitch myself as a guest. I'm Abed, a solo developer in
-Europe building **Lustimacy** — a lifestyle dating app launching in
+I'd love to pitch myself as a guest. I'm Albert A. (pen name — same
+reason your show uses stage names; lifestyle entrepreneurs reasonably
+keep public-private separation). I'm a solo developer in Europe building
+**Lustimacy** — a lifestyle dating app launching in
 Germany and the Netherlands in 2026. I'm one person, no funding, no
 team, building the whole thing myself: code, design, translations,
 support, the works.
@@ -66,5 +75,5 @@ Either way, thanks for the show. It's been a real source of
 normalization and education for me and my partner over the years.
 
 Best,
-Abed
-abed@lustimacy.com · lustimacy.com
+Albert A.
+press@lustimacy.com · lustimacy.com

@@ -13,7 +13,7 @@
 //   locale: en   (or de, nl)
 //   published: 2026-05-12
 //   updated: 2026-05-12   (optional)
-//   author: Abed
+//   author: Albert A.
 //   tags: [Lifestyle 101, Couples]
 //   cover: /assets/images/blog/foo.jpg   (optional)
 //   ---
@@ -183,7 +183,7 @@ function loadPosts() {
             locale: meta.locale || 'en',
             published: meta.published || '',
             updated: meta.updated || meta.published || '',
-            author: meta.author || 'Abed',
+            author: meta.author || 'Albert A.',
             tags: Array.isArray(meta.tags) ? meta.tags : [],
             cover: meta.cover || '',
             html,

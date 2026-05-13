@@ -27,6 +27,7 @@
     "features": "Features",
     "how": "How it works",
     "cities": "Cities",
+    "journal": "Journal",
     "faq": "FAQ",
     "cta": "Join the waitlist"
   },
@@ -211,7 +212,9 @@
     "nl6": "Groningen, Maastricht & beyond",
     "elsewhereTitle": "Everywhere else",
     "elsewhereBody": "Outside Germany or the Netherlands? Drop your email — we open new countries based on demand, and waitlist members in your country go first when we do.",
-    "elsewhereCta": "Join the waitlist"
+    "elsewhereCta": "Join the waitlist",
+    "berlinCta": "Lustimacy in Berlin",
+    "amsterdamCta": "Lustimacy in Amsterdam"
   },
   "trust": {
     "eyebrow": "Trust & safety",
@@ -277,6 +280,11 @@
   },
   "footer": {
     "tagline": "Lifestyle dating for couples and open-minded singles.",
+    "exploreTitle": "Explore",
+    "journal": "Journal",
+    "press": "Press",
+    "cityBerlin": "Berlin",
+    "cityAmsterdam": "Amsterdam",
     "legalTitle": "Company",
     "languageTitle": "Language",
     "privacy": "Privacy Policy",

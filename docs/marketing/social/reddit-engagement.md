@@ -7,8 +7,9 @@ one gets shadowbanned.**
 
 ## Account setup
 
-- Create `/u/abedlustimacy` (or similar). Use your real first name.
-- Bio: "Solo founder of Lustimacy — a lifestyle dating app for couples + open-minded singles, launching DE & NL 2026. Here as founder, happy to talk about building / community / lifestyle apps."
+- Create `/u/AlbertA_Lustimacy` (or similar — see suggestions below). Reddit is comfortable with pseudonyms; lifestyle subs especially expect them.
+- Suggested usernames if `AlbertA_Lustimacy` is taken: `lustimacy_albert`, `albert_lustimacy`, `LustimacyFounder`, `AlbertFromLustimacy`.
+- Bio: "Founder of Lustimacy — a lifestyle dating app for couples + open-minded singles, launching DE & NL 2026. Pen name (Albert A.); the lifestyle has its reasons. Happy to talk about building / community / lifestyle apps."
 - Age your account a few weeks before commenting — Reddit weights account age in spam detection.
 - Comment 5-10 times on non-Lustimacy posts before mentioning Lustimacy at all. Build comment karma.
 
