@@ -32,7 +32,7 @@
     "cta": "Op de wachtlijst"
   },
   "hero": {
-    "badgeDefault": "Nu in Nederland en Duitsland",
+    "badgeDefault": "Founding cohort vol · uitnodigingen voor volgende golf binnenkort",
     "title1": "Een plek voor",
     "title2": "de bewust nieuwsgierigen.",
     "title3": "",
@@ -43,8 +43,8 @@
   },
   "waitlist": {
     "placeholder": "Jouw e-mailadres",
-    "cta": "Reserveer mijn plek",
-    "hintScarcity": "Toegang opent in golven. De eerste 1.000 founding members krijgen een levenslang badge en gratis verificatie.",
+    "cta": "Waarschuw me bij volgende golf",
+    "hintScarcity": "Alle 1.000 founding plekken zijn vergeven. Laat je e-mail achter — bij de volgende golf ben je als eerste binnen.",
     "legal": "We gebruiken je e-mail alleen om je uit te nodigen. Geen spam, geen doorverkoop. Altijd opzegbaar.",
     "success": "Je staat op de lijst. We mailen vanaf een lustimacy.com-adres — check je inbox (en de Reclame-tab).",
     "successHeadline": "Je staat op de lijst.",
@@ -283,8 +283,12 @@
     ]
   },
   "finalCta": {
-    "title": "Hoor bij de eerste 1.000.",
-    "lede": "Founding members krijgen levenslange status, gratis verificatie en het eerste bericht in de community. De lijst sluit bij 1.000 per land."
+    "title": "De founding-ronde is vol.",
+    "lede": "Alle 1.000 founding plekken in onze eerste cohort zijn vergeven. Sluit je aan bij de lijst voor de volgende golf — als we weer openen, ga jij als eerste. Je founding-badge wordt voor je vastgehouden."
+  },
+  "playStore": {
+    "label": "Al toegelaten? Download op Google Play",
+    "ariaLabel": "Download Lustimacy op Google Play"
   },
   "footer": {
     "tagline": "Lifestyle dating voor stellen en open-minded singles.",

@@ -118,19 +118,19 @@
       const locale = (document.documentElement.lang || 'en').toLowerCase();
       const messages = {
         en: {
-          de: 'Available now in your country (Germany)',
-          nl: 'Available now in your country (Netherlands)',
-          other: (c) => `Coming to ${c} soon — join the waitlist`,
+          de: 'Germany founding cohort is full — get next-wave priority',
+          nl: 'Netherlands founding cohort is full — get next-wave priority',
+          other: (c) => `Not open in ${c} yet — get on the priority list`,
         },
         de: {
-          de: 'Verfügbar in Deutschland — sicher dir deinen Platz',
-          nl: 'Verfügbar in den Niederlanden — sicher dir deinen Platz',
-          other: (c) => `Bald in ${c} — jetzt auf die Warteliste`,
+          de: 'Founding-Kohorte Deutschland voll — Priorität für die nächste Welle sichern',
+          nl: 'Founding-Kohorte Niederlande voll — Priorität für die nächste Welle sichern',
+          other: (c) => `In ${c} noch nicht geöffnet — auf die Prioritätsliste`,
         },
         nl: {
-          de: 'Beschikbaar in Duitsland — reserveer je plek',
-          nl: 'Nu beschikbaar in Nederland — reserveer je plek',
-          other: (c) => `Binnenkort in ${c} — meld je aan voor de wachtlijst`,
+          de: 'Founding cohort Duitsland is vol — krijg voorrang bij de volgende golf',
+          nl: 'Founding cohort Nederland is vol — krijg voorrang bij de volgende golf',
+          other: (c) => `Nog niet open in ${c} — zet je op de voorrangslijst`,
         },
       };
       const m = messages[locale] || messages.en;

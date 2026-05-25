@@ -32,7 +32,7 @@
     "cta": "Join the waitlist"
   },
   "hero": {
-    "badgeDefault": "Now opening in Germany & the Netherlands",
+    "badgeDefault": "Founding cohort full · next-wave invites coming soon",
     "title1": "A space for the",
     "title2": "deliberately curious.",
     "title3": "",
@@ -43,8 +43,8 @@
   },
   "waitlist": {
     "placeholder": "Your email",
-    "cta": "Reserve my spot",
-    "hintScarcity": "Early access opens in waves. The first 1,000 founding members get a lifetime badge and zero-fee verification.",
+    "cta": "Alert me when it reopens",
+    "hintScarcity": "All 1,000 founding spots are claimed. Drop your email — you'll be first in when the next wave opens.",
     "legal": "We'll only use your email to invite you in. No spam, no resale. Cancel any time.",
     "success": "You're on the list. We'll be in touch from a lustimacy.com address — check your inbox (and Promotions tab).",
     "successHeadline": "You're on the list.",
@@ -283,8 +283,12 @@
     ]
   },
   "finalCta": {
-    "title": "Be among the first 1,000.",
-    "lede": "Founding members get lifetime status, zero-fee verification, and the first message into the community. The list closes at 1,000 per country."
+    "title": "Founding round is full.",
+    "lede": "All 1,000 founding spots in our first cohort are claimed. Join the next-wave list — when we open the gates again, you go first. Your founding-tier badge is held for you."
+  },
+  "playStore": {
+    "label": "Already approved? Download on Google Play",
+    "ariaLabel": "Download Lustimacy on Google Play"
   },
   "footer": {
     "tagline": "Lifestyle dating for couples and open-minded singles.",

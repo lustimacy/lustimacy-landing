@@ -32,7 +32,7 @@
     "cta": "Auf die Warteliste"
   },
   "hero": {
-    "badgeDefault": "Jetzt in Deutschland und den Niederlanden",
+    "badgeDefault": "Founding-Kohorte voll · Einladungen zur nächsten Welle in Kürze",
     "title1": "Ein Ort für die,",
     "title2": "die wirklich neugierig sind.",
     "title3": "",
@@ -43,8 +43,8 @@
   },
   "waitlist": {
     "placeholder": "Eure E-Mail",
-    "cta": "Platz sichern",
-    "hintScarcity": "Der Zugang öffnet sich in Wellen. Die ersten 1.000 Founding Members bekommen ein lebenslanges Badge und kostenlose Verifizierung.",
+    "cta": "Bei nächster Welle benachrichtigen",
+    "hintScarcity": "Alle 1.000 Founding-Plätze sind vergeben. Lasst uns eure E-Mail da — bei der nächsten Welle seid ihr als Erste dabei.",
     "legal": "Wir nutzen eure E-Mail nur, um euch einzuladen. Kein Spam, kein Weiterverkauf. Jederzeit abbestellbar.",
     "success": "Ihr seid auf der Liste. Wir melden uns von einer lustimacy.com-Adresse — checkt euer Postfach (auch den Werbung-Tab).",
     "successHeadline": "Du bist auf der Liste.",
@@ -283,8 +283,12 @@
     ]
   },
   "finalCta": {
-    "title": "Gehört zu den ersten 1.000.",
-    "lede": "Founding Members bekommen lebenslangen Status, kostenlose Verifizierung und die erste Nachricht in die Community. Die Liste schließt bei 1.000 pro Land."
+    "title": "Die Founding-Runde ist voll.",
+    "lede": "Alle 1.000 Founding-Plätze unserer ersten Kohorte sind vergeben. Kommt auf die Liste für die nächste Welle — wenn wir wieder öffnen, seid ihr als Erste dabei. Euer Founding-Badge bleibt für euch reserviert."
+  },
+  "playStore": {
+    "label": "Schon eingeladen? Bei Google Play laden",
+    "ariaLabel": "Lustimacy bei Google Play laden"
   },
   "footer": {
     "tagline": "Lifestyle Dating für Pärchen und offene Singles.",
