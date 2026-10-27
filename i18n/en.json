@@ -29,7 +29,8 @@
     "cities": "Cities",
     "journal": "Journal",
     "faq": "FAQ",
-    "cta": "Get the app"
+    "cta": "Get the app",
+    "signin": "Sign in"
   },
   "hero": {
     "badgeDefault": "Live on Google Play · free to join",

@@ -1531,3 +1531,21 @@ section { padding: var(--s-9) 0; position: relative; }
 .finalcta .ios-notice {
     margin-top: 24px;
 }
+
+/* Sign-in sits next to the install CTA rather than inside the menu: on a phone
+   the collapsed menu hides it, and it is the only route for an iPhone visitor
+   who has no app to install. */
+.nav__signin {
+    color: var(--c-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px var(--s-3);
+    white-space: nowrap;
+    transition: color 0.16s ease;
+}
+
+.nav__signin:hover { color: var(--c-text); }
+
+@media (max-width: 520px) {
+    .nav__signin { padding-left: 0; padding-right: var(--s-2); font-size: 15px; }
+}

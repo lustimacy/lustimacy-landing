@@ -117,9 +117,9 @@
             sb().from('users').select('birthday').eq('id', uid).single()
               .then(function (r) {
                   var started = r.data && r.data.birthday;
-                  window.location.replace(started ? '/welcome.html' : '/onboarding.html');
+                  window.location.replace(started ? '/welcome' : '/onboarding');
               })
-              .catch(function () { window.location.replace('/welcome.html'); });
+              .catch(function () { window.location.replace('/welcome'); });
         }).catch(function () {
             failed('Something went wrong signing you in. Request a fresh link and try again.');
         });
@@ -330,7 +330,7 @@
         function uid() {
             return sb().auth.getSession().then(function (r) {
                 var sess = r.data && r.data.session;
-                if (!sess) { window.location.replace('/login.html'); throw new Error('no session'); }
+                if (!sess) { window.location.replace('/login'); throw new Error('no session'); }
                 return sess.user.id;
             });
         }
@@ -481,7 +481,7 @@
             }).then(function (r) {
                 if (r && r.error) throw r.error;
                 track('OnboardingComplete');
-                window.location.replace('/welcome.html');
+                window.location.replace('/welcome');
             }).catch(function (e) {
                 if (e && e.message === 'no session') return;
                 finish.disabled = false; finish.textContent = label;
@@ -493,7 +493,7 @@
         renderGrid();
 
         sb().auth.getSession().then(function (res) {
-            if (!res.data || !res.data.session) { window.location.replace('/login.html'); return; }
+            if (!res.data || !res.data.session) { window.location.replace('/login'); return; }
             root.hidden = false;
             track('OnboardingStep1');
         });
