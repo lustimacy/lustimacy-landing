@@ -80,7 +80,19 @@
                 track('AuthGoogleClick');
                 sb().auth.signInWithOAuth({
                     provider: 'google',
-                    options: { redirectTo: window.location.origin + withLang('/auth/callback.html') }
+                    // The callback URL is sent bare, with no ?lang=. Supabase validates
+                    // redirect_to against the configured allow list, and the entry
+                    // there is the exact URL — an exact entry does not match a URL
+                    // carrying a query string, so adding one would have Supabase fall
+                    // back to the Site URL and strand every non-English sign-in.
+                    //
+                    // The language survives anyway: sessionStorage and the cookie
+                    // carry it on the same device, which is the common case, and on
+                    // another device navigator.language is a better guess than a
+                    // parameter that never arrives. To carry it explicitly, add
+                    // https://lustimacy.com/auth/callback.html?* to the Redirect URLs
+                    // and restore withLang() here.
+                    options: { redirectTo: window.location.origin + '/auth/callback.html' }
                 }).then(function (r) {
                     if (r && r.error) {
                         google.disabled = false;
@@ -121,7 +133,7 @@
 
             sb().auth.signInWithOtp({
                 email: email,
-                options: { emailRedirectTo: window.location.origin + withLang('/auth/callback.html') }
+                options: { emailRedirectTo: window.location.origin + '/auth/callback.html' }
             }).then(function (res) {
                 if (res.error) {
                     track('AuthLinkError', { message: res.error.message });

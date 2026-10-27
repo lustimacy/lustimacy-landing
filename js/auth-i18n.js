@@ -11,10 +11,18 @@
 // markup would have localised one half and left the other, so there would be a
 // dictionary either way. This is the single source for both.
 //
-// Locale resolution: ?lang= → the lustimacy-locale cookie → <html lang> →
-// navigator.language → en. The query parameter leads because the middleware
-// redirects by IP and language without setting a cookie, so a French visitor
-// arrives at /fr/ with nothing to carry forward; the site's links append it.
+// Locale resolution: ?lang= → the lustimacy-locale cookie → sessionStorage →
+// <html lang> → navigator.language → en. The query parameter leads because the
+// middleware redirects by IP and language without setting a cookie, so a French
+// visitor arrives at /fr/ with nothing to carry forward; the site's links
+// append it.
+//
+// It is deliberately NOT appended to the magic-link callback URL. Supabase
+// validates redirect_to against an allow list holding the exact callback URL,
+// and an exact entry does not match one carrying a query string — adding it
+// would strand every non-English sign-in at the Site URL. On the same device
+// sessionStorage and the cookie carry the language across the email round
+// trip; on another device navigator.language is the better guess anyway.
 
 (function () {
     'use strict';
