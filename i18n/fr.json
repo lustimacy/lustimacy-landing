@@ -292,11 +292,10 @@
   },
   "appStore": {
     "label": "Télécharger sur iPhone",
-    "ariaLabel": "Lustimacy pour iPhone — rejoindre la liste d'attente",
-    "soon": "Bientôt"
+    "ariaLabel": "Lustimacy pour iPhone — rejoindre la liste d'attente"
   },
   "iosDialog": {
-    "title": "L'application iPhone est encore en construction",
+    "title": "Bientôt sur iPhone",
     "lede": "Lustimacy existe aujourd'hui sur Android. La version iOS est en cours — laissez votre e-mail et nous vous écrirons une seule fois, le jour où elle sera prête à télécharger. C'est le seul e-mail que vous recevrez.",
     "close": "Fermer",
     "androidNote": "Vous avez aussi un téléphone Android, ou quelqu'un autour de vous ?",

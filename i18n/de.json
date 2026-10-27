@@ -292,11 +292,10 @@
   },
   "appStore": {
     "label": "Für iPhone laden",
-    "ariaLabel": "Lustimacy für iPhone — auf die Benachrichtigungsliste",
-    "soon": "Bald"
+    "ariaLabel": "Lustimacy für iPhone — auf die Benachrichtigungsliste"
   },
   "iosDialog": {
-    "title": "Die iPhone-App wird noch gebaut",
+    "title": "Bald für iPhone",
     "lede": "Lustimacy gibt es heute für Android. iOS ist in Arbeit — trag deine E-Mail ein und wir schreiben dir genau einmal, an dem Tag, an dem sie zum Download bereit ist. Das ist die einzige E-Mail, die du bekommst.",
     "close": "Schließen",
     "androidNote": "Hast du auch ein Android-Handy, oder kennst du jemanden?",

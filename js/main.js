@@ -126,13 +126,10 @@
 
   function initPlatformCta() {
     if (!isIOS()) return;
-    // The Play button stays on the page: an iPhone owner may well have an
-    // Android lying around, or a partner who does, and the dialog points at it
-    // too. Demoted, not removed.
-    $$('.appstore-btn').forEach((el) => {
-      el.classList.remove('btn--ghost');
-      el.classList.add('is-primary');
-    });
+    // Both buttons ship as primary. On iOS the Play one is the one that cannot
+    // be acted on, so it is the one that steps back. It stays on the page
+    // rather than being hidden: an iPhone owner may well have an Android
+    // lying around, or a partner who does, and the dialog points at it too.
     $$('a.playstore-btn').forEach((el) => {
       el.classList.remove('btn--primary');
       el.classList.add('is-secondary');

@@ -1456,37 +1456,22 @@ section { padding: var(--s-9) 0; position: relative; }
 }
 
 /* ── iPhone button ──────────────────────────────────────────────────────────
-   Visually parallel to the Play button so the two platforms look equally
-   considered, but ghost rather than filled, and carrying a "soon" chip. The
-   chip is the point: this button opens an explanation, not a download, and
-   finding that out after the click would feel like a bait. */
+   Same treatment as the Play button, deliberately. Both platforms are offered
+   with equal weight and the dialog carries the news that iOS is not ready —
+   the explanation belongs after the click, not instead of it.
+
+   It is a <button>, not an <a>, so it needs the cursor and the reset that the
+   link does not. */
 .appstore-btn {
     cursor: pointer;
-    background: transparent;
+    border: none;
+    font-family: inherit;
 }
 
-.appstore-btn__soon {
-    margin-left: var(--s-1);
-    padding: 3px 8px;
-    border-radius: var(--r-pill);
-    background: rgba(243, 209, 110, 0.14);
-    color: var(--c-gold);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    line-height: 1;
-}
-
-/* On iOS the emphasis flips — see initPlatformCta(). The Play button stays
-   on the page rather than being hidden: plenty of iPhone owners have an
-   Android somewhere, or a partner who does. */
-.appstore-btn.is-primary {
-    background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-violet) 100%);
-    border-color: transparent;
-    box-shadow: 0 8px 24px -8px var(--c-accent), 0 0 0 1px rgba(255, 255, 255, 0.06);
-}
-
+/* On iOS the Play button is the one that cannot be acted on, so it steps back
+   — see initPlatformCta(). It stays on the page rather than being hidden:
+   plenty of iPhone owners have an Android somewhere, or a partner who does,
+   and the dialog points at it too. */
 .playstore-btn.is-secondary {
     background: transparent;
     border: 1px solid var(--c-border-hi);

@@ -292,11 +292,10 @@
   },
   "appStore": {
     "label": "Download voor iPhone",
-    "ariaLabel": "Lustimacy voor iPhone — op de notificatielijst",
-    "soon": "Binnenkort"
+    "ariaLabel": "Lustimacy voor iPhone — op de notificatielijst"
   },
   "iosDialog": {
-    "title": "De iPhone-app wordt nog gebouwd",
+    "title": "Binnenkort op iPhone",
     "lede": "Lustimacy is er vandaag voor Android. iOS is in de maak — laat je e-mail achter en we mailen je precies één keer, op de dag dat die klaar is om te downloaden. Dat is de enige mail die je krijgt.",
     "close": "Sluiten",
     "androidNote": "Heb je ook een Android-telefoon, of ken je iemand?",
