@@ -136,6 +136,22 @@
     });
   }
 
+  // --- Carry the language into the auth flow --------------------------------
+  // The sign-in pages live at single URLs — /login, /onboarding, /welcome —
+  // and read their language from ?lang=. Without this a visitor reading /fr/
+  // clicks "Connexion" and lands in English, which is exactly what used to
+  // happen. The middleware redirects by IP and language without setting a
+  // cookie, so the page's own lang attribute is the only thing that knows.
+  function initAuthLinks() {
+    const lang = (document.documentElement.lang || 'en').toLowerCase().split('-')[0];
+    if (lang === 'en') return;
+    $$('a[href^="/login"], a[href^="/onboarding"], a[href^="/welcome"]').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (/[?&]lang=/.test(href)) return;
+      a.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'lang=' + lang);
+    });
+  }
+
   // --- iPhone dialog -------------------------------------------------------
   // Native <dialog>. showModal() gives us the top layer, Escape, focus
   // trapping and an inert background for free.
@@ -390,6 +406,7 @@
     initSmoothAnchors();
     initReveals();
     initPlatformCta();
+    initAuthLinks();
     initIosDialog();
     initWaitlistForms();
     initCardStack();

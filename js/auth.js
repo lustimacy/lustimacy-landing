@@ -16,6 +16,22 @@
 (function () {
     'use strict';
 
+    // Translations live in auth-i18n.js, which is loaded first on every page
+    // that loads this file. The fallback keeps a missing dictionary from
+    // taking the flow down — an untranslated label is a far smaller problem
+    // than a signup that cannot complete.
+    function t(key, vars) {
+        return (window.LustI18n && window.LustI18n.t)
+            ? window.LustI18n.t(key, vars)
+            : key;
+    }
+    function withLang(path) {
+        return (window.LustI18n && window.LustI18n.withLang)
+            ? window.LustI18n.withLang(path)
+            : path;
+    }
+
+
     // Publishable key — public by design; row-level security is what protects
     // the data. Same project the app talks to.
     var SUPABASE_URL = 'https://jnaxgadklstwicjrzatk.supabase.co';
@@ -64,13 +80,13 @@
                 track('AuthGoogleClick');
                 sb().auth.signInWithOAuth({
                     provider: 'google',
-                    options: { redirectTo: window.location.origin + '/auth/callback.html' }
+                    options: { redirectTo: window.location.origin + withLang('/auth/callback.html') }
                 }).then(function (r) {
                     if (r && r.error) {
                         google.disabled = false;
                         track('AuthGoogleError', { message: r.error.message });
                         var e = document.querySelector('[data-auth-error]');
-                        e.textContent = 'Could not reach Google. Try the email link instead?';
+                        e.textContent = t('login.googleFail');
                         e.hidden = false;
                     }
                 }).catch(function () { google.disabled = false; });
@@ -100,16 +116,16 @@
             if (!isEmail(email)) { fail("That doesn't look like an email address."); return; }
 
             button.disabled = true;
-            button.textContent = 'Sending…';
+            button.textContent = t('login.sending');
             track('AuthLinkRequested');
 
             sb().auth.signInWithOtp({
                 email: email,
-                options: { emailRedirectTo: window.location.origin + '/auth/callback.html' }
+                options: { emailRedirectTo: window.location.origin + withLang('/auth/callback.html') }
             }).then(function (res) {
                 if (res.error) {
                     track('AuthLinkError', { message: res.error.message });
-                    fail(res.error.message || 'Could not send the link. Try again in a moment?');
+                    fail(res.error.message || t('login.linkFail'));
                     return;
                 }
                 if (sentTo) sentTo.textContent = email;
@@ -117,7 +133,7 @@
                 doneEl.hidden = false;
                 track('AuthLinkSent');
             }).catch(function () {
-                fail('Could not reach the server. Check your connection and try again.');
+                fail(t('login.netFail'));
             });
         });
     }
@@ -155,9 +171,9 @@
             track('AuthSignedIn');
             sb().from('users').select('birthday').eq('id', session.user.id).single()
               .then(function (r) {
-                  window.location.replace(r.data && r.data.birthday ? '/welcome' : '/onboarding');
+                  window.location.replace(withLang(r.data && r.data.birthday ? '/welcome' : '/onboarding'));
               })
-              .catch(function () { window.location.replace('/welcome'); });
+              .catch(function () { window.location.replace(withLang('/welcome')); });
         }
 
         var qs   = new URLSearchParams(window.location.search);
@@ -170,7 +186,7 @@
         if (urlError) {
             var text = decodeURIComponent(String(urlError).replace(/\+/g, ' '));
             failed(/expired|invalid/i.test(text)
-                ? 'That link has expired or has already been used. Request a new one and it will work.'
+                ? t('cb.expired')
                 : text, text);
             return;
         }
@@ -179,7 +195,7 @@
         var accessToken = hash.get('access_token');
 
         if (!code && !accessToken) {
-            failed('This page is only reachable from a sign-in link. Request one and you will land back here.',
+            failed(t('cb.direct'),
                    'no code or access_token present');
             return;
         }
@@ -210,8 +226,8 @@
         work.catch(function (e) {
             var m = (e && e.message) || String(e);
             failed(/expired|invalid|not found|already/i.test(m)
-                ? 'That link has expired or has already been used. Request a new one and it will work.'
-                : 'Could not complete sign-in. Request a fresh link and try again.', m);
+                ? t('cb.expired')
+                : t('cb.generic'), m);
             var hint = root.querySelector('[data-callback-detail]');
             if (hint) { hint.textContent = m; hint.hidden = false; }
         });
@@ -240,21 +256,25 @@
               .then(function (r) {
                   var complete = r.data && r.data.is_profile_setup_complete;
                   stateEl.textContent = complete
-                      ? 'Your profile is ready. On Android, open the app and you are straight into the deck.'
-                      : 'Your profile is not finished yet, so nobody can see you.';
+                      ? t('welcome.ready')
+                      : t('welcome.unfinished');
                   var finish = root.querySelector('[data-welcome-finish]');
                   // Only offer the web form to someone who never filled it in.
                   if (finish && !complete) finish.hidden = false;
               })
               .catch(function () {
-                  stateEl.textContent = 'Your account exists. Open the app to finish your profile.';
+                  stateEl.textContent = t('welcome.exists');
               });
         });
 
         if (signOut) {
             signOut.addEventListener('click', function (e) {
                 e.preventDefault();
-                sb().auth.signOut().then(function () { window.location.replace('/'); });
+                sb().auth.signOut().then(function () {
+                    var home = window.LustI18n && window.LustI18n.lang !== 'en'
+                        ? '/' + window.LustI18n.lang + '/' : '/';
+                    window.location.replace(home);
+                });
             });
         }
     }
@@ -273,14 +293,16 @@
     //   sexual_orientation       0..8
     //   looking_for              10..15   (starts at 10, not 0)
     //   account_type             0 single, 1 couple
-    var GENDER = ['Man','Woman','Non-binary','Trans man','Trans woman','Genderqueer',
-                  'Genderfluid','Agender','Two-spirit','Other'];
-    var ORIENTATION = ['Straight','Gay','Lesbian','Bisexual','Pansexual','Asexual',
-                       'Demisexual','Queer','Questioning'];
-    var LOOKING_FOR = [
-        [10, 'One-Time Encounter'], [11, 'Friends with Benefits'], [12, 'Ethical Non-Monogamy'],
-        [13, 'Casual Dates'], [14, 'Friends'], [15, 'Still Figuring Out']
-    ];
+    // Labels come from the dictionary; the indexes are the contract with the
+    // database and must not move. looking_for starts at 10, not 0.
+    function labels(prefix, count, offset) {
+        var out = [], base = offset || 0;
+        for (var i = 0; i < count; i++) out.push([base + i, t(prefix + '.' + (base + i))]);
+        return out;
+    }
+    var GENDER = labels('g', 10).map(function (p) { return p[1]; });
+    var ORIENTATION = labels('o', 9).map(function (p) { return p[1]; });
+    var LOOKING_FOR = labels('lf', 6, 10);
 
     // Same pipeline the app uses: longest edge 1000, quality 80, WEBP.
     var IMAGE_SIZE = 1000, IMAGE_QUALITY = 0.8;
@@ -399,7 +421,7 @@
             });
         }
 
-        chips(root.querySelector('[data-ob-account]'), [[0,'Just me'],[1,'The two of us']], 'account_type',
+        chips(root.querySelector('[data-ob-account]'), [[0, t('acct.0')], [1, t('acct.1')]], 'account_type',
               function (v) { coupleOnly.forEach(function (el) { el.hidden = (v !== 1); }); });
         chips(root.querySelector('[data-ob-gender]'), GENDER, 'gender');
         chips(root.querySelector('[data-ob-partner-gender]'), GENDER, 'partner_gender');
@@ -422,7 +444,7 @@
         function uid() {
             return sb().auth.getSession().then(function (r) {
                 var sess = r.data && r.data.session;
-                if (!sess) { window.location.replace('/login'); throw new Error('no session'); }
+                if (!sess) { window.location.replace(withLang('/login')); throw new Error('no session'); }
                 return sess.user.id;
             });
         }
@@ -430,17 +452,17 @@
         // ---- step 1 -> 2
         root.querySelector('[data-ob-next]').addEventListener('click', function () {
             clearErr();
-            if (!nameEl.value.trim())        return err('What should people call you?');
-            if (!dobEl.value)                return err('We need your date of birth to confirm you are 18 or over.');
+            if (!nameEl.value.trim())        return err(t('ob.errName'));
+            if (!dobEl.value)                return err(t('ob.errDob'));
             var a = age(dobEl.value);
-            if (isNaN(a) || a > 120)         return err('That date does not look right.');
-            if (a < 18)                      return err('You have to be 18 or over to use Lustimacy.');
-            if (state.account_type === null) return err('Is this profile just for you, or for the two of you?');
+            if (isNaN(a) || a > 120)         return err(t('ob.errDate'));
+            if (a < 18)                      return err(t('ob.errAge'));
+            if (state.account_type === null) return err(t('ob.errAccount'));
             if (state.account_type === 1) {
                 if (!pdobEl.value)           return err("We need your partner's date of birth too.");
                 var pa = age(pdobEl.value);
-                if (isNaN(pa) || pa > 120)   return err('That date does not look right.');
-                if (pa < 18)                 return err('Both of you have to be 18 or over.');
+                if (isNaN(pa) || pa > 120)   return err(t('ob.errDate'));
+                if (pa < 18)                 return err(t('ob.errBothAge'));
             }
             show(2);
         });
@@ -453,14 +475,14 @@
         var next2 = root.querySelector('[data-ob-next-2]');
         next2.addEventListener('click', function () {
             clearErr();
-            if (state.gender === null)             return err('Pick the option closest to how you identify.');
+            if (state.gender === null)             return err(t('ob.errGender'));
             if (state.account_type === 1 && state.partner_gender === null)
                                                    return err("Pick your partner's gender too.");
-            if (state.looking_for === null)        return err('Tell us roughly what you are here for.');
-            if (state.sexual_orientation === null) return err('Pick the option closest to your orientation.');
+            if (state.looking_for === null)        return err(t('ob.errLooking'));
+            if (state.sexual_orientation === null) return err(t('ob.errOrientation'));
 
             next2.disabled = true;
-            var label = next2.textContent; next2.textContent = 'Saving…';
+            var label = next2.textContent; next2.textContent = t('ob.saving');
 
             uid().then(function (id) {
                 var row = {
@@ -479,12 +501,12 @@
             }).then(function (r) {
                 next2.disabled = false; next2.textContent = label;
                 if (r && r.error) { track('OnboardingError', { message: r.error.message });
-                                    return err('Could not save that. Try again in a moment?'); }
+                                    return err(t('ob.errSave')); }
                 show(3);
             }).catch(function (e) {
                 if (e && e.message === 'no session') return;
                 next2.disabled = false; next2.textContent = label;
-                err('Could not reach the server. Check your connection and try again.');
+                err(t('ob.errNet'));
             });
         });
 
@@ -499,10 +521,10 @@
                 var cell = document.createElement('div');
                 cell.className = 'ob__photo';
                 var img = document.createElement('img');
-                img.src = p.url; img.alt = 'Photo ' + (i + 1);
+                img.src = p.url; img.alt = t('ob.photoAlt') + (i + 1);
                 var del = document.createElement('button');
                 del.type = 'button'; del.className = 'ob__photo-remove';
-                del.setAttribute('aria-label', 'Remove photo ' + (i + 1));
+                del.setAttribute('aria-label', t('ob.removePhoto') + (i + 1));
                 del.textContent = '×';
                 del.addEventListener('click', function () {
                     URL.revokeObjectURL(p.url);
@@ -511,7 +533,7 @@
                 cell.appendChild(img); cell.appendChild(del);
                 gridEl.appendChild(cell);
             });
-            countEl.textContent = photos.length + ' of ' + MAX_PHOTOS;
+            countEl.textContent = photos.length + t('ob.of') + MAX_PHOTOS;
             fileEl.parentElement.hidden = photos.length >= MAX_PHOTOS;
         }
 
@@ -522,7 +544,7 @@
             if (!files.length) return;
 
             var room = MAX_PHOTOS - photos.length;
-            if (files.length > room) { files = files.slice(0, room); err('You can add up to ' + MAX_PHOTOS + ' photos.'); }
+            if (files.length > room) { files = files.slice(0, room); err(t('ob.errMaxPhotos', { n: MAX_PHOTOS })); }
 
             Promise.all(files.map(function (f) {
                 if (!/^image\//.test(f.type)) return null;
@@ -532,7 +554,7 @@
             })).then(function (made) {
                 var bad = 0;
                 made.forEach(function (m) { m ? photos.push(m) : bad++; });
-                if (bad) err("Could not read " + bad + (bad === 1 ? ' file.' : ' files.'));
+                if (bad) err(t(bad === 1 ? 'ob.errReadFile' : 'ob.errReadFiles', { n: bad }));
                 renderGrid();
             });
         });
@@ -540,12 +562,12 @@
         var finish = root.querySelector('[data-ob-finish]');
         finish.addEventListener('click', function () {
             clearErr();
-            if (!photos.length) return err('One photo is all we need, but we do need one.');
+            if (!photos.length) return err(t('ob.errOnePhoto'));
 
             finish.disabled = true;
             var label = finish.textContent;
             var done = 0;
-            finish.textContent = 'Uploading 1 of ' + photos.length + '…';
+            finish.textContent = t('ob.uploading') + '1' + t('ob.of') + photos.length + '…';
 
             uid().then(function (id) {
                 var ids = [];
@@ -560,8 +582,8 @@
                                 if (r.error) throw r.error;
                                 ids.push(pid);
                                 done++;
-                                if (done < photos.length) finish.textContent = 'Uploading ' + (done + 1) + ' of ' + photos.length + '…';
-                                else finish.textContent = 'Finishing…';
+                                if (done < photos.length) finish.textContent = t('ob.uploading') + (done + 1) + t('ob.of') + photos.length + '…';
+                                else finish.textContent = t('ob.finishing');
                             });
                     });
                 }, Promise.resolve()).then(function () {
@@ -573,19 +595,19 @@
             }).then(function (r) {
                 if (r && r.error) throw r.error;
                 track('OnboardingComplete');
-                window.location.replace('/welcome');
+                window.location.replace(withLang('/welcome'));
             }).catch(function (e) {
                 if (e && e.message === 'no session') return;
                 finish.disabled = false; finish.textContent = label;
                 track('OnboardingPhotoError', { message: (e && e.message) || 'unknown' });
-                err('Could not upload that. Check your connection and try again.');
+                err(t('ob.errUpload'));
             });
         });
 
         renderGrid();
 
         sb().auth.getSession().then(function (res) {
-            if (!res.data || !res.data.session) { window.location.replace('/login'); return; }
+            if (!res.data || !res.data.session) { window.location.replace(withLang('/login')); return; }
             root.hidden = false;
             track('OnboardingStep1');
         });
