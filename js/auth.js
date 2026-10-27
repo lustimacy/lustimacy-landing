@@ -178,19 +178,21 @@
             return;
         }
 
-        // Whatever is in storage belongs to a previous visitor of this browser
-        // and has nothing to do with the link just opened. Clearing it first
-        // means a failed exchange cannot silently fall back to it.
-        sb().auth.signOut({ scope: 'local' }).catch(function () {}).then(function () {
-            if (code) {
-                return sb().auth.exchangeCodeForSession(code).then(function (res) {
-                    if (res.error) throw res.error;
-                    if (!res.data || !res.data.session) throw new Error('exchange returned no session');
-                    succeeded(res.data.session);
-                });
-            }
+        // NOTE: do not sign out before exchanging. PKCE keeps its code_verifier
+        // in the same local storage that signOut clears, so clearing first
+        // destroys the one value the exchange needs. Guarding against a stale
+        // session is handled by only ever accepting the exchange's own result,
+        // which overwrites whatever was stored anyway.
+        var work;
+        if (code) {
+            work = sb().auth.exchangeCodeForSession(code).then(function (res) {
+                if (res.error) throw res.error;
+                if (!res.data || !res.data.session) throw new Error('exchange returned no session');
+                succeeded(res.data.session);
+            });
+        } else {
             // Implicit flow, if it is ever turned on: the tokens are the result.
-            return sb().auth.setSession({
+            work = sb().auth.setSession({
                 access_token: accessToken,
                 refresh_token: hash.get('refresh_token')
             }).then(function (res) {
@@ -198,11 +200,14 @@
                 if (!res.data || !res.data.session) throw new Error('setSession returned no session');
                 succeeded(res.data.session);
             });
-        }).catch(function (e) {
+        }
+        work.catch(function (e) {
             var m = (e && e.message) || String(e);
             failed(/expired|invalid|not found|already/i.test(m)
                 ? 'That link has expired or has already been used. Request a new one and it will work.'
                 : 'Could not complete sign-in. Request a fresh link and try again.', m);
+            var hint = root.querySelector('[data-callback-detail]');
+            if (hint) { hint.textContent = m; hint.hidden = false; }
         });
     }
 
