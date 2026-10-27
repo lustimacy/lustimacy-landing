@@ -264,26 +264,45 @@
 }
 
 /* Google sits above the email form: one tap beats a round trip through an
-   inbox, and the inbox hop is where an email-link flow loses people. */
+   inbox, and the inbox hop is where an email-link flow loses people.
+
+   Dark variant rather than Google's white button — a white slab on a velvet
+   page read as a foreign object pasted in. Google's brand guidelines allow a
+   dark theme provided the logo keeps its colours and is not recoloured, which
+   it does here. */
 .auth__google {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--s-3);
-    padding: 14px var(--s-4);
-    background: var(--c-text);
-    color: #1f1f1f;
-    border: 0;
+    padding: 15px var(--s-4);
+    background: var(--c-bg-card);
+    color: var(--c-text);
+    border: 1px solid var(--c-border-hi);
     border-radius: 11px;
     font: inherit;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.16s ease;
+    transition: border-color 0.16s ease, background 0.16s ease;
 }
 
-.auth__google:hover { opacity: 0.92; }
-.auth__google:disabled { opacity: 0.6; cursor: default; }
+.auth__google:hover {
+    border-color: var(--c-border-accent);
+    background: var(--c-bg-card-hi);
+}
+
+.auth__google:disabled { opacity: 0.55; cursor: default; }
+
+/* The logo keeps a light chip behind it so the coloured marks stay legible on
+   a dark surface without being recoloured. */
+.auth__google svg {
+    flex: 0 0 auto;
+    background: #fff;
+    border-radius: 3px;
+    padding: 2px;
+    box-sizing: content-box;
+}
 
 .auth__or {
     position: relative;

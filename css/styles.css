@@ -1534,20 +1534,86 @@ section { padding: var(--s-9) 0; position: relative; }
     margin-top: 24px;
 }
 
-/* Sign-in sits next to the install CTA rather than inside the menu: on a phone
-   the collapsed menu hides it, and it is the only route for an iPhone visitor
-   who has no app to install. */
+/* Sign-in sits in nav__inner, NOT inside nav__menu. Below 900px the menu is
+   position:fixed and translated off-screen until the hamburger is tapped, so
+   anything inside it is invisible and unclickable on every phone — which is
+   exactly what happened the first time this was added. It is also the only
+   route in for an iPhone visitor, who has no app to install. */
 .nav__signin {
-    color: var(--c-text-muted);
+    margin-left: auto;
+    margin-right: var(--s-3);
+    padding: 9px var(--s-4);
+    border: 1px solid var(--c-border-hi);
+    border-radius: 9px;
+    color: var(--c-text);
     text-decoration: none;
-    font-weight: 500;
-    padding: 10px var(--s-3);
+    font-weight: 600;
+    font-size: 15px;
     white-space: nowrap;
-    transition: color 0.16s ease;
+    transition: border-color 0.16s ease, background 0.16s ease;
 }
 
-.nav__signin:hover { color: var(--c-text); }
+.nav__signin:hover {
+    border-color: var(--c-border-accent);
+    background: rgba(233, 75, 123, 0.08);
+}
+
+@media (min-width: 901px) {
+    /* On wide screens the menu already sits right, so the auto margin would
+       shove the links apart. */
+    .nav__signin { margin-left: 0; }
+}
+
+@media (max-width: 620px) {
+    .nav__signin { padding: 8px 12px; font-size: 13.5px; }
+}
+
+@media (max-width: 420px) {
+    /* Keep the label readable rather than letting it wrap into the logo. */
+    .nav__signin { padding: 7px 10px; font-size: 12.5px; letter-spacing: -0.01em; }
+}
+
+/* Locale hint — offered once to a visitor whose browser language has a
+   translation we actually have, then remembered. The footer switcher alone
+   was invisible to the people who most needed it. */
+.locale-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    max-width: calc(100vw - 32px);
+    padding: 12px var(--s-4);
+    background: var(--c-bg-card);
+    border: 1px solid var(--c-border-hi);
+    border-radius: 12px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    color: var(--c-text-muted);
+    font-size: 14.5px;
+}
+
+.locale-hint a {
+    color: var(--c-accent-hi);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.locale-hint button {
+    background: none;
+    border: 0;
+    color: var(--c-text-soft);
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+.locale-hint button:hover { color: var(--c-text); }
 
 @media (max-width: 520px) {
-    .nav__signin { padding-left: 0; padding-right: var(--s-2); font-size: 15px; }
+    .locale-hint { gap: var(--s-3); padding: 11px 12px; font-size: 13px; }
 }

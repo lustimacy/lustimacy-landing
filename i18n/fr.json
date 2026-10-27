@@ -30,7 +30,7 @@
     "journal": "Journal",
     "faq": "FAQ",
     "cta": "Télécharger l'app",
-    "signin": "Se connecter"
+    "signin": "Connexion / Inscription"
   },
   "hero": {
     "badgeDefault": "Disponible sur Google Play · gratuit",
@@ -135,16 +135,46 @@
     "eyebrow": "Essayez le rythme",
     "title": "Ce que ça fait de swiper",
     "lede": "Un vrai fil Lustimacy est filtré, vérifié et choisi. Ceci n'est qu'un aperçu — faites glisser une carte ou utilisez les boutons.",
-    "card1": { "name": "Anna & Luca", "detail": "Couple · Vérifié · Berlin" },
-    "card2": { "name": "Mira", "detail": "Célibataire · Vérifiée · Amsterdam" },
-    "card3": { "name": "Eva & Tom", "detail": "Couple · Profil lié · Hambourg" },
-    "card4": { "name": "Sky & Riley", "detail": "Couple · Vérifié · Cologne" },
-    "card5": { "name": "Naïma", "detail": "Célibataire · Vérifiée · Francfort" },
-    "card6": { "name": "Noah & Liv", "detail": "Couple · Vérifié · Munich" },
-    "card7": { "name": "Félix", "detail": "Célibataire · Vérifié · Vienne" },
-    "card8": { "name": "Priya", "detail": "Célibataire · Vérifiée · Rotterdam" },
-    "card9": { "name": "Mateo & Sara", "detail": "Couple · Profil lié · Düsseldorf" },
-    "card10": { "name": "Yuki", "detail": "Célibataire · Vérifiée · Stuttgart" },
+    "card1": {
+      "name": "Anna & Luca",
+      "detail": "Couple · Vérifié · Berlin"
+    },
+    "card2": {
+      "name": "Mira",
+      "detail": "Célibataire · Vérifiée · Amsterdam"
+    },
+    "card3": {
+      "name": "Eva & Tom",
+      "detail": "Couple · Profil lié · Hambourg"
+    },
+    "card4": {
+      "name": "Sky & Riley",
+      "detail": "Couple · Vérifié · Cologne"
+    },
+    "card5": {
+      "name": "Naïma",
+      "detail": "Célibataire · Vérifiée · Francfort"
+    },
+    "card6": {
+      "name": "Noah & Liv",
+      "detail": "Couple · Vérifié · Munich"
+    },
+    "card7": {
+      "name": "Félix",
+      "detail": "Célibataire · Vérifié · Vienne"
+    },
+    "card8": {
+      "name": "Priya",
+      "detail": "Célibataire · Vérifiée · Rotterdam"
+    },
+    "card9": {
+      "name": "Mateo & Sara",
+      "detail": "Couple · Profil lié · Düsseldorf"
+    },
+    "card10": {
+      "name": "Yuki",
+      "detail": "Célibataire · Vérifiée · Stuttgart"
+    },
     "beat1": {
       "title": "À droite, c'est oui.",
       "body": "Les likes réciproques ouvrent une conversation — comme vous vous y attendez, sans surprise."

@@ -416,6 +416,7 @@
     initSmoothAnchors();
     initReveals();
     initPlatformCta();
+    initLocaleHint();
     initWaitlistForms();
     initCardStack();
     initScreens();
