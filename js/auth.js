@@ -111,40 +111,97 @@
     }
 
     // ---- /auth/callback -----------------------------------------------------
+    // The PKCE exchange that detectSessionInUrl performs is ASYNCHRONOUS. The
+    // first version of this called getSession() straight away, read the empty
+    // session that exists before the exchange resolves, and told everyone their
+    // link had expired. It had not — we just asked too early.
+    //
+    // So: wait for the session to arrive by whichever route gets there first,
+    // an auth-state event or a poll, and only give up after a real timeout.
     function initCallback() {
         var root = document.getElementById('authCallback');
         if (!root) return;
 
         var statusEl = root.querySelector('[data-callback-status]');
         var errEl    = root.querySelector('[data-callback-error]');
+        var settled  = false;
 
-        function failed(msg) {
+        function failed(msg, detail) {
+            if (settled) return;
+            settled = true;
             statusEl.hidden = true;
             errEl.querySelector('[data-callback-message]').textContent = msg;
             errEl.hidden = false;
-            track('AuthCallbackError', { message: msg });
+            // Logged as well as shown: the generic copy is for the visitor,
+            // this is what makes the next report diagnosable.
+            if (detail) console.error('[auth callback]', detail);
+            track('AuthCallbackError', { message: (detail || msg).toString().slice(0, 90) });
         }
 
-        // detectSessionInUrl handles the exchange; getSession tells us if it worked.
-        sb().auth.getSession().then(function (res) {
-            if (res.error || !res.data || !res.data.session) {
-                failed('That link has expired or has already been used. Request a new one and it will work.');
-                return;
-            }
+        function succeeded(session) {
+            if (settled) return;
+            settled = true;
             track('AuthSignedIn');
-            // A row always exists by now — the on_auth_user_created trigger
-            // inserts it the moment last_sign_in_at stops being null — but a
-            // brand-new one holds only id, email and name. No birthday means
-            // they have not been through onboarding.
-            var uid = res.data.session.user.id;
-            sb().from('users').select('birthday').eq('id', uid).single()
+            // A row always exists by now — on_auth_user_created inserts it the
+            // moment last_sign_in_at stops being null — but a brand-new one
+            // holds only id, email and name. No birthday means no onboarding.
+            sb().from('users').select('birthday').eq('id', session.user.id).single()
               .then(function (r) {
-                  var started = r.data && r.data.birthday;
-                  window.location.replace(started ? '/welcome' : '/onboarding');
+                  window.location.replace(r.data && r.data.birthday ? '/welcome' : '/onboarding');
               })
               .catch(function () { window.location.replace('/welcome'); });
-        }).catch(function () {
-            failed('Something went wrong signing you in. Request a fresh link and try again.');
+        }
+
+        // Supabase reports its own failures in the URL, as a query param or in
+        // the hash. Those are worth showing verbatim rather than guessing.
+        var qs   = new URLSearchParams(window.location.search);
+        var hash = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
+        var urlError = qs.get('error_description') || hash.get('error_description')
+                    || qs.get('error') || hash.get('error');
+        if (urlError) {
+            var text = decodeURIComponent(String(urlError).replace(/\+/g, ' '));
+            failed(/expired|invalid/i.test(text)
+                ? 'That link has expired or has already been used. Request a new one and it will work.'
+                : text, text);
+            return;
+        }
+
+        if (!qs.get('code') && !hash.get('access_token')) {
+            failed('This page is only reachable from a sign-in link. Request one and you will land back here.',
+                   'no code or access_token in callback URL');
+            return;
+        }
+
+        // Route 1: the client tells us the moment it has a session.
+        var sub = null;
+        try {
+            sub = sb().auth.onAuthStateChange(function (_event, session) {
+                if (session) succeeded(session);
+            });
+        } catch (e) { /* fall through to polling */ }
+
+        // Route 2: poll, in case the event fired before we subscribed.
+        var waited = 0;
+        var tick = setInterval(function () {
+            if (settled) { clearInterval(tick); return; }
+            waited += 250;
+            sb().auth.getSession().then(function (res) {
+                if (res && res.data && res.data.session) {
+                    clearInterval(tick);
+                    succeeded(res.data.session);
+                } else if (waited >= 10000) {
+                    clearInterval(tick);
+                    failed('That link has expired or has already been used. Request a new one and it will work.',
+                           'no session after 10s; code=' + (qs.get('code') ? 'present' : 'absent'));
+                }
+            }).catch(function (e) {
+                clearInterval(tick);
+                failed('Something went wrong signing you in. Request a fresh link and try again.', e);
+            });
+        }, 250);
+
+        window.addEventListener('beforeunload', function () {
+            if (sub && sub.data && sub.data.subscription) sub.data.subscription.unsubscribe();
         });
     }
 
