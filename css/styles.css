@@ -1612,3 +1612,25 @@ section { padding: var(--s-9) 0; position: relative; }
 @media (max-width: 1150px) and (min-width: 901px) {
     .nav__links { flex-direction: column; }
 }
+
+/* Header width on large displays.
+   --container is 1180px, so at 1920 the bar had 370px of bare background on
+   each side and read as empty, while the content inside was actually packed:
+   1120px of children in 1180px of container, which is why space-between had
+   nothing left to distribute and the wordmark ended up touching the first
+   link. Widening the nav alone — not the page container — fixes both. */
+@media (min-width: 1400px) {
+    .nav__inner { max-width: 1560px; }
+}
+
+@media (min-width: 1700px) {
+    .nav__inner { max-width: 1680px; }
+}
+
+/* A floor under the gap so the brand can never collide with the links again,
+   whatever space-between has left over. */
+.nav__inner { gap: var(--s-5); }
+.nav__brand { flex: 0 0 auto; }
+
+/* Burger last, so it is the right-most control at every width. */
+.nav__toggle { order: 99; margin-left: var(--s-2); }
