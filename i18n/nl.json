@@ -87,7 +87,7 @@
     },
     "mode": {
       "title": "Echte verificatie",
-      "body": "Elke founding member wordt persoonlijk door ons geverifieerd — selfie tegen profielfoto, handmatig gecontroleerd. Verificatie is gratis voor founding members. Geen AI-blackbox, geen vinkje. Alleen-geverifieerd-filteren is één tap weg.",
+      "body": "Verificatie is een selfie die naast je profielfoto wordt gelegd en door een mens wordt bekeken, niet door een automaat. Het is gratis voor iedereen — geen premium-laag ervoor, en een badge betekent dat iemand echt is, niet dat die betaald heeft.",
       "solo": "Niet geverifieerd",
       "together": "Geverifieerd"
     },
@@ -116,7 +116,7 @@
     "lede": "Vier stappen. Geen vulwerk, geen vragenlijsten, geen algoritme-magie.",
     "step1": {
       "title": "Downloaden en aanmelden",
-      "body": "Haal Lustimacy gratis op Google Play en meld je aan met Google, Facebook of e-mail. Drie korte stappen en één foto, dat is alles."
+      "body": "Haal Lustimacy gratis op Google Play, of meld je hier op de site aan met Google of een e-maillink. Drie korte stappen en één foto, dat is alles."
     },
     "step2": {
       "title": "Een profiel dat het zegt",
@@ -202,8 +202,8 @@
   },
   "cities": {
     "eyebrow": "We beginnen hier",
-    "title": "Nederland en Duitsland eerst",
-    "lede": "Twee landen met de meest open, gevestigde lifestyle scenes van Europa. We gaan de diepte in voordat we de breedte in gaan — hier vult het deck zich het snelst.",
+    "title": "Frankrijk, Duitsland & Nederland",
+    "lede": "Drie van de meest gevestigde lifestyle scenes van Europa, en de plekken waar onze community het hardst groeit. Frankrijk is onze grootste markt geworden, uit zichzelf.",
     "deTitle": "Duitsland",
     "de1": "Berlijn",
     "de2": "Hamburg",
@@ -219,10 +219,17 @@
     "nl5": "Eindhoven",
     "nl6": "Groningen, Maastricht & verder",
     "elsewhereTitle": "Overal elders",
-    "elsewhereBody": "Lustimacy is wereldwijd live op Android, dus je hoeft niet op je land te wachten. We richten ons eerst op Duitsland en Nederland, simpelweg omdat het deck zich daar het snelst vult.",
+    "elsewhereBody": "Lustimacy is wereldwijd live op Android, dus je hoeft niet op je land te wachten. We richten ons eerst op deze drie, simpelweg omdat het deck zich daar het snelst vult.",
     "elsewhereCta": "Download op Google Play",
     "berlinCta": "Lustimacy in Berlijn",
-    "amsterdamCta": "Lustimacy in Amsterdam"
+    "amsterdamCta": "Lustimacy in Amsterdam",
+    "frTitle": "Frankrijk",
+    "fr1": "Parijs",
+    "fr2": "Lyon",
+    "fr3": "Marseille",
+    "fr4": "Toulouse",
+    "fr5": "Bordeaux",
+    "fr6": "Rijsel, Nantes & meer"
   },
   "trust": {
     "eyebrow": "Vertrouwen & veiligheid",
@@ -258,11 +265,11 @@
       },
       {
         "q": "Hoe werken privé foto's?",
-        "a": "Je upload privé foto's in je profiel. Niet-matches zien alleen een elegant BlurHash-verloop — ze weten dat er meer is, maar de foto blijft van jou. Op het moment van een match wordt deze automatisch voor beide kanten ontgrendeld. Geen goedkeuringsstroom om te beheren."
+        "a": "Je uploadt privéfoto's in je profiel. Wie geen match met je is, krijgt uitsluitend een onomkeerbaar geblurde kopie — het origineel wordt door onze servers achtergehouden, niet alleen verborgen door de app. Bij een match ontgrendelt het automatisch voor jullie beiden."
       },
       {
         "q": "Is Lustimacy gratis?",
-        "a": "Ja. Aanmelden, swipen, matchen en chatten zijn gratis. Premium (Lustimacy Plus) biedt meer zichtbaarheid en 'wie likete jou' — vergelijkbaar met andere apps. Founding members van de wachtlijst krijgen een levenslang badge en gratis verificatie."
+        "a": "Ja. Aanmelden, swipen, matchen en chatten zijn gratis, en verificatie is dat voor iedereen. Een premium-laag (Lustimacy Plus) geeft voorrang in zichtbaarheid en \"wie jou leuk vindt\", net als bij andere datingapps."
       },
       {
         "q": "Hoe wordt mijn privacy beschermd?",

@@ -87,7 +87,7 @@
     },
     "mode": {
       "title": "Real verification",
-      "body": "Every founding member is hand-verified by us — a selfie matched to a profile photo, reviewed by a human. Verification is free for founding members; no AI black-box, no checkbox. Verified-only filtering is one tap away.",
+      "body": "Verification is a selfie matched to your profile photo, reviewed by a human rather than an automated check. It is free for everyone — no premium tier gates it, and a badge means the person is real, not that they paid. Verified-only filtering is one tap away.",
       "solo": "Unverified",
       "together": "Verified"
     },
@@ -116,7 +116,7 @@
     "lede": "Four steps. No filler, no questionnaires, no algorithm voodoo.",
     "step1": {
       "title": "Download and sign up",
-      "body": "Get Lustimacy free on Google Play and sign up with Google, Facebook or email. Three short screens and one photo is the whole thing."
+      "body": "Get Lustimacy free on Google Play, or sign up on this site with Google or an email link. Three short screens and one photo is the whole thing."
     },
     "step2": {
       "title": "Build a profile that says it",
@@ -202,8 +202,8 @@
   },
   "cities": {
     "eyebrow": "We're starting here",
-    "title": "Germany & the Netherlands first",
-    "lede": "Two countries with the most welcoming, established lifestyle scenes in Europe. We're going deep before we go wide, so these are the cities filling up fastest.",
+    "title": "France, Germany & the Netherlands",
+    "lede": "Three of the most established lifestyle scenes in Europe, and the places our community is growing fastest. France has become our largest market without us even asking.",
     "deTitle": "Germany",
     "de1": "Berlin",
     "de2": "Hamburg",
@@ -219,10 +219,17 @@
     "nl5": "Eindhoven",
     "nl6": "Groningen, Maastricht & beyond",
     "elsewhereTitle": "Everywhere else",
-    "elsewhereBody": "Lustimacy is live on Android worldwide, so you don't have to wait for your country. We're concentrating on Germany and the Netherlands first simply because that is where the deck fills up fastest.",
+    "elsewhereBody": "Lustimacy is live on Android worldwide, so you don't have to wait for your country. We're concentrating on these three first simply because that is where the deck fills up fastest.",
     "elsewhereCta": "Get it on Google Play",
     "berlinCta": "Lustimacy in Berlin",
-    "amsterdamCta": "Lustimacy in Amsterdam"
+    "amsterdamCta": "Lustimacy in Amsterdam",
+    "frTitle": "France",
+    "fr1": "Paris",
+    "fr2": "Lyon",
+    "fr3": "Marseille",
+    "fr4": "Toulouse",
+    "fr5": "Bordeaux",
+    "fr6": "Lille, Nantes & beyond"
   },
   "trust": {
     "eyebrow": "Trust & safety",
@@ -258,11 +265,11 @@
       },
       {
         "q": "How do private photos work?",
-        "a": "You upload private photos in your profile. People who haven't matched with you see only an elegant BlurHash gradient — they know more exists, but the photo itself stays yours. The moment you match, the photos unlock automatically for both of you. There's no grant flow to manage."
+        "a": "You upload private photos in your profile. Anyone who has not matched with you is only ever sent an irreversibly blurred copy — the original is withheld by our servers, not merely hidden by the app. The moment you match, the photos unlock automatically for both of you. There's no grant flow to manage."
       },
       {
         "q": "Is Lustimacy free?",
-        "a": "Yes. Sign-up, swipe, match, and chat are free. A premium tier (Lustimacy Plus) adds priority visibility and 'who liked you,' similar to other dating apps. Founding members from the waitlist get a lifetime founder badge and zero-fee verification."
+        "a": "Yes. Sign-up, swipe, match and chat are free, and verification is free for everyone. A premium tier (Lustimacy Plus) adds priority visibility and \"who liked you\", similar to other dating apps."
       },
       {
         "q": "How is my privacy protected?",

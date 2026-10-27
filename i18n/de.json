@@ -87,7 +87,7 @@
     },
     "mode": {
       "title": "Echte Verifizierung",
-      "body": "Jedes Founding Member wird von uns persönlich verifiziert — Selfie gegen Profilfoto, von Hand geprüft. Verifizierung ist kostenlos für Founding Members. Keine KI-Blackbox, kein Häkchen. Verified-only-Filter ist einen Tap entfernt.",
+      "body": "Die Verifizierung ist ein Selfie, das mit deinem Profilfoto abgeglichen und von einem Menschen geprüft wird, nicht von einem Automatismus. Sie ist für alle kostenlos — keine Premium-Stufe davor, und ein Abzeichen heißt, dass die Person echt ist, nicht dass sie bezahlt hat.",
       "solo": "Unverifiziert",
       "together": "Verifiziert"
     },
@@ -116,7 +116,7 @@
     "lede": "Vier Schritte. Kein Filler, keine Fragebögen, kein Algorithmus-Voodoo.",
     "step1": {
       "title": "Laden und anmelden",
-      "body": "Hol dir Lustimacy kostenlos bei Google Play und melde dich mit Google, Facebook oder E-Mail an. Drei kurze Schritte und ein Foto — das war es."
+      "body": "Hol dir Lustimacy kostenlos bei Google Play, oder melde dich hier auf der Seite mit Google oder einem E-Mail-Link an. Drei kurze Schritte und ein Foto — das war es."
     },
     "step2": {
       "title": "Profil, das es sagt",
@@ -202,8 +202,8 @@
   },
   "cities": {
     "eyebrow": "Wir starten hier",
-    "title": "Deutschland und die Niederlande zuerst",
-    "lede": "Zwei Länder mit den offensten, etabliertesten Lifestyle-Szenen Europas. Wir gehen in die Tiefe, bevor wir in die Breite gehen — hier füllt sich der Deck am schnellsten.",
+    "title": "Frankreich, Deutschland & die Niederlande",
+    "lede": "Drei der etabliertesten Lifestyle-Szenen Europas — und die Orte, an denen unsere Community am schnellsten wächst. Frankreich ist unser größter Markt geworden, ganz von allein.",
     "deTitle": "Deutschland",
     "de1": "Berlin",
     "de2": "Hamburg",
@@ -219,10 +219,17 @@
     "nl5": "Eindhoven",
     "nl6": "Groningen, Maastricht & weiter",
     "elsewhereTitle": "Überall sonst",
-    "elsewhereBody": "Lustimacy ist weltweit bei Google Play verfügbar — du musst nicht auf dein Land warten. Wir konzentrieren uns zuerst auf Deutschland und die Niederlande, weil sich dort der Deck am schnellsten füllt.",
+    "elsewhereBody": "Lustimacy ist weltweit bei Google Play verfügbar — du musst nicht auf dein Land warten. Wir konzentrieren uns zuerst auf diese drei, weil sich dort der Deck am schnellsten füllt.",
     "elsewhereCta": "Bei Google Play laden",
     "berlinCta": "Lustimacy in Berlin",
-    "amsterdamCta": "Lustimacy in Amsterdam"
+    "amsterdamCta": "Lustimacy in Amsterdam",
+    "frTitle": "Frankreich",
+    "fr1": "Paris",
+    "fr2": "Lyon",
+    "fr3": "Marseille",
+    "fr4": "Toulouse",
+    "fr5": "Bordeaux",
+    "fr6": "Lille, Nantes & mehr"
   },
   "trust": {
     "eyebrow": "Vertrauen & Sicherheit",
@@ -258,11 +265,11 @@
       },
       {
         "q": "Wie funktionieren private Fotos?",
-        "a": "Ihr ladet private Fotos in eurem Profil hoch. Wer noch nicht mit euch gematcht hat, sieht nur einen eleganten BlurHash-Verlauf — der signalisiert, dass mehr da ist, aber das Foto bleibt euch. Im Moment des Matches wird es automatisch für beide Seiten freigeschaltet. Keine Freigabe-Verwaltung."
+        "a": "Du lädst private Fotos in deinem Profil hoch. Wer kein Match mit dir hat, bekommt ausschließlich eine unumkehrbar unscharfe Kopie — das Original hält unser Server zurück, es wird nicht bloß von der App versteckt. Beim Match entsperrt es sich automatisch für euch beide."
       },
       {
         "q": "Ist Lustimacy kostenlos?",
-        "a": "Ja. Sign-up, Swipen, Matchen und Chatten sind kostenlos. Premium (Lustimacy Plus) bietet bessere Sichtbarkeit und 'Wer mag mich' — ähnlich wie andere Apps. Founding Members von der Warteliste bekommen ein lebenslanges Badge und kostenlose Verifizierung."
+        "a": "Ja. Anmeldung, Swipen, Matchen und Chatten sind kostenlos, und die Verifizierung ist es für alle. Eine Premium-Stufe (Lustimacy Plus) bringt bevorzugte Sichtbarkeit und „Wer mag dich\" — wie bei anderen Dating-Apps."
       },
       {
         "q": "Wie wird meine Privatsphäre geschützt?",

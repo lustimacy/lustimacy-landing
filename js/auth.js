@@ -42,6 +42,29 @@
         var form = document.getElementById('authForm');
         if (!form) return;
 
+        // Google first: it skips the round trip through an inbox, which is
+        // where an email-link flow loses most people. Same redirect target as
+        // the magic link, so one allowlist entry covers both.
+        var google = document.querySelector('[data-auth-google]');
+        if (google) {
+            google.addEventListener('click', function () {
+                google.disabled = true;
+                track('AuthGoogleClick');
+                sb().auth.signInWithOAuth({
+                    provider: 'google',
+                    options: { redirectTo: window.location.origin + '/auth/callback.html' }
+                }).then(function (r) {
+                    if (r && r.error) {
+                        google.disabled = false;
+                        track('AuthGoogleError', { message: r.error.message });
+                        var e = document.querySelector('[data-auth-error]');
+                        e.textContent = 'Could not reach Google. Try the email link instead?';
+                        e.hidden = false;
+                    }
+                }).catch(function () { google.disabled = false; });
+            });
+        }
+
         var input   = form.querySelector('[name="email"]');
         var button  = form.querySelector('button[type="submit"]');
         var errEl   = document.querySelector('[data-auth-error]');

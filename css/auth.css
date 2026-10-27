@@ -262,3 +262,42 @@
     color: var(--c-text-soft);
     text-align: right;
 }
+
+/* Google sits above the email form: one tap beats a round trip through an
+   inbox, and the inbox hop is where an email-link flow loses people. */
+.auth__google {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-3);
+    padding: 14px var(--s-4);
+    background: var(--c-text);
+    color: #1f1f1f;
+    border: 0;
+    border-radius: 11px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.16s ease;
+}
+
+.auth__google:hover { opacity: 0.92; }
+.auth__google:disabled { opacity: 0.6; cursor: default; }
+
+.auth__or {
+    position: relative;
+    text-align: center;
+    margin: var(--s-5) 0;
+    color: var(--c-text-soft);
+    font-size: 13px;
+}
+
+.auth__or::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    border-top: 1px solid var(--c-border);
+}
+
+.auth__or span { position: relative; background: var(--c-bg-deep); padding: 0 var(--s-3); }

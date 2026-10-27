@@ -1206,7 +1206,9 @@ section { padding: var(--s-9) 0; position: relative; }
 /* ===== 13. Cities ======================================================== */
 .cities__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* Four columns since France joined. auto-fit rather than a fixed count so
+       a fifth market does not orphan a card the way a hard 3 would have. */
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
     gap: var(--s-5);
 }
 .cities__col {

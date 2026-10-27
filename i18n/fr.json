@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "localeCode": "fr",
+    "ogLocale": "fr_FR",
+    "title": "Lustimacy — Rencontres libertines pour couples et célibataires ouverts",
+    "description": "L'application de rencontres libertines pour les couples et les célibataires ouverts. Un seul profil partagé à deux, jusqu'à 3 partenaires liés, et des photos privées qui restent floutées jusqu'au match. Gratuit sur Google Play.",
+    "keywords": "rencontre libertine, site libertin, application libertine, rencontre couple libertin, couple libertin, échangisme, club échangiste, non-monogamie éthique, candaulisme, célibataires ouverts, photos privées",
+    "ogImageAlt": "Lustimacy — application de rencontres libertines pour couples et célibataires ouverts"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "primaryNav": "Principale",
+    "menuToggle": "Menu",
+    "localeSwitcher": "Langue",
+    "legalNav": "Mentions légales",
+    "cardStack": "Aperçu de profil, carte d'exemple",
+    "pass": "Passer",
+    "like": "J'aime",
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+  "urls": {
+    "home": "/fr/"
+  },
+  "nav": {
+    "who": "Pour qui",
+    "features": "Fonctionnalités",
+    "how": "Comment ça marche",
+    "cities": "Villes",
+    "journal": "Journal",
+    "faq": "FAQ",
+    "cta": "Télécharger l'app",
+    "signin": "Se connecter"
+  },
+  "hero": {
+    "badgeDefault": "Disponible sur Google Play · gratuit",
+    "title1": "Un espace pour les",
+    "title2": "délibérément curieux.",
+    "title3": "",
+    "lede": "Lustimacy est l'application de rencontres libertines pour les couples, les polycules et les célibataires ouverts. Inscrivez-vous en couple et partagez un seul profil, ou liez jusqu'à 3 partenaires au vôtre. Discret par construction, vérifié à l'entrée, conçu autour de ce que vous voulez vraiment.",
+    "trust1": "Profils vérifiés uniquement",
+    "trust2": "Un profil pour deux",
+    "trust3": "Photos privées, sous votre contrôle"
+  },
+  "waitlist": {
+    "placeholder": "Votre e-mail",
+    "cta": "Prévenez-moi pour iOS",
+    "legal": "Nous utiliserons votre e-mail uniquement pour vous prévenir de la sortie de l'app iPhone. Pas de spam, pas de revente. Désinscription à tout moment.",
+    "successHeadline": "Vous êtes sur la liste iOS.",
+    "successInbox": "Nous venons d'envoyer une confirmation depuis une adresse lustimacy.com. Si elle n'arrive pas d'ici quelques minutes, regardez dans vos spams.",
+    "positionLabel": "votre place",
+    "referralLabel": "Quelqu'un attend aussi l'app iPhone ? Partagez ce lien",
+    "shareCta": "Partager mon lien",
+    "copyCta": "Copier",
+    "copiedCta": "Copié ✓",
+    "statusLink": "Voir ma position complète →",
+    "errorGeneric": "Un problème est survenu. Réessayez dans un instant ?",
+    "errorEmail": "Cette adresse e-mail ne semble pas valide.",
+    "hint": "Lustimacy sort d'abord sur Android. L'app iPhone est en préparation — laissez votre e-mail et vous serez prévenu en premier."
+  },
+  "personas": {
+    "eyebrow": "Conçu pour",
+    "title": "Trois façons d'être curieux",
+    "lede": "Lustimacy a été pensé dès le premier jour pour la communauté libertine — les couples dans le milieu, les célibataires qui jouent avec des couples, et les adultes qui explorent la non-monogamie éthique à leur rythme.",
+    "couples": {
+      "title": "Couples libertins",
+      "body": "Inscrivez-vous en couple depuis un seul compte et partagez un profil unique, ou gardez des comptes séparés et liez jusqu'à trois partenaires pour que votre configuration soit visible avant le premier message. Dans les deux cas, on voit avec qui vous êtes avant de swiper — pas après."
+    },
+    "singles": {
+      "title": "Célibataires ouverts",
+      "body": "Filtrez par couples, célibataires, ou les deux. Voyez qui est seul et qui a des partenaires liés avant même de swiper. Des profils détaillés disent le style, la dynamique et l'énergie avant la première conversation."
+    },
+    "curious": {
+      "title": "Curieux, prudents, bienveillants",
+      "body": "Nouveau dans le milieu ? Lustimacy est un espace sans pression et sans jugement pour apprendre le vocabulaire, poser des questions et rencontrer des gens qui vous prennent là où vous en êtes. Pas de touristes, pas de lourds, pas de précipitation."
+    }
+  },
+  "features": {
+    "eyebrow": "Ce qui nous distingue",
+    "title": "Ce qui rend Lustimacy différent",
+    "lede": "Cinq choses que toutes les autres applications ratent pour le libertinage. Nous les avons construites de zéro.",
+    "couple": {
+      "title": "Deux personnes, un profil",
+      "body": "Inscrivez-vous en couple et vous partagez un seul profil — vos informations à tous les deux sur une même carte, et tout le monde vous voit comme un couple dès le premier swipe. Pas de second compte, pas besoin de faire semblant d'être célibataire. Vous avez déjà des comptes séparés, ou vous êtes plus de deux ? Liez jusqu'à trois partenaires : chacun garde son identifiant et son propre deck, et la connexion apparaît sur votre profil. Visible, pas partagé.",
+      "cardSolo": "Compte individuel",
+      "cardLinked": "Compte couple"
+    },
+    "mode": {
+      "title": "Une vraie vérification",
+      "body": "La vérification, c'est un selfie comparé à votre photo de profil, examiné par un humain et non par un automate. Elle est gratuite pour tout le monde — aucune offre premium ne la bloque, et un badge signifie que la personne est réelle, pas qu'elle a payé. Le filtre « vérifiés uniquement » est à un geste.",
+      "solo": "Non vérifié",
+      "together": "Vérifié"
+    },
+    "privatePhotos": {
+      "title": "Photos privées, débloquées au match",
+      "body": "Ajoutez les photos que vous réservez à une vraie connexion. Quiconque n'a pas matché avec vous ne reçoit qu'une copie floutée de façon irréversible — l'original est retenu par nos serveurs, pas simplement masqué par l'application. Dès que vous matchez, elle se débloque pour vous deux."
+    },
+    "travel": {
+      "title": "Cherchez n'importe où",
+      "body": "Un week-end à Berlin ? Réglez votre recherche sur le pays de votre choix — ou passez en mondial — et découvrez le milieu avant d'atterrir. Vous remettrez votre ville au retour."
+    },
+    "filters": {
+      "title": "Des filtres qui filtrent vraiment",
+      "body": "Couples, célibataires, ou les deux ? Partenaires liés ou solo ? Morphologie, style, dynamique, distance, âge. Chaque filtre que nous avons construit, nous l'utilisons nous-mêmes.",
+      "chip1": "Couples",
+      "chip2": "Célibataires",
+      "chip3": "Partenaires liés",
+      "chip4": "Profils solo",
+      "chip5": "Vérifiés uniquement",
+      "chip6": "≤ 50 km"
+    }
+  },
+  "how": {
+    "eyebrow": "Comment ça marche",
+    "title": "De l'inscription à la première conversation",
+    "lede": "Quatre étapes. Pas de remplissage, pas de questionnaires, pas de magie algorithmique.",
+    "step1": {
+      "title": "Télécharger et s'inscrire",
+      "body": "Téléchargez Lustimacy gratuitement sur Google Play, ou inscrivez-vous directement sur ce site avec Google ou un lien par e-mail. Trois écrans courts et une photo, c'est tout."
+    },
+    "step2": {
+      "title": "Un profil qui vous ressemble",
+      "body": "Dites qui vous êtes, avec qui vous êtes et ce qui vous plaît. Inscrivez-vous en couple pour partager un profil, ou liez jusqu'à 3 partenaires au vôtre. Les solos ont accès à tous les filtres."
+    },
+    "step3": {
+      "title": "Vérifiez-vous, en 30 secondes",
+      "body": "Un simple contrôle par selfie. Les profils vérifiés reçoivent un badge et apparaissent devant plus de monde. Le filtre « vérifiés uniquement » est à un geste."
+    },
+    "step4": {
+      "title": "Matchez et rencontrez",
+      "body": "Quand c'est réciproque, la conversation s'ouvre. Les photos privées se débloquent automatiquement. À vous de jouer."
+    }
+  },
+  "demo": {
+    "eyebrow": "Essayez le rythme",
+    "title": "Ce que ça fait de swiper",
+    "lede": "Un vrai fil Lustimacy est filtré, vérifié et choisi. Ceci n'est qu'un aperçu — faites glisser une carte ou utilisez les boutons.",
+    "card1": { "name": "Anna & Luca", "detail": "Couple · Vérifié · Berlin" },
+    "card2": { "name": "Mira", "detail": "Célibataire · Vérifiée · Amsterdam" },
+    "card3": { "name": "Eva & Tom", "detail": "Couple · Profil lié · Hambourg" },
+    "card4": { "name": "Sky & Riley", "detail": "Couple · Vérifié · Cologne" },
+    "card5": { "name": "Naïma", "detail": "Célibataire · Vérifiée · Francfort" },
+    "card6": { "name": "Noah & Liv", "detail": "Couple · Vérifié · Munich" },
+    "card7": { "name": "Félix", "detail": "Célibataire · Vérifié · Vienne" },
+    "card8": { "name": "Priya", "detail": "Célibataire · Vérifiée · Rotterdam" },
+    "card9": { "name": "Mateo & Sara", "detail": "Couple · Profil lié · Düsseldorf" },
+    "card10": { "name": "Yuki", "detail": "Célibataire · Vérifiée · Stuttgart" },
+    "beat1": {
+      "title": "À droite, c'est oui.",
+      "body": "Les likes réciproques ouvrent une conversation — comme vous vous y attendez, sans surprise."
+    },
+    "beat2": {
+      "title": "Partenaires liés visibles.",
+      "body": "Chaque profil affiche ses partenaires liés sur la carte — couples, triades, polycules, annoncés d'emblée."
+    },
+    "beat3": {
+      "title": "Les photos privées se débloquent aussitôt.",
+      "body": "Les zones floutées deviennent la vraie photo dès l'instant du match."
+    }
+  },
+  "screens": {
+    "eyebrow": "Dans l'application",
+    "title": "Fait pour des adultes",
+    "alt1": "Carte-titre Lustimacy — l'application des rencontres ouvertes",
+    "alt2": "Deck de swipe avec des cartes de profil à Amsterdam, actions Passer et Spark",
+    "alt3": "Détail d'un profil — photo, âge, distance, ce que la personne cherche et son histoire",
+    "alt4": "Préférences de recherche — lieu, tranche d'âge, taille et options de genre",
+    "alt5": "Détail d'un profil — orientation, statut relationnel, morphologie, dynamique de pouvoir, envies, positions et centres d'intérêt",
+    "alt6": "Filtres de recherche — ce que la personne cherche, dynamique de pouvoir et morphologie",
+    "alt7": "Écran de vérification — profil vérifié, badge bleu confirmé",
+    "alt8": "Offre premium — likes illimités, accusés de lecture et qui vous a liké"
+  },
+  "cities": {
+    "eyebrow": "Nous commençons ici",
+    "title": "France, Allemagne et Pays-Bas",
+    "lede": "Trois des scènes libertines les plus établies d'Europe, et les endroits où notre communauté grandit le plus vite. La France est devenue notre premier marché sans que nous l'ayons cherché.",
+    "frTitle": "France",
+    "fr1": "Paris",
+    "fr2": "Lyon",
+    "fr3": "Marseille",
+    "fr4": "Toulouse",
+    "fr5": "Bordeaux",
+    "fr6": "Lille, Nantes et au-delà",
+    "deTitle": "Allemagne",
+    "de1": "Berlin",
+    "de2": "Hambourg",
+    "de3": "Munich · München",
+    "de4": "Cologne · Köln",
+    "de5": "Francfort-sur-le-Main",
+    "de6": "Stuttgart, Düsseldorf et au-delà",
+    "nlTitle": "Pays-Bas",
+    "nl1": "Amsterdam",
+    "nl2": "Rotterdam",
+    "nl3": "La Haye · Den Haag",
+    "nl4": "Utrecht",
+    "nl5": "Eindhoven",
+    "nl6": "Groningue, Maastricht et au-delà",
+    "elsewhereTitle": "Partout ailleurs",
+    "elsewhereBody": "Lustimacy est disponible partout dans le monde sur Android : vous n'avez pas à attendre votre pays. Nous nous concentrons d'abord sur ces trois-là simplement parce que c'est là que le deck se remplit le plus vite.",
+    "elsewhereCta": "Télécharger sur Google Play",
+    "berlinCta": "Lustimacy à Berlin",
+    "amsterdamCta": "Lustimacy à Amsterdam"
+  },
+  "trust": {
+    "eyebrow": "Confiance et sécurité",
+    "title": "Fondé sur le consentement, vérifié à l'entrée",
+    "verified": {
+      "title": "Uniquement de vraies personnes",
+      "body": "Chaque membre passe une vérification par selfie avant de pouvoir matcher pleinement. Le filtre « vérifiés uniquement » est à un geste. Les faux profils partent en heures, pas en jours."
+    },
+    "discreet": {
+      "title": "Discret par construction",
+      "body": "Aucun lien avec les réseaux sociaux. Aucune page de profil publique. Votre compte n'apparaît pas dans les résultats Google. Vous décidez de ce qui est visible, et par qui."
+    },
+    "consent": {
+      "title": "Le consentement, toujours",
+      "body": "Les limites ont leur place sur chaque profil et nous les rendons simples à poser. Bloquer, masquer et signaler tiennent en un geste. Un humain lit chaque signalement."
+    },
+    "support": {
+      "title": "Un vrai support",
+      "body": "Écrivez à une vraie personne : info@lustimacy.com. Nous répondons en heures les jours ouvrés européens, pas en semaines."
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Lustimacy est-il disponible dans mon pays ?",
+        "a": "Oui. Lustimacy est disponible partout dans le monde sur Google Play et gratuit. Nous nous concentrons d'abord sur la France, l'Allemagne et les Pays-Bas, donc ce sont les villes qui se remplissent le plus vite, mais vous pouvez vous inscrire depuis n'importe où dès aujourd'hui. Il n'y a pas encore d'application iPhone."
+      },
+      {
+        "q": "Que fait Lustimacy concrètement pour les couples ?",
+        "a": "Deux choses. Vous pouvez vous inscrire en couple et partager un seul profil — vos informations à tous les deux y figurent, et tout le monde vous voit comme un couple dès le premier swipe. Ou, si vous avez déjà des comptes séparés ou que vous êtes plus de deux, liez jusqu'à trois partenaires : chacun garde son identifiant et son propre deck, la connexion apparaissant sur votre profil. Les célibataires peuvent inclure ou exclure les couples, pour que personne ne perde le temps de personne."
+      },
+      {
+        "q": "Comment fonctionnent les photos privées ?",
+        "a": "Vous ajoutez des photos privées à votre profil. Quiconque n'a pas matché avec vous ne reçoit qu'une copie floutée de façon irréversible — l'original est retenu par nos serveurs, pas simplement masqué par l'application. Dès l'instant du match, les photos se débloquent automatiquement pour vous deux. Aucune demande à gérer."
+      },
+      {
+        "q": "Lustimacy est-il gratuit ?",
+        "a": "Oui. L'inscription, le swipe, le match et la conversation sont gratuits, et la vérification l'est pour tout le monde. Une offre premium (Lustimacy Plus) ajoute une visibilité prioritaire et « qui vous a liké », comme sur les autres applications de rencontre."
+      },
+      {
+        "q": "Comment ma vie privée est-elle protégée ?",
+        "a": "Nous ne relions jamais votre compte à vos réseaux sociaux, ne vendons jamais vos données et ne rendons jamais votre profil indexable par les moteurs de recherche. Les photos de vérification sont contrôlées puis supprimées. Vous pouvez supprimer votre compte en deux gestes, et vos données disparaissent définitivement sous 30 jours."
+      },
+      {
+        "q": "Que veut dire ENM ?",
+        "a": "Non-monogamie éthique — des relations fondées sur la conscience et le consentement de tous. Cela englobe le libertinage, l'échangisme, le polyamour, les couples ouverts et tout ce qui se trouve entre les deux. Lustimacy accueille l'ensemble du spectre."
+      },
+      {
+        "q": "Est-ce une application de plan d'un soir ?",
+        "a": "Lustimacy est ce que vous en faites. Certains viennent pour un week-end au Cap d'Agde, d'autres pour trouver un partenaire de jeu durable ou un troisième pour leur couple. Les filtres et les profils détaillés vous laissent trouver le rythme et la forme qui vous conviennent."
+      },
+      {
+        "q": "Puis-je explorer d'autres villes et d'autres pays ?",
+        "a": "Oui. Dans les filtres de recherche, vous pouvez régler votre recherche sur votre position actuelle avec un rayon, sur un ou plusieurs pays précis, ou passer en mondial. Pratique avant un voyage — ou si votre milieu se trouve simplement ailleurs que là où vous habitez."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Prêt quand vous l'êtes.",
+    "lede": "Rencontres libertines pour couples et célibataires ouverts. Gratuit, profils vérifiés, et des photos privées qui restent floutées jusqu'au match."
+  },
+  "playStore": {
+    "label": "Télécharger sur Google Play",
+    "ariaLabel": "Télécharger Lustimacy sur Google Play"
+  },
+  "footer": {
+    "tagline": "Rencontres libertines pour couples et célibataires ouverts.",
+    "exploreTitle": "Explorer",
+    "journal": "Journal",
+    "press": "Presse",
+    "cityBerlin": "Berlin",
+    "cityAmsterdam": "Amsterdam",
+    "legalTitle": "Société",
+    "languageTitle": "Langue",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "childSafety": "Protection des mineurs",
+    "rights": "Tous droits réservés."
+  },
+  "iosNotice": {
+    "title": "Lustimacy sort d'abord sur Android"
+  }
+}

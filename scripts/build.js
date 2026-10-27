@@ -28,6 +28,7 @@ const LOCALES = [
   { code: 'en', urlPath: '/', dir: '.', isDefault: true },
   { code: 'de', urlPath: '/de/', dir: 'de' },
   { code: 'nl', urlPath: '/nl/', dir: 'nl' },
+  { code: 'fr', urlPath: '/fr/', dir: 'fr' },
 ];
 
 function readJson(p) {

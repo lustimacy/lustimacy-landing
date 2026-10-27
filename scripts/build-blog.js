@@ -194,6 +194,37 @@ function loadPosts() {
     return posts;
 }
 
+// A post's call to action follows the language the post is written in. An
+// English CTA under a French article reads as a machine translation of the
+// whole page, which is exactly the impression we do not want in our largest
+// market.
+const CTA = {
+    en: {
+        title: 'Lustimacy is live',
+        body: 'Lifestyle dating for couples and open-minded singles. One shared profile for two, up to three linked partners, and private photos that stay blurred until you match.',
+        button: 'Get it on Google Play &rarr;',
+        alt: 'On an iPhone? <a href="/login" data-cta="blog-websignup">Set up your profile here</a> — people on Android can find you straight away.',
+    },
+    fr: {
+        title: 'Lustimacy est disponible',
+        body: "Rencontres libertines pour couples et célibataires ouverts. Un seul profil partagé à deux, jusqu'à trois partenaires liés, et des photos privées qui restent floutées jusqu'au match.",
+        button: 'Télécharger sur Google Play &rarr;',
+        alt: 'Sur iPhone ? <a href="/login" data-cta="blog-websignup">Créez votre profil ici</a> — les utilisateurs Android vous trouveront immédiatement.',
+    },
+    de: {
+        title: 'Lustimacy ist da',
+        body: 'Lifestyle Dating für Pärchen und offene Singles. Ein gemeinsames Profil für zwei, bis zu drei verlinkte Partner, und private Fotos, die bis zum Match unscharf bleiben.',
+        button: 'Bei Google Play laden &rarr;',
+        alt: 'Auf dem iPhone? <a href="/login" data-cta="blog-websignup">Leg dein Profil hier an</a> — Android-Nutzer finden dich sofort.',
+    },
+    nl: {
+        title: 'Lustimacy is live',
+        body: "Lifestyle dating voor stellen en open-minded singles. Eén gedeeld profiel voor twee, tot drie gekoppelde partners, en privéfoto's die geblurd blijven tot je matcht.",
+        button: 'Download op Google Play &rarr;',
+        alt: 'Op een iPhone? <a href="/login" data-cta="blog-websignup">Maak hier je profiel aan</a> — mensen op Android vinden je meteen.',
+    },
+};
+
 function postPageHtml(tpl, post, allPosts) {
     const canonical = `${SITE_URL}/blog/${post.slug}/`;
     const jsonLd = {
@@ -231,6 +262,10 @@ function postPageHtml(tpl, post, allPosts) {
         .replace(/\{\{author\}\}/g, escHtml(post.author))
         .replace(/\{\{readingMinutes\}\}/g, String(post.readingMinutes))
         .replace(/\{\{locale\}\}/g, escHtml(post.locale))
+        .replace(/\{\{ctaTitle\}\}/g, (CTA[post.locale] || CTA.en).title)
+        .replace(/\{\{ctaBody\}\}/g, (CTA[post.locale] || CTA.en).body)
+        .replace(/\{\{ctaButton\}\}/g, (CTA[post.locale] || CTA.en).button)
+        .replace(/\{\{ctaAlt\}\}/g, (CTA[post.locale] || CTA.en).alt)
         .replace(/\{\{tags\}\}/g, post.tags.map((t) => `<span class="tag">${escHtml(t)}</span>`).join(''))
         .replace(/\{\{body\}\}/g, post.html)
         .replace(/\{\{related\}\}/g, related)
