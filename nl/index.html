@@ -56,31 +56,6 @@
       plausible.init()
     </script>
 
-    <!-- Google tag (gtag.js) — Google Ads AW-881206163, with Consent Mode v2 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      // Default consent: denied in EEA + UK + CH; granted elsewhere.
-      // /js/consent.js updates this when the visitor accepts/rejects via the banner.
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
-        wait_for_update: 500
-      });
-      try {
-        var c = localStorage.getItem('lustimacy_consent');
-        if (c === 'granted') {
-          gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
-        }
-      } catch(e) {}
-      gtag('js', new Date());
-      gtag('config', 'AW-881206163');
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-881206163"></script>
-    <script src="/js/consent.js?v=20260525a" defer></script>
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Lustimacy","operatingSystem":"ANDROID","applicationCategory":"SocialNetworkingApplication","inLanguage":"nl","url":"https://lustimacy.com/nl/","description":"De lifestyle datingapp voor stellen en open-minded singles. Eén gedeeld profiel voor twee, tot 3 gekoppelde partners, en privéfoto's blijven geblurd tot je matcht. Gratis op Google Play.","screenshot":["https://lustimacy.com/assets/images/screenshot-1.jpg","https://lustimacy.com/assets/images/screenshot-2.jpg","https://lustimacy.com/assets/images/screenshot-3.jpg","https://lustimacy.com/assets/images/screenshot-4.jpg","https://lustimacy.com/assets/images/screenshot-5.jpg","https://lustimacy.com/assets/images/screenshot-6.jpg","https://lustimacy.com/assets/images/screenshot-7.jpg","https://lustimacy.com/assets/images/screenshot-8.jpg"],"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Organization","name":"Lustimacy","url":"https://lustimacy.com"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Lustimacy","url":"https://lustimacy.com","logo":"https://lustimacy.com/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"info@lustimacy.com"}}</script>
@@ -761,7 +736,6 @@
                         <li><a href="/terms.html">Voorwaarden</a></li>
                         <li><a href="/contact.html">Contact</a></li>
                         <li><a href="/child-safety.html">Kinderveiligheidsstandaarden</a></li>
-                        <li><button type="button" class="consent-trigger">Cookievoorkeuren</button></li>
                     </ul>
                 </nav>
                 <div class="footer__col">
@@ -781,6 +755,6 @@
     </footer>
 
     <script src="/js/main.js?v=20260514a" defer></script>
-<!-- locale: nl · built: 2026-10-27T10:38:24.671Z -->
+<!-- locale: nl · built: 2026-10-27T10:54:19.725Z -->
 </body>
 </html>

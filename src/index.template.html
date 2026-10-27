@@ -52,31 +52,6 @@
       plausible.init()
     </script>
 
-    <!-- Google tag (gtag.js) — Google Ads AW-881206163, with Consent Mode v2 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      // Default consent: denied in EEA + UK + CH; granted elsewhere.
-      // /js/consent.js updates this when the visitor accepts/rejects via the banner.
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
-        wait_for_update: 500
-      });
-      try {
-        var c = localStorage.getItem('lustimacy_consent');
-        if (c === 'granted') {
-          gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
-        }
-      } catch(e) {}
-      gtag('js', new Date());
-      gtag('config', 'AW-881206163');
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-881206163"></script>
-    <script src="/js/consent.js?v=20260525a" defer></script>
 
 <!--JSONLD-->
 </head>
@@ -700,7 +675,6 @@
                         <li><a href="/terms.html">{{ footer.terms }}</a></li>
                         <li><a href="/contact.html">{{ footer.contact }}</a></li>
                         <li><a href="/child-safety.html">{{ footer.childSafety }}</a></li>
-                        <li><button type="button" class="consent-trigger">{{ footer.cookieSettings }}</button></li>
                     </ul>
                 </nav>
                 <div class="footer__col">
