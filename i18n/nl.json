@@ -190,14 +190,14 @@
   "screens": {
     "eyebrow": "In de app",
     "title": "Gebouwd voor volwassenen",
-    "alt1": "Lustimacy home-feed met profielen die gekoppelde partners tonen, en singles",
-    "alt2": "Profieldetail met verificatie-badge, lifestyle-voorkeuren en oriëntatie",
-    "alt3": "Partner-koppelscherm — nodig tot 3 partners uit voor je profiel",
-    "alt4": "Privé fotogalerij met BlurHash-placeholders, ontgrendeld bij match",
-    "alt5": "Zoekfilters — stellen, singles, gekoppelde partners, lichaam, afstand",
-    "alt6": "Match-modal — partner met koppel-indicator, chat opent",
+    "alt1": "Lustimacy titelkaart — de app voor open-minded connecties",
+    "alt2": "Swipe-deck met profielkaarten in Amsterdam, met Skip- en Spark-acties",
+    "alt3": "Profieldetail — foto, leeftijd, afstand, wat iemand zoekt en het eigen verhaal",
+    "alt4": "Zoekvoorkeuren — datinglocatie, leeftijdsbereik, lengtebereik en genderopties",
+    "alt5": "Profieldetail — oriëntatie, relatiestatus, lichaamstype, rolverdeling, verlangens, posities en interesses",
+    "alt6": "Zoekfilters — wat iemand zoekt, rolverdeling en lichaamstype",
     "alt7": "Verificatiescherm — profiel geverifieerd, blauwe badge bevestigd",
-    "alt8": "In-app chat met een geverifieerde Lustimacy-match"
+    "alt8": "Premium-upgrade — onbeperkt liken, leesbevestigingen en zien wie jou leuk vindt"
   },
   "cities": {
     "eyebrow": "We beginnen hier",

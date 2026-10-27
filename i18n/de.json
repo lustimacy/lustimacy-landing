@@ -190,14 +190,14 @@
   "screens": {
     "eyebrow": "In der App",
     "title": "Gebaut für Erwachsene",
-    "alt1": "Lustimacy Home-Feed mit Profilen, die verknüpfte Partner zeigen, und Singles",
-    "alt2": "Profildetail mit Verifizierungs-Badge, Lifestyle-Vorlieben und Orientierung",
-    "alt3": "Partner-Verlinkungs-Bildschirm — bis zu 3 Partner zum Profil einladen",
-    "alt4": "Private Foto-Galerie mit BlurHash-Platzhaltern, beim Match entsperrt",
-    "alt5": "Suchfilter — Pärchen, Singles, verknüpfte Partner, Körperbau, Distanz",
-    "alt6": "Match-Modal — Partner mit Verknüpfungs-Indikator, Chat startet",
+    "alt1": "Lustimacy Titelbild — die App für offene Begegnungen",
+    "alt2": "Swipe-Deck mit Profilkarten in Amsterdam, mit Skip- und Spark-Aktionen",
+    "alt3": "Profilansicht — Foto, Alter, Entfernung, Suchabsicht und persönliche Story",
+    "alt4": "Sucheinstellungen — Dating-Ort, Altersbereich, Größenbereich und Geschlechtsoptionen",
+    "alt5": "Profilansicht — Orientierung, Beziehungsstatus, Körpertyp, Rollenverteilung, Vorlieben, Stellungen und Interessen",
+    "alt6": "Suchfilter — wonach jemand sucht, Rollenverteilung und Körpertyp",
     "alt7": "Verifizierungs-Screen — Profil verifiziert, blaues Abzeichen bestätigt",
-    "alt8": "In-App-Chat mit einem verifizierten Lustimacy-Match"
+    "alt8": "Premium-Upgrade — unbegrenzte Likes, Lesebestätigungen und sehen, wer dich mag"
   },
   "cities": {
     "eyebrow": "Wir starten hier",

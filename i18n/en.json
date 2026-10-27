@@ -190,14 +190,14 @@
   "screens": {
     "eyebrow": "Inside the app",
     "title": "Built for grown-ups",
-    "alt1": "Lustimacy home feed showing profiles with linked partners and singles",
-    "alt2": "Profile detail with verified badge, lifestyle preferences and orientation",
-    "alt3": "Link partners screen — invite up to 3 partners to your profile",
-    "alt4": "Private photo gallery with BlurHash placeholders, unlocked on match",
-    "alt5": "Search filters — couples, singles, linked partners, body, distance",
-    "alt6": "Match modal — partner shown with linked-profile indicator, chat opens",
+    "alt1": "Lustimacy title card — the app for open-minded connections",
+    "alt2": "Swipe deck showing profile cards in Amsterdam, with Skip and Spark actions",
+    "alt3": "Profile detail — photo, age, distance, what they are looking for, and their story",
+    "alt4": "Search preferences — dating location, age range, height range and gender options",
+    "alt5": "Profile detail — orientation, relationship status, body type, power dynamic, desires, positions and interests",
+    "alt6": "Search filters — what someone is looking for, power dynamic and body type",
     "alt7": "Verification screen — profile verified, blue badge confirmed",
-    "alt8": "In-app chat with a verified Lustimacy match"
+    "alt8": "Premium upgrade — unlimited likes, read receipts and seeing who liked you"
   },
   "cities": {
     "eyebrow": "We're starting here",
