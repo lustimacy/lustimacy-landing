@@ -36,9 +36,9 @@
     "title1": "Ein Ort für die,",
     "title2": "die wirklich neugierig sind.",
     "title3": "",
-    "lede": "Lustimacy ist die Lifestyle-Dating-App für Pärchen, Polykülen und offene Singles. Verlinke bis zu 3 Partner auf deinem Profil. Diskret, verifiziert, gebaut für das, was ihr wirklich wollt.",
+    "lede": "Lustimacy ist die Lifestyle-Dating-App für Pärchen, Polycules und offene Singles. Meldet euch als Pärchen an und teilt ein Profil, oder verlinkt bis zu 3 Partner mit eurem eigenen. Diskret von Grund auf, verifiziert an der Tür, gebaut um das, was ihr wirklich wollt.",
     "trust1": "Nur verifizierte Profile",
-    "trust2": "Bis zu 3 verknüpfte Partner",
+    "trust2": "Ein Profil für zwei",
     "trust3": "Private Fotos, eure Kontrolle"
   },
   "waitlist": {
@@ -63,7 +63,7 @@
     "lede": "Lustimacy wurde von Anfang an für die Lifestyle-Community gebaut — Pärchen im Lifestyle, Singles die mit Pärchen connecten, und Erwachsene die ENM auf ihre eigene Art entdecken.",
     "couples": {
       "title": "Pärchen im Lifestyle",
-      "body": "Verlinke bis zu 3 Partner mit deinem Profil, damit Matches deine Beziehungsstruktur schon vor der ersten Nachricht sehen. Jeder hat seinen eigenen Account und swiped unabhängig — die Verbindung ist sichtbar, nicht geteilt. Lustimacy ist die erste App, die das standardmäßig ehrlich macht."
+      "body": "Meldet euch als Pärchen über einen Account an und teilt ein Profil, oder behaltet getrennte Accounts und verlinkt bis zu drei Partner, damit eure Konstellation schon vor der ersten Nachricht sichtbar ist. So oder so: man sieht, mit wem ihr unterwegs seid, bevor gewischt wird — nicht danach."
     },
     "singles": {
       "title": "Offene Singles",
@@ -79,10 +79,10 @@
     "title": "Was Lustimacy anders macht",
     "lede": "Fünf Dinge, die jede andere Dating-App für den Lifestyle falsch macht. Wir haben sie von Grund auf neu gebaut.",
     "couple": {
-      "title": "Verknüpfte Partner-Profile",
-      "body": "Verlinke bis zu 3 Partner mit deinem Profil. Ihre Fotos erscheinen auf deinem — damit Matches sehen, mit wem du schon zusammen bist, bevor das erste Wort fällt. Jeder Partner hat seinen eigenen Login und swiped aus dem eigenen Deck — die Beziehung ist sichtbar, nicht geteilt.",
-      "cardSolo": "Profil ohne verknüpfte Partner",
-      "cardLinked": "Profil mit verknüpften Partnern"
+      "title": "Zwei Menschen, ein Profil",
+      "body": "Meldet euch als Pärchen an und teilt ein einziges Profil — ihr beide auf einer Karte, und alle sehen euch vom ersten Swipe an als Pärchen. Kein zweiter Account, kein Vortäuschen, Single zu sein. Ihr habt schon getrennte Accounts oder seid mehr als zwei? Dann verlinkt bis zu drei Partner: jeder behält seinen eigenen Login und seinen eigenen Deck, und die Verbindung steht auf eurem Profil. Sichtbar, nicht geteilt.",
+      "cardSolo": "Einzel-Account",
+      "cardLinked": "Pärchen-Account"
     },
     "mode": {
       "title": "Echte Verifizierung",
@@ -119,7 +119,7 @@
     },
     "step2": {
       "title": "Profil, das es sagt",
-      "body": "Wer seid ihr, mit wem seid ihr, worauf habt ihr Lust. Verlinkt bis zu 3 Partner auf eurem Profil; Solos bekommen das volle Filter-Set."
+      "body": "Sag uns, wer du bist, mit wem du unterwegs bist und worauf du stehst. Als Pärchen anmelden und ein Profil teilen, oder bis zu 3 Partner mit deinem eigenen verlinken. Solos bekommen den kompletten Filtersatz."
     },
     "step3": {
       "title": "Verifizierung in 30 Sekunden",
@@ -252,8 +252,8 @@
         "a": "Ja. Lustimacy ist weltweit bei Google Play verfügbar und kostenlos. Wir konzentrieren uns zuerst auf Deutschland und die Niederlande, dort füllt sich der Deck am schnellsten — anmelden kannst du dich aber heute von überall. Eine iPhone-App gibt es noch nicht."
       },
       {
-        "q": "Was bringt Lustimacy Pärchen konkret?",
-        "a": "Du kannst bis zu 3 Partner mit deinem Profil verlinken — ihre Fotos erscheinen auf deinem, damit Matches schon vor der ersten Nachricht sehen, mit wem du zusammen bist. Jeder Partner hat seinen eigenen Account und swiped aus dem eigenen Deck; die Verbindung ist sichtbar, nicht geteilt. Die erste App, die Pärchen-/Polykül-Transparenz zum Standard macht statt zum Tag."
+        "q": "Was macht Lustimacy konkret für Pärchen?",
+        "a": "Zwei Dinge. Ihr könnt euch als Pärchen anmelden und ein Profil teilen — eure beiden Angaben stehen darauf, und alle sehen euch vom ersten Swipe an als Pärchen. Oder, wenn ihr schon getrennte Accounts habt oder mehr als zwei seid, verlinkt ihr bis zu drei Partner: jeder behält seinen Login und seinen eigenen Deck, und die Verbindung steht auf dem Profil. Singles können Pärchen gezielt ein- oder ausblenden — so verschwendet niemand die Zeit des anderen."
       },
       {
         "q": "Wie funktionieren private Fotos?",

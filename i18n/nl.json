@@ -36,9 +36,9 @@
     "title1": "Een plek voor",
     "title2": "de bewust nieuwsgierigen.",
     "title3": "",
-    "lede": "Lustimacy is de lifestyle dating-app voor stellen, polycules en open-minded singles. Koppel tot 3 partners aan je profiel. Discreet ontworpen, geverifieerd aan de deur, gebouwd rond wat je écht wilt.",
+    "lede": "Lustimacy is de lifestyle datingapp voor stellen, polycules en open-minded singles. Meld je aan als stel en deel één profiel, of koppel tot 3 partners aan dat van jou. Discreet van opzet, geverifieerd aan de deur, gebouwd rond wat je echt wil.",
     "trust1": "Alleen geverifieerde profielen",
-    "trust2": "Tot 3 gekoppelde partners",
+    "trust2": "Eén profiel voor twee",
     "trust3": "Privé foto's, jouw controle"
   },
   "waitlist": {
@@ -63,7 +63,7 @@
     "lede": "Lustimacy is vanaf dag één gebouwd voor de lifestyle community — stellen in de scene, singles die met stellen daten, en volwassenen die ENM op hun eigen tempo verkennen.",
     "couples": {
       "title": "Stellen in de lifestyle",
-      "body": "Koppel tot 3 partners aan je profiel zodat matches je relatiestructuur zien voor het eerste bericht. Ieder houdt zijn eigen account en swiped onafhankelijk — de verbinding is zichtbaar, niet gedeeld. Lustimacy is de eerste app die dit standaard eerlijk maakt."
+      "body": "Meld je aan als stel vanuit één account en deel één profiel, of houd aparte accounts en koppel tot drie partners zodat je situatie zichtbaar is nog voor het eerste bericht. Hoe dan ook: mensen zien met wie je bent vóór ze swipen, niet erna."
     },
     "singles": {
       "title": "Open-minded singles",
@@ -79,10 +79,10 @@
     "title": "Wat Lustimacy anders maakt",
     "lede": "Vijf dingen die elke andere dating-app verkeerd doet voor de lifestyle. We hebben ze vanaf nul gebouwd.",
     "couple": {
-      "title": "Gekoppelde partnerprofielen",
-      "body": "Koppel tot 3 partners aan je profiel. Hun foto's verschijnen op het jouwe, zodat matches zien met wie je al bent — voor het eerste bericht. Iedere partner heeft een eigen login en swiped uit eigen deck — de relatie is zichtbaar, niet gedeeld.",
-      "cardSolo": "Profiel zonder gekoppelde partners",
-      "cardLinked": "Profiel met gekoppelde partners"
+      "title": "Twee mensen, één profiel",
+      "body": "Meld je aan als stel en je deelt één profiel — jullie gegevens samen op één kaart, zodat iedereen je vanaf de eerste swipe als stel ziet. Geen tweede account, niet doen alsof je single bent. Heb je al aparte accounts, of zijn jullie met meer dan twee? Koppel dan tot drie partners: ieder houdt zijn eigen login en eigen deck, en de verbinding staat op je profiel. Zichtbaar, niet gedeeld.",
+      "cardSolo": "Single-account",
+      "cardLinked": "Stel-account"
     },
     "mode": {
       "title": "Echte verificatie",
@@ -119,7 +119,7 @@
     },
     "step2": {
       "title": "Een profiel dat het zegt",
-      "body": "Wie ben je, met wie ben je, waar sta je voor open. Koppel tot 3 partners aan je profiel; solos krijgen de volledige filterset."
+      "body": "Vertel wie je bent, met wie je bent en waar je van houdt. Meld je aan als stel en deel één profiel, of koppel tot 3 partners aan dat van jou. Solo’s krijgen de volledige filterset."
     },
     "step3": {
       "title": "Verifiëren in 30 seconden",
@@ -252,8 +252,8 @@
         "a": "Ja. Lustimacy is wereldwijd live op Google Play en gratis. We richten ons eerst op Duitsland en Nederland, daar vult het deck zich het snelst — maar je kunt je vandaag vanaf overal aanmelden. Er is nog geen iPhone-app."
       },
       {
-        "q": "Wat doet Lustimacy concreet voor stellen?",
-        "a": "Je kunt tot 3 partners aan je profiel koppelen — hun foto's verschijnen op het jouwe, zodat matches al voor het eerste bericht zien met wie je bent. Iedere partner heeft een eigen account en swiped uit eigen deck; de verbinding is zichtbaar, niet gedeeld. De eerste app die stellen/polycule-transparantie standaard maakt, niet als tag."
+        "q": "Wat doet Lustimacy eigenlijk voor stellen?",
+        "a": "Twee dingen. Je kunt je aanmelden als stel en één profiel delen — jullie gegevens staan er allebei op, en iedereen ziet jullie vanaf de eerste swipe als stel. Of, als je al aparte accounts hebt of met meer dan twee bent, koppel je tot drie partners: ieder houdt zijn eigen login en eigen deck, met de verbinding zichtbaar op je profiel. Singles kunnen stellen in- of uitfilteren, zodat niemand elkaars tijd verspilt."
       },
       {
         "q": "Hoe werken privé foto's?",

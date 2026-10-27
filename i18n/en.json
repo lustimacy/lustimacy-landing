@@ -36,9 +36,9 @@
     "title1": "A space for the",
     "title2": "deliberately curious.",
     "title3": "",
-    "lede": "Lustimacy is the lifestyle dating app for couples, polycules, and open-minded singles. Link up to 3 partners on your profile. Discreet by design, verified at the door, built around what you actually want.",
+    "lede": "Lustimacy is the lifestyle dating app for couples, polycules and open-minded singles. Sign up as a couple and share one profile, or link up to 3 partners to your own. Discreet by design, verified at the door, built around what you actually want.",
     "trust1": "Verified profiles only",
-    "trust2": "Up to 3 linked partners",
+    "trust2": "One profile for two",
     "trust3": "Private photos, your control"
   },
   "waitlist": {
@@ -63,7 +63,7 @@
     "lede": "Lustimacy was designed from day one for the lifestyle community — couples in the scene, singles who play with couples, and adults exploring ethical non-monogamy on their own terms.",
     "couples": {
       "title": "Couples in the lifestyle",
-      "body": "Link up to 3 partners to your profile so matches see your relationship structure before the first message. Each of you keeps your own account and swipes independently — the connection is visible, not shared. Lustimacy is the first app to make this honest by default."
+      "body": "Sign up as a couple from one account and share a single profile, or keep separate accounts and link up to three partners so your structure is visible before the first message. Either way, people see who you are with before they swipe — not after."
     },
     "singles": {
       "title": "Open-minded singles",
@@ -79,10 +79,10 @@
     "title": "What makes Lustimacy different",
     "lede": "Five things every other dating app gets wrong for the lifestyle. We built them from scratch.",
     "couple": {
-      "title": "Linked partner profiles",
-      "body": "Link up to 3 partners to your profile. Their photos appear on yours, so matches see who you're already with before the first message. Each partner has their own login and swipes from their own deck — the relationship is visible, not shared.",
-      "cardSolo": "Profile without linked partners",
-      "cardLinked": "Profile with linked partners"
+      "title": "Two people, one profile",
+      "body": "Sign up as a couple and you share a single profile — both of your details on one card, so everyone sees you as a couple from the first swipe. No second account, no pretending to be single. Already have separate accounts, or more than two of you? Link up to three partners instead: each keeps their own login and their own deck, and the connection shows on your profile. Visible, not shared.",
+      "cardSolo": "Single account",
+      "cardLinked": "Couple account"
     },
     "mode": {
       "title": "Real verification",
@@ -119,7 +119,7 @@
     },
     "step2": {
       "title": "Build a profile that says it",
-      "body": "Tell us who you are, who you're with, what you're into. Link up to 3 partners to your profile; solos get the full filter set."
+      "body": "Tell us who you are, who you're with, and what you're into. Sign up as a couple to share one profile, or link up to 3 partners to your own. Solos get the full filter set."
     },
     "step3": {
       "title": "Verify, in 30 seconds",
@@ -253,7 +253,7 @@
       },
       {
         "q": "What does Lustimacy actually do for couples?",
-        "a": "You can link up to 3 partners to your profile — their photos appear on yours, so matches see who you're already with before the first message. Each partner has their own account and swipes from their own deck; the connection is visible, not shared. It's the first app to make couple/polycule transparency a default, not a tag."
+        "a": "Two things. You can sign up as a couple and share one profile — both of your details live on it, and everyone sees you as a couple from the first swipe. Or, if you already have separate accounts or there are more than two of you, link up to three partners instead: each keeps their own login and swipes their own deck, with the connection shown on your profile. Singles can filter couples in or out, so nobody wastes anyone's time."
       },
       {
         "q": "How do private photos work?",
