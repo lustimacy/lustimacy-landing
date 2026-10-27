@@ -1,10 +1,10 @@
 import { pickLocale, localePath, DEFAULT_LOCALE } from './_locale';
 
 // Pages global middleware.
-// On a fresh visit to "/" we redirect to the right locale (DE/NL) if the
+// On a fresh visit to "/" we redirect to the right locale (FR/DE/NL) if the
 // visitor's Accept-Language matches and they haven't manually picked yet.
 // All other paths pass through untouched — including /api/*, /p/*, /user/*,
-// /couple/*, /de/*, /nl/*, and static files.
+// /couple/*, /fr/*, /de/*, /nl/*, and static files.
 
 const PASSTHROUGH_PREFIXES = [
   '/api/',
@@ -13,6 +13,7 @@ const PASSTHROUGH_PREFIXES = [
   '/couple/',
   '/de/',
   '/nl/',
+  '/fr/',
   '/assets/',
   '/css/',
   '/js/',

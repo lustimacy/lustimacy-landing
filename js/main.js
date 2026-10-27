@@ -22,6 +22,7 @@
     let active = 'en';
     if (path.startsWith('/de/')) active = 'de';
     else if (path.startsWith('/nl/')) active = 'nl';
+    else if (path.startsWith('/fr/')) active = 'fr';
     $$('.nav__locale').forEach((el) => {
       if (el.dataset.locale === active) el.classList.add('is-active');
       el.addEventListener('click', (e) => {
@@ -416,7 +417,6 @@
     initSmoothAnchors();
     initReveals();
     initPlatformCta();
-    initLocaleHint();
     initWaitlistForms();
     initCardStack();
     initScreens();

@@ -1574,50 +1574,6 @@ section { padding: var(--s-9) 0; position: relative; }
     .nav__signin { padding: 7px 9px; font-size: 12px; }
 }
 
-/* Locale hint — offered once to a visitor whose browser language has a
-   translation we actually have, then remembered. The footer switcher alone
-   was invisible to the people who most needed it. */
-.locale-hint {
-    position: fixed;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    z-index: 60;
-    display: flex;
-    align-items: center;
-    gap: var(--s-4);
-    max-width: calc(100vw - 32px);
-    padding: 12px var(--s-4);
-    background: var(--c-bg-card);
-    border: 1px solid var(--c-border-hi);
-    border-radius: 12px;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
-    color: var(--c-text-muted);
-    font-size: 14.5px;
-}
-
-.locale-hint a {
-    color: var(--c-accent-hi);
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.locale-hint button {
-    background: none;
-    border: 0;
-    color: var(--c-text-soft);
-    font-size: 19px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0 2px;
-}
-
-.locale-hint button:hover { color: var(--c-text); }
-
-@media (max-width: 520px) {
-    .locale-hint { gap: var(--s-3); padding: 11px 12px; font-size: 13px; }
-}
 
 /* Nav crowding. The French build has longer labels than en/de/nl and the bar
    simply ran out of room: links wrapped mid-word and the sign-in button

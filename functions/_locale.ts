@@ -1,10 +1,10 @@
 // Locale resolution for the Lustimacy landing site.
 // Resolution order: cookie → Accept-Language → 'en'.
-// Used by the root middleware to redirect / → /de/ or /nl/ for first-time
+// Used by the root middleware to redirect / → /fr/, /de/ or /nl/ for first-time
 // visitors whose Accept-Language matches a supported non-default locale.
 
-export type Locale = 'en' | 'de' | 'nl';
-export const SUPPORTED: readonly Locale[] = ['en', 'de', 'nl'] as const;
+export type Locale = 'en' | 'de' | 'nl' | 'fr';
+export const SUPPORTED: readonly Locale[] = ['en', 'de', 'nl', 'fr'] as const;
 export const DEFAULT_LOCALE: Locale = 'en';
 export const LOCALE_COOKIE = 'lustimacy-locale';
 
