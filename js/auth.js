@@ -133,7 +133,16 @@
 
             sb().auth.signInWithOtp({
                 email: email,
-                options: { emailRedirectTo: window.location.origin + '/auth/callback.html' }
+                options: {
+                    emailRedirectTo: window.location.origin + '/auth/callback.html',
+                    // Recorded on the auth user so send-auth-email knows which
+                    // language to write in. Supabase only applies `data` when
+                    // it creates the user, so for a returning visitor this is
+                    // the language they signed up in — usually right, and the
+                    // only signal available while ?lang= has to stay off the
+                    // redirect URL.
+                    data: { lang: (window.LustI18n && window.LustI18n.lang) || 'en' }
+                }
             }).then(function (res) {
                 if (res.error) {
                     track('AuthLinkError', { message: res.error.message });
