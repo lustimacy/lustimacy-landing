@@ -25,13 +25,19 @@
     function sb() {
         if (!client) {
             client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-                // detectSessionInUrl is OFF on purpose. It exchanges the code
-                // invisibly and asynchronously, which left the callback unable
-                // to tell a freshly-exchanged session from one already in
-                // storage — and it would happily accept the stale one, signing
-                // people in as whoever used the browser last. The callback now
-                // performs the exchange itself and uses only its result.
-                auth: { flowType: 'pkce', detectSessionInUrl: false, persistSession: true }
+                // implicit, not pkce. PKCE keeps a code_verifier in the local
+                // storage of the browser that REQUESTED the link, and the
+                // exchange is impossible without it. Mail is routinely opened
+                // somewhere else — the Gmail app's in-app webview, a different
+                // default browser, a phone when the request came from a laptop
+                // — and every one of those has its own storage, so the link
+                // could never work. Implicit puts the tokens in the link
+                // itself, so it completes wherever it is opened.
+                //
+                // detectSessionInUrl stays OFF: the callback reads the tokens
+                // and calls setSession itself, so a session already in storage
+                // can never be mistaken for a successful sign-in.
+                auth: { flowType: 'implicit', detectSessionInUrl: false, persistSession: true }
             });
         }
         return client;
