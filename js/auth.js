@@ -31,6 +31,42 @@
             : path;
     }
 
+    /**
+     * Adopts the language recorded on the auth user.
+     *
+     * The strongest signal available, and the only one that survives the email
+     * being opened somewhere else: the account itself remembers what language
+     * the person signed up in, and send-auth-email wrote the message in that
+     * same language, so the page and the email always agree.
+     *
+     * Call it before any redirect, so withLang() carries the right one onward.
+     */
+    function adoptUserLang(session) {
+        if (!session || !session.user) return;
+        var meta = session.user.user_metadata || {};
+        var stored = meta.lang || meta.locale || meta.language;
+
+        if (stored) {
+            if (window.LustI18n && window.LustI18n.setLang) {
+                window.LustI18n.setLang(stored);
+            }
+            return;
+        }
+
+        // No language on the account: every user who signed up before this
+        // shipped is in that state, which is why their sign-in email still
+        // arrives in English. Backfill it so the next one does not.
+        //
+        // Only when we have positive evidence — they are reading a non-English
+        // page right now. Writing 'en' on no evidence would permanently stamp
+        // English onto someone whose cookie simply had not been set yet.
+        var current = window.LustI18n && window.LustI18n.lang;
+        if (current && current !== 'en') {
+            sb().auth.updateUser({ data: { lang: current } })
+                .catch(function (e) { console.warn('[auth] could not store lang', e); });
+        }
+    }
+
 
     // Publishable key — public by design; row-level security is what protects
     // the data. Same project the app talks to.
@@ -189,6 +225,7 @@
         function succeeded(session) {
             if (settled) return;
             settled = true;
+            adoptUserLang(session);
             track('AuthSignedIn');
             sb().from('users').select('birthday').eq('id', session.user.id).single()
               .then(function (r) {
@@ -268,6 +305,7 @@
         sb().auth.getSession().then(function (res) {
             var session = res.data && res.data.session;
             if (!session) { signedOut.hidden = false; return; }
+            adoptUserLang(session);
 
             emailEl.textContent = session.user.email || '';
             signedIn.hidden = false;
@@ -466,6 +504,7 @@
             return sb().auth.getSession().then(function (r) {
                 var sess = r.data && r.data.session;
                 if (!sess) { window.location.replace(withLang('/login')); throw new Error('no session'); }
+                adoptUserLang(sess);
                 return sess.user.id;
             });
         }
@@ -629,6 +668,7 @@
 
         sb().auth.getSession().then(function (res) {
             if (!res.data || !res.data.session) { window.location.replace(withLang('/login')); return; }
+            adoptUserLang(res.data.session);
             root.hidden = false;
             track('OnboardingStep1');
         });

@@ -472,11 +472,25 @@
         return m ? normalise(decodeURIComponent(m[1])) : null;
     }
 
+    // A cookie, not sessionStorage. sessionStorage is scoped to one tab, and
+    // the single most important hop in this flow — clicking the link in the
+    // sign-in email — always opens a new tab, which gets an empty one. That is
+    // exactly the moment the language was being lost.
+    //
+    // Its own cookie rather than lustimacy-locale: that one records an explicit
+    // choice from the switcher and pins the whole site against the middleware's
+    // IP and Accept-Language resolution. Reading a French page is not the same
+    // as asking for French forever.
     function fromStored() {
-        // Carries the choice across the hops this flow makes — login to
-        // onboarding to welcome — when the query parameter is not re-appended.
-        try { return normalise(window.sessionStorage.getItem('lustimacy-lang')); }
-        catch (_) { return null; }
+        var m = document.cookie.match(/(?:^|;\s*)lustimacy-lang=([^;]+)/);
+        return m ? normalise(decodeURIComponent(m[1])) : null;
+    }
+
+    function store(value) {
+        try {
+            document.cookie = 'lustimacy-lang=' + encodeURIComponent(value) +
+                '; Path=/; Max-Age=' + (60 * 60 * 24 * 365) + '; SameSite=Lax';
+        } catch (_) { /* cookies blocked; the flow still works, just in English */ }
     }
 
     function resolve() {
@@ -487,7 +501,7 @@
     }
 
     var lang = resolve();
-    try { window.sessionStorage.setItem('lustimacy-lang', lang); } catch (_) {}
+    store(lang);
     document.documentElement.lang = lang;
 
     function t(key, vars) {
@@ -534,7 +548,23 @@
         }
     }
 
-    window.LustI18n = { lang: lang, t: t, withLang: withLang, apply: apply };
+    /**
+     * Switches language and re-renders. Used once a session exists: the auth
+     * user carries the language they signed up in, which is the only signal
+     * that survives the email being opened on another device entirely.
+     */
+    function setLang(next) {
+        var n = normalise(next);
+        if (!n || n === lang) return false;
+        lang = n;
+        window.LustI18n.lang = n;
+        store(n);
+        document.documentElement.lang = n;
+        apply();
+        return true;
+    }
+
+    window.LustI18n = { lang: lang, t: t, withLang: withLang, apply: apply, setLang: setLang };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () { apply(); });
