@@ -1545,7 +1545,12 @@ section { padding: var(--s-9) 0; position: relative; }
 .nav__signin {
     padding: 9px var(--s-4);
     margin-right: var(--s-3);
-    border: 1px solid var(--c-border-hi);
+    /* An --c-border-hi outline is 16% white on a near-black bar, which reads
+       as plain text rather than a control — and this is the only way in for
+       anyone who cannot install the app. Accent-tinted so it is unmistakably
+       a button without competing with the install CTA beside it. */
+    border: 1px solid rgba(233, 75, 123, 0.5);
+    background: rgba(233, 75, 123, 0.12);
     border-radius: 9px;
     color: var(--c-text);
     text-decoration: none;
@@ -1557,8 +1562,8 @@ section { padding: var(--s-9) 0; position: relative; }
 }
 
 .nav__signin:hover {
-    border-color: var(--c-border-accent);
-    background: rgba(233, 75, 123, 0.08);
+    border-color: var(--c-accent);
+    background: rgba(233, 75, 123, 0.22);
 }
 
 @media (max-width: 900px) {
