@@ -134,3 +134,67 @@
 }
 
 .auth__legal a { color: var(--c-text-muted); }
+
+/* ── Onboarding ──────────────────────────────────────────────────────────── */
+.auth-body--wide { align-items: flex-start; padding-top: var(--s-7); }
+.auth--wide { max-width: 560px; text-align: left; }
+.auth--wide .auth__brand { display: flex; justify-content: flex-start; }
+.auth--wide .auth__title,
+.auth--wide .auth__lede { text-align: left; }
+
+.ob__progress {
+    height: 3px;
+    background: var(--c-border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: var(--s-6);
+}
+
+.ob__progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--c-violet), var(--c-accent));
+    transition: width 0.3s ease;
+}
+
+.auth__label--spaced { margin-top: var(--s-5); }
+
+.ob__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-top: var(--s-2);
+}
+
+.ob__chip {
+    padding: 10px var(--s-4);
+    background: var(--c-bg-card);
+    border: 1px solid var(--c-border-hi);
+    border-radius: 999px;
+    color: var(--c-text-muted);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+}
+
+.ob__chip:hover { border-color: var(--c-border-accent); color: var(--c-text); }
+
+.ob__chip.is-on {
+    background: var(--c-accent);
+    border-color: var(--c-accent);
+    color: var(--c-text-on-accent);
+    font-weight: 600;
+}
+
+.ob__back {
+    display: block;
+    margin: var(--s-4) auto 0;
+    background: none;
+    border: 0;
+    color: var(--c-text-soft);
+    font: inherit;
+    cursor: pointer;
+}
+
+.ob__back:hover { color: var(--c-text-muted); }

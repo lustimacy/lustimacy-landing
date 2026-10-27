@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0A14">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>Set up your profile — Lustimacy</title>
+</head>
+<body class="auth-body auth-body--wide">
+    <main class="auth auth--wide" id="onboarding" hidden>
+        <a href="/" class="auth__brand" aria-label="Lustimacy home">
+            <img src="/assets/favicon.svg" width="40" height="40" alt="">
+            <span>Lustimacy</span>
+        </a>
+
+        <div class="ob__progress" aria-hidden="true">
+            <span data-ob-progress style="width:50%"></span>
+        </div>
+
+        <!-- Step 1 — who you are -->
+        <section data-ob-step="1">
+            <h1 class="auth__title">Let's start with you</h1>
+            <p class="auth__lede">Two short steps. You add a photo in the app afterwards.</p>
+
+            <label class="auth__label" for="obName">Your name</label>
+            <input id="obName" class="auth__input" name="name" type="text"
+                   autocomplete="given-name" placeholder="What people call you">
+
+            <label class="auth__label auth__label--spaced" for="obDob">Your date of birth</label>
+            <input id="obDob" class="auth__input" name="birthday" type="date">
+
+            <p class="auth__label auth__label--spaced">Who is this profile for?</p>
+            <div class="ob__chips" data-ob-account></div>
+
+            <div data-ob-couple hidden>
+                <label class="auth__label auth__label--spaced" for="obPartnerDob">Your partner's date of birth</label>
+                <input id="obPartnerDob" class="auth__input" name="partner_birthday" type="date">
+            </div>
+
+            <p class="auth__error" data-ob-error hidden></p>
+            <button type="button" class="btn btn--primary auth__submit" data-ob-next>Continue</button>
+        </section>
+
+        <!-- Step 2 — what discovery needs -->
+        <section data-ob-step="2" hidden>
+            <h1 class="auth__title">Who you are, who you want</h1>
+            <p class="auth__lede">All taps. Nothing here is public until you say so.</p>
+
+            <p class="auth__label">Your gender</p>
+            <div class="ob__chips" data-ob-gender></div>
+
+            <div data-ob-couple hidden>
+                <p class="auth__label auth__label--spaced">Your partner's gender</p>
+                <div class="ob__chips" data-ob-partner-gender></div>
+            </div>
+
+            <p class="auth__label auth__label--spaced">What are you here for?</p>
+            <div class="ob__chips" data-ob-looking></div>
+
+            <p class="auth__label auth__label--spaced">Your orientation</p>
+            <div class="ob__chips" data-ob-orientation></div>
+
+            <p class="auth__error" data-ob-error hidden></p>
+            <button type="button" class="btn btn--primary auth__submit" data-ob-submit>Save and finish in the app</button>
+            <button type="button" class="ob__back" data-ob-back>← Back</button>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/auth.js?v=20261027a" defer></script>
+</body>
+</html>
