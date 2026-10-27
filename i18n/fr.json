@@ -24,13 +24,13 @@
   },
   "nav": {
     "who": "Pour qui",
-    "features": "Fonctionnalités",
-    "how": "Comment ça marche",
+    "features": "Fonctions",
+    "how": "Fonctionnement",
     "cities": "Villes",
     "journal": "Journal",
     "faq": "FAQ",
-    "cta": "Télécharger l'app",
-    "signin": "Connexion / Inscription"
+    "cta": "Télécharger",
+    "signin": "Connexion"
   },
   "hero": {
     "badgeDefault": "Disponible sur Google Play · gratuit",
