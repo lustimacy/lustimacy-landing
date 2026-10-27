@@ -1534,22 +1534,25 @@ section { padding: var(--s-9) 0; position: relative; }
     margin-top: 24px;
 }
 
-/* Sign-in sits in nav__inner, NOT inside nav__menu. Below 900px the menu is
-   position:fixed and translated off-screen until the hamburger is tapped, so
-   anything inside it is invisible and unclickable on every phone — which is
-   exactly what happened the first time this was added. It is also the only
-   route in for an iPhone visitor, who has no app to install. */
+/* Sign-in lives in nav__inner, after nav__menu and NOT inside it. Below 900px
+   the menu is position:fixed and translated off-screen, so anything inside it
+   is invisible and unclickable on a phone — and the menu being out of flow is
+   also why this lays out correctly there: nav__inner's space-between gives
+   brand | sign-in | toggle.
+
+   It sat before the brand's sibling at one point, which collided with the
+   wordmark once the French label ("Connexion / Inscription") made it long. */
 .nav__signin {
-    margin-left: auto;
-    margin-right: var(--s-3);
     padding: 9px var(--s-4);
+    margin-right: var(--s-3);
     border: 1px solid var(--c-border-hi);
     border-radius: 9px;
     color: var(--c-text);
     text-decoration: none;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14.5px;
     white-space: nowrap;
+    flex: 0 0 auto;
     transition: border-color 0.16s ease, background 0.16s ease;
 }
 
@@ -1558,19 +1561,17 @@ section { padding: var(--s-9) 0; position: relative; }
     background: rgba(233, 75, 123, 0.08);
 }
 
-@media (min-width: 901px) {
-    /* On wide screens the menu already sits right, so the auto margin would
-       shove the links apart. */
-    .nav__signin { margin-left: 0; }
+@media (max-width: 900px) {
+    /* Menu is out of flow here, so push sign-in away from the wordmark. */
+    .nav__signin { margin-left: auto; }
 }
 
 @media (max-width: 620px) {
-    .nav__signin { padding: 8px 12px; font-size: 13.5px; }
+    .nav__signin { padding: 8px 11px; font-size: 13px; margin-right: var(--s-2); }
 }
 
-@media (max-width: 420px) {
-    /* Keep the label readable rather than letting it wrap into the logo. */
-    .nav__signin { padding: 7px 10px; font-size: 12.5px; letter-spacing: -0.01em; }
+@media (max-width: 400px) {
+    .nav__signin { padding: 7px 9px; font-size: 12px; }
 }
 
 /* Locale hint — offered once to a visitor whose browser language has a
