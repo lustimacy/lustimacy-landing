@@ -103,46 +103,31 @@
     els.forEach((el) => obs.observe(el));
   }
 
-  // --- Country detection ---------------------------------------------------
-  // Cloudflare Function /api/country returns { country, locale, available }.
-  // We use the result to swap the hero badge if the visitor isn't in DE/NL,
-  // so the gating story is concrete and personal.
-  async function initCountryBanner() {
-    const els = $$('[data-country-text]');
-    if (els.length === 0) return;
-    try {
-      const res = await fetch('/api/country', { headers: { Accept: 'application/json' } });
-      if (!res.ok) return;
-      const data = await res.json();
-      if (!data || !data.country) return;
-      const locale = (document.documentElement.lang || 'en').toLowerCase();
-      const messages = {
-        en: {
-          de: 'Germany founding cohort is full — get next-wave priority',
-          nl: 'Netherlands founding cohort is full — get next-wave priority',
-          other: (c) => `Not open in ${c} yet — get on the priority list`,
-        },
-        de: {
-          de: 'Founding-Kohorte Deutschland voll — Priorität für die nächste Welle sichern',
-          nl: 'Founding-Kohorte Niederlande voll — Priorität für die nächste Welle sichern',
-          other: (c) => `In ${c} noch nicht geöffnet — auf die Prioritätsliste`,
-        },
-        nl: {
-          de: 'Founding cohort Duitsland is vol — krijg voorrang bij de volgende golf',
-          nl: 'Founding cohort Nederland is vol — krijg voorrang bij de volgende golf',
-          other: (c) => `Nog niet open in ${c} — zet je op de voorrangslijst`,
-        },
-      };
-      const m = messages[locale] || messages.en;
-      const code = data.country.toUpperCase();
-      let text;
-      if (code === 'DE') text = m.de;
-      else if (code === 'NL') text = m.nl;
-      else text = m.other(data.countryName || code);
-      els.forEach((el) => (el.textContent = text));
-    } catch (err) {
-      // silently keep the default badge text
-    }
+  // --- Platform CTA --------------------------------------------------------
+  // The hero used to swap its badge on country, telling anyone outside DE/NL
+  // that Lustimacy was "not open in your country yet". That stopped being true
+  // once the app went live on Play worldwide — France alone has more users than
+  // DE and NL combined — so geo-gating the message was turning away people who
+  // could have installed it there and then.
+  //
+  // The real constraint is the platform, not the country: there is no iOS build
+  // yet. So Android and desktop visitors get the download button, and only iOS
+  // visitors are shown the email capture, relabelled as an iOS notify list.
+  function isIOS() {
+    const ua = navigator.userAgent || '';
+    if (/iPhone|iPad|iPod/.test(ua)) return true;
+    // iPadOS 13+ reports a Mac UA; the touch-point check separates it from a
+    // real desktop Mac.
+    return /Macintosh/.test(ua) && typeof navigator.maxTouchPoints === 'number'
+      && navigator.maxTouchPoints > 1;
+  }
+
+  function initPlatformCta() {
+    if (!isIOS()) return;
+    $$('[data-ios-only]').forEach((el) => el.removeAttribute('hidden'));
+    // On iOS the Play button is dead weight — hide it rather than offer a
+    // download that cannot work.
+    $$('.playstore-btn').forEach((el) => (el.hidden = true));
   }
 
   // --- Waitlist form -------------------------------------------------------
@@ -430,7 +415,7 @@
     initNav();
     initSmoothAnchors();
     initReveals();
-    initCountryBanner();
+    initPlatformCta();
     initWaitlistForms();
     initCardStack();
     initScreens();

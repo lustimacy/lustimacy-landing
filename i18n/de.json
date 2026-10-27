@@ -3,8 +3,8 @@
     "localeCode": "de",
     "ogLocale": "de_DE",
     "title": "Lustimacy — Lifestyle Dating für Pärchen & offene Singles",
-    "description": "Die Lifestyle-Dating-App für Pärchen und offene Singles. Verlinke bis zu 3 Partner auf deinem Profil, private Fotos die beim Match sichtbar werden, Travel Mode. Jetzt in Deutschland — sichere dir deinen Platz auf der Warteliste.",
-    "keywords": "Lifestyle Dating, Pärchen Dating, Swinger App, offene Singles, ethische Nicht-Monogamie, ENM, Pärchen-App, FKK, Pärchen kennenlernen, Lifestyle Community Deutschland",
+    "description": "Die Lifestyle-Dating-App für Pärchen und offene Singles. Ein gemeinsames Profil für zwei, bis zu 3 verlinkte Partner, und private Fotos bleiben unscharf bis zum Match. Kostenlos bei Google Play.",
+    "keywords": "Lifestyle Dating, Dating für Pärchen, Pärchenprofil, offene Singles, ethische Nicht-Monogamie, ENM, Swinger App, Pärchen Dating App, private Fotos Dating, Suche nach Land, globales Dating",
     "ogImageAlt": "Lustimacy — Lifestyle Dating für Pärchen und offene Singles"
   },
   "a11y": {
@@ -29,10 +29,10 @@
     "cities": "Städte",
     "journal": "Journal",
     "faq": "FAQ",
-    "cta": "Auf die Warteliste"
+    "cta": "App holen"
   },
   "hero": {
-    "badgeDefault": "Founding-Kohorte voll · Einladungen zur nächsten Welle in Kürze",
+    "badgeDefault": "Jetzt bei Google Play · kostenlos",
     "title1": "Ein Ort für die,",
     "title2": "die wirklich neugierig sind.",
     "title3": "",
@@ -43,20 +43,19 @@
   },
   "waitlist": {
     "placeholder": "Eure E-Mail",
-    "cta": "Bei nächster Welle benachrichtigen",
-    "hintScarcity": "Alle 1.000 Founding-Plätze sind vergeben. Lasst uns eure E-Mail da — bei der nächsten Welle seid ihr als Erste dabei.",
-    "legal": "Wir nutzen eure E-Mail nur, um euch einzuladen. Kein Spam, kein Weiterverkauf. Jederzeit abbestellbar.",
-    "success": "Ihr seid auf der Liste. Wir melden uns von einer lustimacy.com-Adresse — checkt euer Postfach (auch den Werbung-Tab).",
-    "successHeadline": "Du bist auf der Liste.",
-    "successInbox": "Wir haben dir gerade eine Willkommens-Mail von einer lustimacy.com-Adresse geschickt. Falls sie nicht in ein paar Minuten ankommt, schau in den Werbung- und Spam-Tab.",
+    "cta": "Bei iOS benachrichtigen",
+    "legal": "Wir nutzen deine E-Mail nur, um dich über die iPhone-App zu informieren. Kein Spam, keine Weitergabe. Jederzeit abbestellbar.",
+    "successHeadline": "Du stehst auf der iOS-Liste.",
+    "successInbox": "Wir haben dir gerade eine Bestätigung von einer lustimacy.com-Adresse geschickt. Falls sie nicht in wenigen Minuten ankommt, schau im Spam-Ordner.",
     "positionLabel": "dein Platz",
-    "referralLabel": "Teile deinen Link → +10 Plätze pro Freund",
+    "referralLabel": "Kennst du jemanden, der auch auf iOS wartet? Teile diesen Link",
     "shareCta": "Link teilen",
     "copyCta": "Kopieren",
     "copiedCta": "Kopiert ✓",
     "statusLink": "Meine volle Positions-Seite öffnen →",
     "errorGeneric": "Etwas ist schiefgegangen. Bitte gleich noch einmal versuchen.",
-    "errorEmail": "Das sieht nicht nach einer gültigen E-Mail aus."
+    "errorEmail": "Das sieht nicht nach einer gültigen E-Mail aus.",
+    "hint": "Lustimacy gibt es zuerst für Android. Die iPhone-App ist in Arbeit — trag deine E-Mail ein und du erfährst es zuerst."
   },
   "personas": {
     "eyebrow": "Gemacht für",
@@ -93,11 +92,11 @@
     },
     "privatePhotos": {
       "title": "Private Fotos, frei beim Match",
-      "body": "Ladet Fotos hoch, die nur eine echte Verbindung sehen soll. Nicht-Matches sehen einen stilvollen BlurHash-Verlauf — sie wissen, da ist mehr, aber das Foto bleibt eures. Im Moment des Matches: automatisch entsperrt. Ohne extra Freigabe."
+      "body": "Lade die Fotos hoch, die nur eine echte Verbindung sehen soll. Wer kein Match mit dir hat, bekommt ausschließlich eine unumkehrbar unscharfe Kopie — das Original hält unser Server zurück, es wird nicht bloß von der App versteckt. Beim Match entsperrt es sich für euch beide."
     },
     "travel": {
-      "title": "Travel Mode",
-      "body": "Wochenende in Berlin? Besuch eines FKK-Clubs auf der Cap-d'Agde-Strecke? Setzt einen Zielort und ein Rückkehrdatum — matcht mit Locals, bevor ihr landet. Aus dem Heim-Feed verschwindet ihr automatisch."
+      "title": "Überall suchen",
+      "body": "Am Wochenende in Berlin? Stell deine Suche auf ein beliebiges Land um — oder mach sie global — und sieh dir die Szene an, bevor du landest. Danach einfach wieder auf deine eigene Stadt stellen."
     },
     "filters": {
       "title": "Filter, die wirklich filtern",
@@ -115,8 +114,8 @@
     "title": "Vom Sign-up bis zum ersten Chat",
     "lede": "Vier Schritte. Kein Filler, keine Fragebögen, kein Algorithmus-Voodoo.",
     "step1": {
-      "title": "Platz sichern",
-      "body": "Lasst uns eure E-Mail da. Wir melden uns, sobald euer Land öffnet — und ihr behaltet euren Founding-Member-Status für immer."
+      "title": "Laden und anmelden",
+      "body": "Hol dir Lustimacy kostenlos bei Google Play und melde dich mit Google, Facebook oder E-Mail an. Drei kurze Schritte und ein Foto — das war es."
     },
     "step2": {
       "title": "Profil, das es sagt",
@@ -197,13 +196,13 @@
     "alt4": "Private Foto-Galerie mit BlurHash-Platzhaltern, beim Match entsperrt",
     "alt5": "Suchfilter — Pärchen, Singles, verknüpfte Partner, Körperbau, Distanz",
     "alt6": "Match-Modal — Partner mit Verknüpfungs-Indikator, Chat startet",
-    "alt7": "Travel-Mode-Setup — Zielstadt und Rückkehrdatum",
+    "alt7": "Verifizierungs-Screen — Profil verifiziert, blaues Abzeichen bestätigt",
     "alt8": "In-App-Chat mit einem verifizierten Lustimacy-Match"
   },
   "cities": {
     "eyebrow": "Wir starten hier",
     "title": "Deutschland und die Niederlande zuerst",
-    "lede": "Zwei Länder mit der offensten und etabliertesten Lifestyle-Szene Europas. Wir gehen tief, bevor wir breit gehen — jedes Founding Member formt die Community, bevor sich die Tore woanders öffnen.",
+    "lede": "Zwei Länder mit den offensten, etabliertesten Lifestyle-Szenen Europas. Wir gehen in die Tiefe, bevor wir in die Breite gehen — hier füllt sich der Deck am schnellsten.",
     "deTitle": "Deutschland",
     "de1": "Berlin",
     "de2": "Hamburg",
@@ -219,8 +218,8 @@
     "nl5": "Eindhoven",
     "nl6": "Groningen, Maastricht & weiter",
     "elsewhereTitle": "Überall sonst",
-    "elsewhereBody": "Außerhalb Deutschlands oder der Niederlande? Lasst uns eure E-Mail da — wir öffnen neue Länder nach Nachfrage, und Wartelisten-Mitglieder in eurem Land kommen zuerst dran.",
-    "elsewhereCta": "Auf die Warteliste",
+    "elsewhereBody": "Lustimacy ist weltweit bei Google Play verfügbar — du musst nicht auf dein Land warten. Wir konzentrieren uns zuerst auf Deutschland und die Niederlande, weil sich dort der Deck am schnellsten füllt.",
+    "elsewhereCta": "Bei Google Play laden",
     "berlinCta": "Lustimacy in Berlin",
     "amsterdamCta": "Lustimacy in Amsterdam"
   },
@@ -249,8 +248,8 @@
     "title": "Häufige Fragen",
     "items": [
       {
-        "q": "Wann startet Lustimacy in meinem Land?",
-        "a": "Wir öffnen aktuell in Deutschland und den Niederlanden. Weitere Länder folgen 2026 in Wellen — Wartelisten-Mitglieder in jedem Land kommen zuerst dran. Lasst eure E-Mail da, um benachrichtigt zu werden, sobald euer Land live geht."
+        "q": "Ist Lustimacy in meinem Land verfügbar?",
+        "a": "Ja. Lustimacy ist weltweit bei Google Play verfügbar und kostenlos. Wir konzentrieren uns zuerst auf Deutschland und die Niederlande, dort füllt sich der Deck am schnellsten — anmelden kannst du dich aber heute von überall. Eine iPhone-App gibt es noch nicht."
       },
       {
         "q": "Was bringt Lustimacy Pärchen konkret?",
@@ -259,10 +258,6 @@
       {
         "q": "Wie funktionieren private Fotos?",
         "a": "Ihr ladet private Fotos in eurem Profil hoch. Wer noch nicht mit euch gematcht hat, sieht nur einen eleganten BlurHash-Verlauf — der signalisiert, dass mehr da ist, aber das Foto bleibt euch. Im Moment des Matches wird es automatisch für beide Seiten freigeschaltet. Keine Freigabe-Verwaltung."
-      },
-      {
-        "q": "Was ist Travel Mode?",
-        "a": "Setzt eine Zielstadt und ein Rückkehrdatum. Lustimacy zeigt euch dort schon vor eurer Ankunft Matches und entfernt euch für die Zeit aus eurem Heim-Feed. Perfekt für ein Lifestyle-Wochenende in Berlin, Amsterdam oder irgendwo auf der europäischen Strecke."
       },
       {
         "q": "Ist Lustimacy kostenlos?",
@@ -279,15 +274,19 @@
       {
         "q": "Ist das eine Hookup-App?",
         "a": "Lustimacy ist, was ihr daraus macht. Manche sind hier für ein Wochenende in Cap d'Agde; andere suchen einen langfristigen Spielpartner oder einen Dritten für ihre Beziehung. Die Filter und Detailprofile lassen euch das Tempo und die Form finden, die zu euch passen."
+      },
+      {
+        "q": "Kann ich in anderen Städten und Ländern stöbern?",
+        "a": "Ja. In den Suchfiltern kannst du zwischen deinem aktuellen Standort mit Umkreis, einem oder mehreren bestimmten Ländern oder einer komplett globalen Suche wählen. Praktisch vor einer Reise — oder wenn deine Szene einfach woanders ist."
       }
     ]
   },
   "finalCta": {
-    "title": "Die Founding-Runde ist voll.",
-    "lede": "Alle 1.000 Founding-Plätze unserer ersten Kohorte sind vergeben. Kommt auf die Liste für die nächste Welle — wenn wir wieder öffnen, seid ihr als Erste dabei. Euer Founding-Badge bleibt für euch reserviert."
+    "title": "Bereit, wenn du es bist.",
+    "lede": "Lifestyle Dating für Pärchen und offene Singles. Kostenlos, verifizierte Profile, und private Fotos bleiben unscharf bis zum Match."
   },
   "playStore": {
-    "label": "Schon eingeladen? Bei Google Play laden",
+    "label": "Bei Google Play laden",
     "ariaLabel": "Lustimacy bei Google Play laden"
   },
   "footer": {
@@ -303,6 +302,10 @@
     "terms": "AGB",
     "contact": "Kontakt",
     "childSafety": "Kinderschutz-Standards",
+    "cookieSettings": "Cookie-Einstellungen",
     "rights": "Alle Rechte vorbehalten."
+  },
+  "iosNotice": {
+    "title": "Lustimacy startet auf Android"
   }
 }

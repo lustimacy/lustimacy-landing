@@ -1491,3 +1491,167 @@ section { padding: var(--s-9) 0; position: relative; }
     .waitlist__submit { grid-column: 1; }
     .demo__stage { width: 280px; height: 480px; }
 }
+
+/* ===== Cookie consent banner ============================================ */
+.consent-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px 22px;
+    background: rgba(14, 10, 20, 0.96);
+    border: 1px solid rgba(232, 211, 255, 0.18);
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+    color: #faf9f7;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    z-index: 9999;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    animation: consentBannerIn 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes consentBannerIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.consent-banner__text {
+    flex: 1 1 280px;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #d8d0e8;
+}
+.consent-banner__more {
+    color: #e8d3ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    white-space: nowrap;
+}
+.consent-banner__more:hover { color: #faf9f7; }
+.consent-banner__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.consent-banner__btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+}
+.consent-banner__btn--reject {
+    background: transparent;
+    border-color: rgba(232, 211, 255, 0.3);
+    color: #d8d0e8;
+}
+.consent-banner__btn--reject:hover,
+.consent-banner__btn--reject:focus-visible {
+    border-color: rgba(232, 211, 255, 0.6);
+    color: #faf9f7;
+    outline: none;
+}
+.consent-banner__btn--accept {
+    background: linear-gradient(135deg, #c44574 0%, #a855f7 100%);
+    color: #fff;
+}
+.consent-banner__btn--accept:hover,
+.consent-banner__btn--accept:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+}
+@media (max-width: 560px) {
+    .consent-banner { padding: 14px 16px; gap: 12px; }
+    .consent-banner__actions { width: 100%; }
+    .consent-banner__btn { flex: 1; }
+}
+
+/* Floating fallback "Cookie settings" trigger for pages without a footer link */
+.consent-fab {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(232, 211, 255, 0.18);
+    background: rgba(14, 10, 20, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--c-text-soft, #c5b8d8);
+    font-family: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0.65;
+    z-index: 50;
+    transition: opacity 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.consent-fab:hover,
+.consent-fab:focus-visible {
+    opacity: 1;
+    color: #faf9f7;
+    border-color: rgba(232, 211, 255, 0.45);
+    outline: none;
+}
+/* Hide the FAB while the banner is open (avoid stacking) */
+.consent-banner ~ .consent-fab { display: none; }
+
+/* Inline footer "Cookie settings" link styling (matches existing footer links) */
+.consent-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+.consent-trigger:hover { color: var(--c-accent); }
+
+/* ── Primary Play Store button ───────────────────────────────────────────────
+   Replaces the old subordinate `.playstore-link` text link. The download is
+   the primary action now that the app is live and the launch gate is off, so
+   it inherits .btn--primary and just needs icon alignment. */
+.playstore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.playstore-btn__icon {
+    flex: 0 0 auto;
+}
+
+/* ── iOS-only notice ─────────────────────────────────────────────────────────
+   Hidden by default via the `hidden` attribute and revealed by
+   initPlatformCta() for iOS visitors only, who have nothing to download yet.
+   Wraps the email capture, relabelled as an iOS notify list. */
+.ios-notice {
+    margin: 22px auto 0;
+    max-width: 460px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--velvet-border, #2c2440);
+    border-radius: 14px;
+}
+
+.ios-notice__title {
+    margin: 0 0 14px;
+    font-weight: 600;
+    color: var(--text-primary, #faf9f7);
+}
+
+.finalcta .ios-notice {
+    margin-top: 24px;
+}

@@ -3,8 +3,8 @@
     "localeCode": "nl",
     "ogLocale": "nl_NL",
     "title": "Lustimacy — Lifestyle dating voor stellen & open-minded singles",
-    "description": "De lifestyle dating-app voor stellen en open-minded singles. Gekoppelde stel-profielen, privé foto's die ontgrendelen bij een match, travel mode. Nu in Nederland — meld je aan voor de wachtlijst.",
-    "keywords": "lifestyle dating, stellen dating, parenruil app, open-minded singles, ethische niet-monogamie, ENM, stellen-app, swinger Nederland, lifestyle community, parenruil clubs",
+    "description": "De lifestyle datingapp voor stellen en open-minded singles. Eén gedeeld profiel voor twee, tot 3 gekoppelde partners, en privéfoto's blijven geblurd tot je matcht. Gratis op Google Play.",
+    "keywords": "lifestyle dating, dating voor stellen, stelprofiel, open-minded singles, ethische non-monogamie, ENM, swinger app, dating app voor stellen, privéfoto's dating, zoeken op land, wereldwijd daten",
     "ogImageAlt": "Lustimacy — lifestyle dating voor stellen en open-minded singles"
   },
   "a11y": {
@@ -29,10 +29,10 @@
     "cities": "Steden",
     "journal": "Journal",
     "faq": "FAQ",
-    "cta": "Op de wachtlijst"
+    "cta": "App downloaden"
   },
   "hero": {
-    "badgeDefault": "Founding cohort vol · uitnodigingen voor volgende golf binnenkort",
+    "badgeDefault": "Nu op Google Play · gratis",
     "title1": "Een plek voor",
     "title2": "de bewust nieuwsgierigen.",
     "title3": "",
@@ -43,20 +43,19 @@
   },
   "waitlist": {
     "placeholder": "Jouw e-mailadres",
-    "cta": "Waarschuw me bij volgende golf",
-    "hintScarcity": "Alle 1.000 founding plekken zijn vergeven. Laat je e-mail achter — bij de volgende golf ben je als eerste binnen.",
-    "legal": "We gebruiken je e-mail alleen om je uit te nodigen. Geen spam, geen doorverkoop. Altijd opzegbaar.",
-    "success": "Je staat op de lijst. We mailen vanaf een lustimacy.com-adres — check je inbox (en de Reclame-tab).",
-    "successHeadline": "Je staat op de lijst.",
-    "successInbox": "We hebben je net een welkomstmail gestuurd vanaf een lustimacy.com-adres. Als hij niet binnen een paar minuten aankomt, check Reclame en Spam.",
+    "cta": "Hou me op de hoogte van iOS",
+    "legal": "We gebruiken je e-mail alleen om je te laten weten wanneer de iPhone-app klaar is. Geen spam, geen doorverkoop. Altijd opzegbaar.",
+    "successHeadline": "Je staat op de iOS-lijst.",
+    "successInbox": "We hebben net een bevestiging gestuurd vanaf een lustimacy.com-adres. Komt die niet binnen een paar minuten aan, kijk dan in je spam.",
     "positionLabel": "jouw plek",
-    "referralLabel": "Deel je link → +10 plekken per vriend",
+    "referralLabel": "Ken je iemand die ook op iOS wacht? Deel deze link",
     "shareCta": "Link delen",
     "copyCta": "Kopiëren",
     "copiedCta": "Gekopieerd ✓",
     "statusLink": "Mijn volledige positiepagina openen →",
     "errorGeneric": "Er ging iets mis. Probeer het zo nog eens.",
-    "errorEmail": "Dit lijkt geen geldig e-mailadres."
+    "errorEmail": "Dit lijkt geen geldig e-mailadres.",
+    "hint": "Lustimacy is er eerst voor Android. De iPhone-app komt — laat je e-mail achter en je hoort het als eerste."
   },
   "personas": {
     "eyebrow": "Gebouwd voor",
@@ -93,11 +92,11 @@
     },
     "privatePhotos": {
       "title": "Privé foto's, vrij bij een match",
-      "body": "Upload de foto's die je alleen aan een echte connectie wilt tonen. Niet-matches zien een stijlvol BlurHash-verloop — ze weten dat er meer is, maar de foto blijft van jou. Op het moment van een match: automatisch ontgrendeld. Geen extra goedkeuringsstroom."
+      "body": "Upload de foto's die alleen een echte connectie mag zien. Wie geen match met je is, krijgt uitsluitend een onomkeerbaar geblurde kopie — het origineel wordt door onze servers achtergehouden, niet alleen verborgen door de app. Bij een match ontgrendelt het voor jullie beiden."
     },
     "travel": {
-      "title": "Travel mode",
-      "body": "Op weg naar Amsterdam voor het weekend? Bezoek aan een lifestyle-club op de Cap d'Agde-route? Stel een bestemming en terugkeerdatum in — match met locals voordat je aankomt. Uit je thuis-feed verdwijn je automatisch."
+      "title": "Zoek overal",
+      "body": "Dit weekend naar Berlijn? Zet je zoekopdracht op elk gewenst land — of maak hem wereldwijd — en bekijk de scene voordat je landt. Daarna zet je hem gewoon terug op je eigen stad."
     },
     "filters": {
       "title": "Filters die echt filteren",
@@ -115,8 +114,8 @@
     "title": "Van aanmelden tot eerste chat",
     "lede": "Vier stappen. Geen vulwerk, geen vragenlijsten, geen algoritme-magie.",
     "step1": {
-      "title": "Reserveer je plek",
-      "body": "Laat je e-mailadres achter. We mailen je zodra jouw land opengaat — en je behoudt je founding-member-status voor altijd."
+      "title": "Downloaden en aanmelden",
+      "body": "Haal Lustimacy gratis op Google Play en meld je aan met Google, Facebook of e-mail. Drie korte stappen en één foto, dat is alles."
     },
     "step2": {
       "title": "Een profiel dat het zegt",
@@ -197,13 +196,13 @@
     "alt4": "Privé fotogalerij met BlurHash-placeholders, ontgrendeld bij match",
     "alt5": "Zoekfilters — stellen, singles, gekoppelde partners, lichaam, afstand",
     "alt6": "Match-modal — partner met koppel-indicator, chat opent",
-    "alt7": "Travel mode setup — bestemmingsstad en terugkeerdatum",
+    "alt7": "Verificatiescherm — profiel geverifieerd, blauwe badge bevestigd",
     "alt8": "In-app chat met een geverifieerde Lustimacy-match"
   },
   "cities": {
     "eyebrow": "We beginnen hier",
     "title": "Nederland en Duitsland eerst",
-    "lede": "Twee landen met de meest open en gevestigde lifestyle-scene van Europa. We gaan diep voor we breed gaan — elke founding member vormt de community voordat de poorten elders opengaan.",
+    "lede": "Twee landen met de meest open, gevestigde lifestyle scenes van Europa. We gaan de diepte in voordat we de breedte in gaan — hier vult het deck zich het snelst.",
     "deTitle": "Duitsland",
     "de1": "Berlijn",
     "de2": "Hamburg",
@@ -218,9 +217,9 @@
     "nl4": "Utrecht",
     "nl5": "Eindhoven",
     "nl6": "Groningen, Maastricht & verder",
-    "elsewhereTitle": "Overal anders",
-    "elsewhereBody": "Buiten Nederland of Duitsland? Laat je e-mail achter — we openen nieuwe landen op basis van vraag, en wachtlijst-leden in jouw land gaan eerst als we openen.",
-    "elsewhereCta": "Op de wachtlijst",
+    "elsewhereTitle": "Overal elders",
+    "elsewhereBody": "Lustimacy is wereldwijd live op Android, dus je hoeft niet op je land te wachten. We richten ons eerst op Duitsland en Nederland, simpelweg omdat het deck zich daar het snelst vult.",
+    "elsewhereCta": "Download op Google Play",
     "berlinCta": "Lustimacy in Berlijn",
     "amsterdamCta": "Lustimacy in Amsterdam"
   },
@@ -249,8 +248,8 @@
     "title": "Veelgestelde vragen",
     "items": [
       {
-        "q": "Wanneer lanceert Lustimacy in mijn land?",
-        "a": "We openen op dit moment in Nederland en Duitsland. Andere landen volgen in 2026 in golven — wachtlijst-leden in elk land gaan eerst als we openen. Laat je e-mail achter om bericht te krijgen zodra jouw land live gaat."
+        "q": "Is Lustimacy beschikbaar in mijn land?",
+        "a": "Ja. Lustimacy is wereldwijd live op Google Play en gratis. We richten ons eerst op Duitsland en Nederland, daar vult het deck zich het snelst — maar je kunt je vandaag vanaf overal aanmelden. Er is nog geen iPhone-app."
       },
       {
         "q": "Wat doet Lustimacy concreet voor stellen?",
@@ -259,10 +258,6 @@
       {
         "q": "Hoe werken privé foto's?",
         "a": "Je upload privé foto's in je profiel. Niet-matches zien alleen een elegant BlurHash-verloop — ze weten dat er meer is, maar de foto blijft van jou. Op het moment van een match wordt deze automatisch voor beide kanten ontgrendeld. Geen goedkeuringsstroom om te beheren."
-      },
-      {
-        "q": "Wat is travel mode?",
-        "a": "Stel een bestemmingsstad en terugkeerdatum in. Lustimacy toont je matches in die stad voordat je aankomt en haalt je voor die periode uit je thuisfeed. Perfect voor een lifestyle-weekend in Amsterdam, Berlijn of waar dan ook op de Europese route."
       },
       {
         "q": "Is Lustimacy gratis?",
@@ -279,15 +274,19 @@
       {
         "q": "Is dit een hookup-app?",
         "a": "Lustimacy is wat je ervan maakt. Sommigen zijn hier voor een weekend in Cap d'Agde; anderen zoeken een langdurige speelpartner of een derde voor hun relatie. De filters en gedetailleerde profielen laten je het tempo en de vorm vinden die bij jou passen."
+      },
+      {
+        "q": "Kan ik in andere steden en landen rondkijken?",
+        "a": "Ja. In de zoekfilters kun je kiezen voor je huidige locatie met een straal, voor een of meer specifieke landen, of voor volledig wereldwijd. Handig voor een reis — of als jouw scene gewoon ergens anders is."
       }
     ]
   },
   "finalCta": {
-    "title": "De founding-ronde is vol.",
-    "lede": "Alle 1.000 founding plekken in onze eerste cohort zijn vergeven. Sluit je aan bij de lijst voor de volgende golf — als we weer openen, ga jij als eerste. Je founding-badge wordt voor je vastgehouden."
+    "title": "Klaar wanneer jij het bent.",
+    "lede": "Lifestyle dating voor stellen en open-minded singles. Gratis, geverifieerde profielen, en privéfoto's blijven geblurd tot je matcht."
   },
   "playStore": {
-    "label": "Al toegelaten? Download op Google Play",
+    "label": "Download op Google Play",
     "ariaLabel": "Download Lustimacy op Google Play"
   },
   "footer": {
@@ -303,6 +302,10 @@
     "terms": "Voorwaarden",
     "contact": "Contact",
     "childSafety": "Kinderveiligheidsstandaarden",
+    "cookieSettings": "Cookievoorkeuren",
     "rights": "Alle rechten voorbehouden."
+  },
+  "iosNotice": {
+    "title": "Lustimacy is er eerst voor Android"
   }
 }
