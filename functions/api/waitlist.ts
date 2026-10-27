@@ -11,8 +11,9 @@
 // Referral attribution: the visitor's referral cookie (lustimacy_ref) is
 // set by /r/[code] Pages function. We read it server-side here.
 //
-// Welcome email: after a successful (non-duplicate) enrollment we call the
-// Supabase Edge Function send-waitlist-email to send sequence 0 (welcome).
+// Confirmation email: after a successful (non-duplicate) enrollment we call
+// the Supabase Edge Function send-waitlist-email. That is the only email this
+// list sends — the five-step drip it replaced was retired on 2026-10-27.
 // Failures are logged but don't fail the response — signup is the priority.
 
 interface Env {
@@ -33,10 +34,10 @@ interface EnrollResult {
     is_duplicate: boolean;
 }
 
-const WELCOME_TIMEOUT_MS = 4500;
+const CONFIRM_TIMEOUT_MS = 4500;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const SUPPORTED_LOCALES = new Set(["en", "de", "nl"]);
+const SUPPORTED_LOCALES = new Set(["en", "de", "nl", "fr"]);
 const REFERRAL_COOKIE = "lustimacy_ref";
 
 function jsonResponse(data: unknown, status = 200): Response {
@@ -151,15 +152,16 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         return jsonResponse({ ok: true });
     }
 
-    // Send welcome email — AWAITED. Cloudflare Pages kills the worker
+    // Send the confirmation — AWAITED. Cloudflare Pages kills the worker
     // when the response goes out, so fire-and-forget cuts the fetch
     // mid-flight and Resend may never receive the request. We accept
     // the ~400ms added latency in exchange for reliable delivery.
-    // Email failure is non-fatal: we still return success to the
-    // client. The drip cron will pick up sequence 1+ regardless.
+    // Email failure is non-fatal: we still return success to the client.
+    // Nothing retries it now that the drip cron is gone, so a silent
+    // failure here means the row exists with no confirmation sent.
     if (!enrollResult.is_duplicate) {
         try {
-            await sendWelcomeEmail(env, email, locale, enrollResult.referral_code);
+            await sendConfirmationEmail(env, email, locale);
         } catch (err) {
             console.log("welcome email send failed (non-fatal):", err);
         }
@@ -188,18 +190,17 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     );
 };
 
-async function sendWelcomeEmail(
+async function sendConfirmationEmail(
     env: Env,
     email: string,
     locale: string,
-    referralCode: string,
 ): Promise<void> {
     // Calls the Supabase Edge Function. Auth: anon key (function allows anon).
     // Bounded timeout so an unresponsive edge fn doesn't stall the whole
     // signup response indefinitely.
     const url = `${env.SUPABASE_URL}/functions/v1/send-waitlist-email`;
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), WELCOME_TIMEOUT_MS);
+    const timer = setTimeout(() => controller.abort(), CONFIRM_TIMEOUT_MS);
     try {
         const r = await fetch(url, {
             method: "POST",
@@ -208,12 +209,7 @@ async function sendWelcomeEmail(
                 Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
                 apikey: env.SUPABASE_ANON_KEY,
             },
-            body: JSON.stringify({
-                email,
-                sequence_index: 0,
-                locale,
-                referral_code: referralCode,
-            }),
+            body: JSON.stringify({ email, locale }),
             signal: controller.signal,
         });
         if (r.status < 200 || r.status >= 300) {

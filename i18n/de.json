@@ -46,17 +46,10 @@
     "placeholder": "Eure E-Mail",
     "cta": "Bei iOS benachrichtigen",
     "legal": "Wir nutzen deine E-Mail nur, um dich über die iPhone-App zu informieren. Kein Spam, keine Weitergabe. Jederzeit abbestellbar.",
-    "successHeadline": "Du stehst auf der iOS-Liste.",
+    "successHeadline": "Du stehst auf der Liste.",
     "successInbox": "Wir haben dir gerade eine Bestätigung von einer lustimacy.com-Adresse geschickt. Falls sie nicht in wenigen Minuten ankommt, schau im Spam-Ordner.",
-    "positionLabel": "dein Platz",
-    "referralLabel": "Kennst du jemanden, der auch auf iOS wartet? Teile diesen Link",
-    "shareCta": "Link teilen",
-    "copyCta": "Kopieren",
-    "copiedCta": "Kopiert ✓",
-    "statusLink": "Meine volle Positions-Seite öffnen →",
     "errorGeneric": "Etwas ist schiefgegangen. Bitte gleich noch einmal versuchen.",
-    "errorEmail": "Das sieht nicht nach einer gültigen E-Mail aus.",
-    "hint": "Lustimacy gibt es zuerst für Android. Die iPhone-App ist in Arbeit — trag deine E-Mail ein und du erfährst es zuerst."
+    "errorEmail": "Das sieht nicht nach einer gültigen E-Mail aus."
   },
   "personas": {
     "eyebrow": "Gemacht für",
@@ -297,6 +290,18 @@
     "label": "Bei Google Play laden",
     "ariaLabel": "Lustimacy bei Google Play laden"
   },
+  "appStore": {
+    "label": "Für iPhone laden",
+    "ariaLabel": "Lustimacy für iPhone — auf die Benachrichtigungsliste",
+    "soon": "Bald"
+  },
+  "iosDialog": {
+    "title": "Die iPhone-App wird noch gebaut",
+    "lede": "Lustimacy gibt es heute für Android. iOS ist in Arbeit — trag deine E-Mail ein und wir schreiben dir genau einmal, an dem Tag, an dem sie zum Download bereit ist. Das ist die einzige E-Mail, die du bekommst.",
+    "close": "Schließen",
+    "androidNote": "Hast du auch ein Android-Handy, oder kennst du jemanden?",
+    "androidCta": "Bei Google Play laden"
+  },
   "footer": {
     "tagline": "Lifestyle Dating für Pärchen und offene Singles.",
     "exploreTitle": "Entdecken",
@@ -311,8 +316,5 @@
     "contact": "Kontakt",
     "childSafety": "Kinderschutz-Standards",
     "rights": "Alle Rechte vorbehalten."
-  },
-  "iosNotice": {
-    "title": "Lustimacy startet auf Android"
   }
 }

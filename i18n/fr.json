@@ -46,17 +46,10 @@
     "placeholder": "Votre e-mail",
     "cta": "Prévenez-moi pour iOS",
     "legal": "Nous utiliserons votre e-mail uniquement pour vous prévenir de la sortie de l'app iPhone. Pas de spam, pas de revente. Désinscription à tout moment.",
-    "successHeadline": "Vous êtes sur la liste iOS.",
+    "successHeadline": "Vous êtes sur la liste.",
     "successInbox": "Nous venons d'envoyer une confirmation depuis une adresse lustimacy.com. Si elle n'arrive pas d'ici quelques minutes, regardez dans vos spams.",
-    "positionLabel": "votre place",
-    "referralLabel": "Quelqu'un attend aussi l'app iPhone ? Partagez ce lien",
-    "shareCta": "Partager mon lien",
-    "copyCta": "Copier",
-    "copiedCta": "Copié ✓",
-    "statusLink": "Voir ma position complète →",
     "errorGeneric": "Un problème est survenu. Réessayez dans un instant ?",
-    "errorEmail": "Cette adresse e-mail ne semble pas valide.",
-    "hint": "Lustimacy sort d'abord sur Android. L'app iPhone est en préparation — laissez votre e-mail et vous serez prévenu en premier."
+    "errorEmail": "Cette adresse e-mail ne semble pas valide."
   },
   "personas": {
     "eyebrow": "Conçu pour",
@@ -297,6 +290,18 @@
     "label": "Télécharger sur Google Play",
     "ariaLabel": "Télécharger Lustimacy sur Google Play"
   },
+  "appStore": {
+    "label": "Télécharger sur iPhone",
+    "ariaLabel": "Lustimacy pour iPhone — rejoindre la liste d'attente",
+    "soon": "Bientôt"
+  },
+  "iosDialog": {
+    "title": "L'application iPhone est encore en construction",
+    "lede": "Lustimacy existe aujourd'hui sur Android. La version iOS est en cours — laissez votre e-mail et nous vous écrirons une seule fois, le jour où elle sera prête à télécharger. C'est le seul e-mail que vous recevrez.",
+    "close": "Fermer",
+    "androidNote": "Vous avez aussi un téléphone Android, ou quelqu'un autour de vous ?",
+    "androidCta": "Disponible sur Google Play"
+  },
   "footer": {
     "tagline": "Rencontres libertines pour couples et célibataires ouverts.",
     "exploreTitle": "Explorer",
@@ -311,8 +316,5 @@
     "contact": "Contact",
     "childSafety": "Protection des mineurs",
     "rights": "Tous droits réservés."
-  },
-  "iosNotice": {
-    "title": "Lustimacy sort d'abord sur Android"
   }
 }

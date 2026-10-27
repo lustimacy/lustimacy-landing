@@ -46,17 +46,10 @@
     "placeholder": "Jouw e-mailadres",
     "cta": "Hou me op de hoogte van iOS",
     "legal": "We gebruiken je e-mail alleen om je te laten weten wanneer de iPhone-app klaar is. Geen spam, geen doorverkoop. Altijd opzegbaar.",
-    "successHeadline": "Je staat op de iOS-lijst.",
+    "successHeadline": "Je staat op de lijst.",
     "successInbox": "We hebben net een bevestiging gestuurd vanaf een lustimacy.com-adres. Komt die niet binnen een paar minuten aan, kijk dan in je spam.",
-    "positionLabel": "jouw plek",
-    "referralLabel": "Ken je iemand die ook op iOS wacht? Deel deze link",
-    "shareCta": "Link delen",
-    "copyCta": "Kopiëren",
-    "copiedCta": "Gekopieerd ✓",
-    "statusLink": "Mijn volledige positiepagina openen →",
     "errorGeneric": "Er ging iets mis. Probeer het zo nog eens.",
-    "errorEmail": "Dit lijkt geen geldig e-mailadres.",
-    "hint": "Lustimacy is er eerst voor Android. De iPhone-app komt — laat je e-mail achter en je hoort het als eerste."
+    "errorEmail": "Dit lijkt geen geldig e-mailadres."
   },
   "personas": {
     "eyebrow": "Gebouwd voor",
@@ -297,6 +290,18 @@
     "label": "Download op Google Play",
     "ariaLabel": "Download Lustimacy op Google Play"
   },
+  "appStore": {
+    "label": "Download voor iPhone",
+    "ariaLabel": "Lustimacy voor iPhone — op de notificatielijst",
+    "soon": "Binnenkort"
+  },
+  "iosDialog": {
+    "title": "De iPhone-app wordt nog gebouwd",
+    "lede": "Lustimacy is er vandaag voor Android. iOS is in de maak — laat je e-mail achter en we mailen je precies één keer, op de dag dat die klaar is om te downloaden. Dat is de enige mail die je krijgt.",
+    "close": "Sluiten",
+    "androidNote": "Heb je ook een Android-telefoon, of ken je iemand?",
+    "androidCta": "Download op Google Play"
+  },
   "footer": {
     "tagline": "Lifestyle dating voor stellen en open-minded singles.",
     "exploreTitle": "Ontdek",
@@ -311,8 +316,5 @@
     "contact": "Contact",
     "childSafety": "Kinderveiligheidsstandaarden",
     "rights": "Alle rechten voorbehouden."
-  },
-  "iosNotice": {
-    "title": "Lustimacy is er eerst voor Android"
   }
 }

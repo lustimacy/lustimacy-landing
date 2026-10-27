@@ -112,8 +112,9 @@
   // could have installed it there and then.
   //
   // The real constraint is the platform, not the country: there is no iOS build
-  // yet. So Android and desktop visitors get the download button, and only iOS
-  // visitors are shown the email capture, relabelled as an iOS notify list.
+  // yet. Both buttons now ship to everyone — the iPhone one opens a dialog that
+  // says so — and all this does is flip which of the two looks like the
+  // obvious one to press.
   function isIOS() {
     const ua = navigator.userAgent || '';
     if (/iPhone|iPad|iPod/.test(ua)) return true;
@@ -125,10 +126,59 @@
 
   function initPlatformCta() {
     if (!isIOS()) return;
-    $$('[data-ios-only]').forEach((el) => el.removeAttribute('hidden'));
-    // On iOS the Play button is dead weight — hide it rather than offer a
-    // download that cannot work.
-    $$('.playstore-btn').forEach((el) => (el.hidden = true));
+    // The Play button stays on the page: an iPhone owner may well have an
+    // Android lying around, or a partner who does, and the dialog points at it
+    // too. Demoted, not removed.
+    $$('.appstore-btn').forEach((el) => {
+      el.classList.remove('btn--ghost');
+      el.classList.add('is-primary');
+    });
+    $$('a.playstore-btn').forEach((el) => {
+      el.classList.remove('btn--primary');
+      el.classList.add('is-secondary');
+    });
+  }
+
+  // --- iPhone dialog -------------------------------------------------------
+  // Native <dialog>. showModal() gives us the top layer, Escape, focus
+  // trapping and an inert background for free.
+  //
+  // The opening button's data-source is stashed on the form so the submit
+  // handler can report which CTA the signup came through — hero or final —
+  // now that there is only one form in the document instead of two.
+  function initIosDialog() {
+    const dlg = $('#iosDialog');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const form = $('form.waitlist', dlg);
+
+    const close = () => {
+      if (dlg.open) dlg.close();
+    };
+
+    $$('[data-ios-dialog]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (form) form.dataset.source = btn.dataset.source || 'iphone';
+        dlg.showModal();
+        track('IosDialogOpen', { source: btn.dataset.source || 'iphone' });
+        const input = form && form.querySelector('input[name="email"]');
+        // Only focus the field if they have not already signed up in this
+        // visit — reopening on the success state should not put a cursor in a
+        // box they are done with.
+        if (input && !form.classList.contains('is-success')) {
+          setTimeout(() => input.focus(), 60);
+        }
+      });
+    });
+
+    $$('[data-ios-dialog-close]', dlg).forEach((btn) =>
+      btn.addEventListener('click', close)
+    );
+
+    // Click outside the card. The backdrop is part of the dialog's own box, so
+    // a click lands on <dialog> itself only when it misses the content.
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) close();
+    });
   }
 
   // --- Waitlist form -------------------------------------------------------
@@ -141,11 +191,13 @@
       en: "That doesn't look like an email.",
       de: 'Das sieht nicht nach einer gültigen E-Mail aus.',
       nl: 'Dit lijkt geen geldig e-mailadres.',
+      fr: "Cela ne ressemble pas à une adresse e-mail.",
     };
     const errGeneric = {
       en: 'Something went wrong. Try again in a moment?',
       de: 'Etwas ist schiefgegangen. Bitte gleich noch einmal versuchen.',
       nl: 'Er ging iets mis. Probeer het zo nog eens.',
+      fr: "Quelque chose n'a pas fonctionné. Réessayez dans un instant ?",
     };
     const locale = (document.documentElement.lang || 'en').toLowerCase();
 
@@ -178,15 +230,15 @@
             body: JSON.stringify({
               email,
               locale,
-              source: form.id || 'unknown',
+              source: form.dataset.source || form.id || 'unknown',
               referrer: document.referrer || '',
             }),
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json().catch(() => ({}));
           form.classList.add('is-success');
-          renderSuccessPanel(form, data);
-          track('WaitlistSubmit', { source: form.id || 'unknown', locale });
+          renderSuccessPanel(form);
+          track('WaitlistSubmit', { source: form.dataset.source || form.id || 'unknown', locale });
         } catch (err) {
           if (errorEl) errorEl.textContent = errGeneric[locale] || errGeneric.en;
           form.classList.add('is-error');
@@ -197,95 +249,19 @@
     });
   }
 
-  // Build the referral URL preferring the current locale path
-  function buildReferralUrl(code) {
-    const path = (document.documentElement.lang || 'en').toLowerCase();
-    const prefix = path === 'de' ? '/de/' : path === 'nl' ? '/nl/' : '/';
-    return `https://lustimacy.com${prefix}?ref=${encodeURIComponent(code)}`;
-  }
-
-  function buildStatusUrl(code) {
-    return `https://lustimacy.com/waitlist-status.html?c=${encodeURIComponent(code)}`;
-  }
-
-  function renderSuccessPanel(form, data) {
+  // The success panel used to show a queue position and a referral link worth
+  // "10 spots". Both were artefacts of a staged pre-launch rollout that no
+  // longer exists: there is no queue to move up, and the drip that would have
+  // invited people in order was retired. All that is honest now is "we have
+  // your address, check your inbox".
+  function renderSuccessPanel(form) {
     const panel = form.querySelector('[data-success-panel]');
     if (!panel) return;
-    const code = data && data.referral_code;
-    const position = data && (data.position != null ? data.position : null);
-    const refUrl = code ? buildReferralUrl(code) : '';
-
-    const posEl = panel.querySelector('[data-position]');
-    const linkEl = panel.querySelector('[data-share-link]');
-    const statusEl = panel.querySelector('[data-status-link]');
-    const shareBtn = panel.querySelector('[data-share-btn]');
-    const copyBtn = panel.querySelector('[data-copy-btn]');
-
-    if (posEl) posEl.textContent = position != null ? `#${position}` : '—';
-    if (linkEl) linkEl.textContent = refUrl || '—';
-    if (statusEl && code) statusEl.setAttribute('href', buildStatusUrl(code));
-
-    if (shareBtn) {
-      shareBtn.onclick = async () => {
-        if (!refUrl) return;
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: 'Join me on Lustimacy',
-              text: 'Lifestyle dating for couples, polycules, and open-minded singles — DE & NL.',
-              url: refUrl,
-            });
-            track('ReferralShared', { method: 'native' });
-          } catch (_) { /* user cancelled */ }
-        } else {
-          // Desktop fallback: copy to clipboard
-          copyToClipboard(refUrl);
-          shareBtn.dataset.originalText = shareBtn.dataset.originalText || shareBtn.textContent;
-          shareBtn.textContent = copyBtn ? (copyBtn.dataset.copiedLabel || 'Copied ✓') : 'Copied ✓';
-          setTimeout(() => { shareBtn.textContent = shareBtn.dataset.originalText; }, 2200);
-          track('ReferralShared', { method: 'copy_fallback' });
-        }
-      };
-    }
-    if (copyBtn) {
-      copyBtn.onclick = () => {
-        if (!refUrl) return;
-        copyToClipboard(refUrl);
-        const copied = copyBtn.dataset.copiedLabel || 'Copied ✓';
-        const original = copyBtn.dataset.copyLabel || 'Copy';
-        copyBtn.textContent = copied;
-        copyBtn.classList.add('is-copied');
-        setTimeout(() => {
-          copyBtn.textContent = original;
-          copyBtn.classList.remove('is-copied');
-        }, 2200);
-      };
-    }
-
+    const row = form.querySelector('.waitlist__row');
+    if (row) row.hidden = true;
+    const hint = form.querySelector('.waitlist__hint');
+    if (hint) hint.hidden = true;
     panel.hidden = false;
-    // Smoothly scroll the panel into view so the user sees the new content
-    setTimeout(() => {
-      try { panel.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
-    }, 80);
-  }
-
-  function copyToClipboard(text) {
-    const fallback = () => {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'absolute';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (_) {}
-      document.body.removeChild(ta);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).catch(fallback);
-    } else {
-      fallback();
-    }
   }
 
   // --- Card-stack demo -----------------------------------------------------
@@ -417,6 +393,7 @@
     initSmoothAnchors();
     initReveals();
     initPlatformCta();
+    initIosDialog();
     initWaitlistForms();
     initCardStack();
     initScreens();

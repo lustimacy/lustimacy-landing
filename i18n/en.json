@@ -46,17 +46,10 @@
     "placeholder": "Your email",
     "cta": "Tell me when iOS lands",
     "legal": "We'll only use your email to tell you when the iPhone app is ready. No spam, no resale. Unsubscribe any time.",
-    "successHeadline": "You're on the iOS list.",
+    "successHeadline": "You're on the list.",
     "successInbox": "We just sent a confirmation from a lustimacy.com address. If it does not arrive in a few minutes, check your spam folder.",
-    "positionLabel": "your spot",
-    "referralLabel": "Know someone waiting on iOS too? Share this link",
-    "shareCta": "Share my link",
-    "copyCta": "Copy",
-    "copiedCta": "Copied ✓",
-    "statusLink": "See my full position page →",
     "errorGeneric": "Something went wrong. Try again in a moment?",
-    "errorEmail": "That doesn't look like an email.",
-    "hint": "Lustimacy is on Android first. The iPhone app is in the works — leave your email and you'll be the first to know."
+    "errorEmail": "That doesn't look like an email."
   },
   "personas": {
     "eyebrow": "Built for",
@@ -297,6 +290,18 @@
     "label": "Get it on Google Play",
     "ariaLabel": "Download Lustimacy on Google Play"
   },
+  "appStore": {
+    "label": "Download for iPhone",
+    "ariaLabel": "Lustimacy for iPhone — join the notify list",
+    "soon": "Soon"
+  },
+  "iosDialog": {
+    "title": "The iPhone app is still being built",
+    "lede": "Lustimacy is on Android today. iOS is in progress — leave your email and we will write to you once, the day it is ready to download. That is the only email you will get.",
+    "close": "Close",
+    "androidNote": "Got an Android phone too, or know someone who has?",
+    "androidCta": "Get it on Google Play"
+  },
   "footer": {
     "tagline": "Lifestyle dating for couples and open-minded singles.",
     "exploreTitle": "Explore",
@@ -311,8 +316,5 @@
     "contact": "Contact",
     "childSafety": "Child Safety Standards",
     "rights": "All rights reserved."
-  },
-  "iosNotice": {
-    "title": "Lustimacy is on Android first"
   }
 }
