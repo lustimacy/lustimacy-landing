@@ -21,13 +21,13 @@
         </a>
 
         <div class="ob__progress" aria-hidden="true">
-            <span data-ob-progress style="width:50%"></span>
+            <span data-ob-progress style="width:33%"></span>
         </div>
 
         <!-- Step 1 — who you are -->
         <section data-ob-step="1">
             <h1 class="auth__title">Let's start with you</h1>
-            <p class="auth__lede">Two short steps. You add a photo in the app afterwards.</p>
+            <p class="auth__lede">Two short steps. Three short steps and you are done.</p>
 
             <label class="auth__label" for="obName">Your name</label>
             <input id="obName" class="auth__input" name="name" type="text"
@@ -68,8 +68,29 @@
             <div class="ob__chips" data-ob-orientation></div>
 
             <p class="auth__error" data-ob-error hidden></p>
-            <button type="button" class="btn btn--primary auth__submit" data-ob-submit>Save and finish in the app</button>
+            <button type="button" class="btn btn--primary auth__submit" data-ob-next-2>Continue</button>
             <button type="button" class="ob__back" data-ob-back>← Back</button>
+        </section>
+
+        <!-- Step 3 — one photo is the whole gate -->
+        <section data-ob-step="3" hidden>
+            <h1 class="auth__title">Add a photo</h1>
+            <p class="auth__lede">One is all we need. You can add up to six, and change them whenever you like.</p>
+
+            <div class="ob__photos" data-ob-grid></div>
+
+            <div class="ob__add">
+                <label class="ob__add-label" for="obPhotos">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>Choose photos</span>
+                </label>
+                <input id="obPhotos" type="file" accept="image/*" multiple class="ob__file" data-ob-file>
+            </div>
+            <p class="ob__count" data-ob-count>0 of 6</p>
+
+            <p class="auth__error" data-ob-error hidden></p>
+            <button type="button" class="btn btn--primary auth__submit" data-ob-finish>Finish my profile</button>
+            <button type="button" class="ob__back" data-ob-back-2>← Back</button>
         </section>
     </main>
 

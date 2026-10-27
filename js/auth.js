@@ -148,11 +148,11 @@
               .then(function (r) {
                   var complete = r.data && r.data.is_profile_setup_complete;
                   stateEl.textContent = complete
-                      ? 'Your profile is ready. Open the app and you are straight into the deck.'
-                      : 'Your account exists. Add one photo in the app and you are in.';
+                      ? 'Your profile is ready. On Android, open the app and you are straight into the deck.'
+                      : 'Your profile is not finished yet, so nobody can see you.';
                   var finish = root.querySelector('[data-welcome-finish]');
                   // Only offer the web form to someone who never filled it in.
-                  if (finish && !complete && !(r.data && r.data.birthday)) finish.hidden = false;
+                  if (finish && !complete) finish.hidden = false;
               })
               .catch(function () {
                   stateEl.textContent = 'Your account exists. Open the app to finish your profile.';
@@ -169,15 +169,14 @@
 
 
     // ---- /onboarding --------------------------------------------------------
-    // Mirrors the app's two gated typed screens. The photo step is deliberately
-    // NOT here: a camera is better on a phone than a file picker and a crop box
-    // in a browser, and the app's onboarding re-opens pre-filled from these
-    // columns, so the person taps through and adds one photo.
+    // Mirrors the app's three gated screens, photos included.
     //
-    // That also means is_profile_setup_complete stays false. The app owns the
-    // moment a profile becomes complete, exactly as it does today.
+    // Photos are here rather than deferred to the app because iPhone users
+    // cannot install the app at all yet, and a profile without a photo is not
+    // matchable. Web has to be able to produce a complete profile on its own,
+    // or iOS visitors can never be in the deck.
     //
-    // Integer encodings are the app's, not invented here:
+    // Integer encodings are the app's, verified against the schema:
     //   gender / partner_gender  0..9
     //   sexual_orientation       0..8
     //   looking_for              10..15   (starts at 10, not 0)
@@ -191,22 +190,100 @@
         [13, 'Casual Dates'], [14, 'Friends'], [15, 'Still Figuring Out']
     ];
 
+    // Same pipeline the app uses: longest edge 1000, quality 80, WEBP.
+    var IMAGE_SIZE = 1000, IMAGE_QUALITY = 0.8;
+    var MAX_PHOTOS = 6;              // EditProfilePhotoGridAdapter.MAX_NUM_PHOTOS
+    var PHOTO_BUCKET = 'profile_photos';
+
+    // Storage policy requires exactly "<uid>/<photoId>" — two segments, first
+    // equal to auth.uid(). Matches the 32-char alphanumeric ids already in
+    // users.profile_photos.
+    function photoId() {
+        var abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var out = '', bytes = new Uint8Array(32);
+        (window.crypto || window.msCrypto).getRandomValues(bytes);
+        for (var i = 0; i < 32; i++) out += abc[bytes[i] % abc.length];
+        return out;
+    }
+
+    // Decoding through createImageBitmap honours EXIF orientation, which an
+    // <img> does not do reliably — without it, photos taken on a phone come out
+    // rotated. Re-encoding also drops EXIF entirely, including GPS, which is
+    // the same side effect the app relies on.
+    function decode(file) {
+        if (window.createImageBitmap) {
+            try {
+                return createImageBitmap(file, { imageOrientation: 'from-image' });
+            } catch (e) { /* older signature; fall through */ }
+        }
+        return new Promise(function (resolve, reject) {
+            var img = new Image();
+            img.onload = function () { resolve(img); };
+            img.onerror = function () { reject(new Error('unreadable')); };
+            img.src = URL.createObjectURL(file);
+        });
+    }
+
+    function toBlob(canvas) {
+        return new Promise(function (resolve, reject) {
+            canvas.toBlob(function (b) {
+                if (b && b.type === 'image/webp') { resolve({ blob: b, type: 'image/webp' }); return; }
+                // Safari used to refuse webp encoding; JPEG is read fine by
+                // both Glide and the browser.
+                canvas.toBlob(function (j) {
+                    j ? resolve({ blob: j, type: 'image/jpeg' }) : reject(new Error('encode failed'));
+                }, 'image/jpeg', IMAGE_QUALITY);
+            }, 'image/webp', IMAGE_QUALITY);
+        });
+    }
+
+    function prepare(file) {
+        return decode(file).then(function (src) {
+            var w = src.width, h = src.height;
+            var scale = Math.min(1, IMAGE_SIZE / Math.max(w, h));
+            w = Math.max(1, Math.round(w * scale));
+            h = Math.max(1, Math.round(h * scale));
+            var c = document.createElement('canvas');
+            c.width = w; c.height = h;
+            c.getContext('2d').drawImage(src, 0, 0, w, h);
+            if (src.close) src.close();
+            return toBlob(c);
+        });
+    }
+
     function initOnboarding() {
         var root = document.getElementById('onboarding');
         if (!root) return;
 
         var state = { account_type: null, gender: null, partner_gender: null,
                       looking_for: null, sexual_orientation: null };
+        var photos = [];                       // { file, blob, type, url }
 
-        var errEl  = root.querySelector('[data-ob-error]');
-        var step1  = root.querySelector('[data-ob-step="1"]');
-        var step2  = root.querySelector('[data-ob-step="2"]');
+        var steps = { 1: root.querySelector('[data-ob-step="1"]'),
+                      2: root.querySelector('[data-ob-step="2"]'),
+                      3: root.querySelector('[data-ob-step="3"]') };
+        var progress = root.querySelector('[data-ob-progress]');
         var coupleOnly = root.querySelectorAll('[data-ob-couple]');
+        var current = 1;
 
-        function err(msg) { errEl.textContent = msg; errEl.hidden = false; }
-        function clearErr() { errEl.hidden = true; }
+        // Each step carries its own error line. Writing to the first one found
+        // would put step 2 and 3 errors inside a hidden section, where nobody
+        // would ever see them.
+        function errEl() { return steps[current].querySelector('[data-ob-error]'); }
+        function err(msg) { var e = errEl(); e.textContent = msg; e.hidden = false; }
+        function clearErr() {
+            root.querySelectorAll('[data-ob-error]').forEach(function (e) { e.hidden = true; });
+        }
 
-        // Renders a group of single-choice chips and records the pick in state.
+        function show(n) {
+            current = n;
+            Object.keys(steps).forEach(function (k) { steps[k].hidden = (+k !== n); });
+            progress.style.width = Math.round(n / 3 * 100) + '%';
+            clearErr();
+            window.scrollTo(0, 0);
+            track('OnboardingStep' + n);
+        }
+
         function chips(host, items, key, onPick) {
             host.innerHTML = '';
             items.forEach(function (it, idx) {
@@ -231,9 +308,7 @@
         }
 
         chips(root.querySelector('[data-ob-account]'), [[0,'Just me'],[1,'The two of us']], 'account_type',
-              function (v) {
-                  coupleOnly.forEach(function (el) { el.hidden = (v !== 1); });
-              });
+              function (v) { coupleOnly.forEach(function (el) { el.hidden = (v !== 1); }); });
         chips(root.querySelector('[data-ob-gender]'), GENDER, 'gender');
         chips(root.querySelector('[data-ob-partner-gender]'), GENDER, 'partner_gender');
         chips(root.querySelector('[data-ob-looking]'), LOOKING_FOR, 'looking_for');
@@ -252,51 +327,50 @@
             return a;
         }
 
+        function uid() {
+            return sb().auth.getSession().then(function (r) {
+                var sess = r.data && r.data.session;
+                if (!sess) { window.location.replace('/login.html'); throw new Error('no session'); }
+                return sess.user.id;
+            });
+        }
+
+        // ---- step 1 -> 2
         root.querySelector('[data-ob-next]').addEventListener('click', function () {
             clearErr();
-            if (!nameEl.value.trim())            return err('What should people call you?');
-            if (!dobEl.value)                    return err('We need your date of birth to confirm you are 18 or over.');
+            if (!nameEl.value.trim())        return err('What should people call you?');
+            if (!dobEl.value)                return err('We need your date of birth to confirm you are 18 or over.');
             var a = age(dobEl.value);
-            if (isNaN(a))                        return err('That date does not look right.');
-            if (a < 18)                          return err('You have to be 18 or over to use Lustimacy.');
-            if (a > 120)                         return err('That date does not look right.');
-            if (state.account_type === null)     return err('Is this profile just for you, or for the two of you?');
+            if (isNaN(a) || a > 120)         return err('That date does not look right.');
+            if (a < 18)                      return err('You have to be 18 or over to use Lustimacy.');
+            if (state.account_type === null) return err('Is this profile just for you, or for the two of you?');
             if (state.account_type === 1) {
-                if (!pdobEl.value)               return err("We need your partner's date of birth too.");
+                if (!pdobEl.value)           return err("We need your partner's date of birth too.");
                 var pa = age(pdobEl.value);
-                if (isNaN(pa) || pa > 120)       return err("That date does not look right.");
-                if (pa < 18)                     return err('Both of you have to be 18 or over.');
+                if (isNaN(pa) || pa > 120)   return err('That date does not look right.');
+                if (pa < 18)                 return err('Both of you have to be 18 or over.');
             }
-            step1.hidden = true; step2.hidden = false;
-            root.querySelector('[data-ob-progress]').style.width = '100%';
-            window.scrollTo(0, 0);
-            track('OnboardingStep2');
+            show(2);
         });
 
-        root.querySelector('[data-ob-back]').addEventListener('click', function () {
-            clearErr();
-            step2.hidden = true; step1.hidden = false;
-            root.querySelector('[data-ob-progress]').style.width = '50%';
-            window.scrollTo(0, 0);
-        });
+        root.querySelector('[data-ob-back]').addEventListener('click', function () { show(1); });
+        root.querySelector('[data-ob-back-2]').addEventListener('click', function () { show(2); });
 
-        var submit = root.querySelector('[data-ob-submit]');
-        submit.addEventListener('click', function () {
+        // ---- step 2 -> 3. Saves the typed fields now, so abandoning at the
+        // photo step does not lose them — the same way the app saves per screen.
+        var next2 = root.querySelector('[data-ob-next-2]');
+        next2.addEventListener('click', function () {
             clearErr();
-            if (state.gender === null)              return err('Pick the option closest to how you identify.');
+            if (state.gender === null)             return err('Pick the option closest to how you identify.');
             if (state.account_type === 1 && state.partner_gender === null)
-                                                    return err("Pick your partner's gender too.");
-            if (state.looking_for === null)         return err('Tell us roughly what you are here for.');
-            if (state.sexual_orientation === null)  return err('Pick the option closest to your orientation.');
+                                                   return err("Pick your partner's gender too.");
+            if (state.looking_for === null)        return err('Tell us roughly what you are here for.');
+            if (state.sexual_orientation === null) return err('Pick the option closest to your orientation.');
 
-            submit.disabled = true;
-            var original = submit.textContent;
-            submit.textContent = 'Saving…';
+            next2.disabled = true;
+            var label = next2.textContent; next2.textContent = 'Saving…';
 
-            sb().auth.getSession().then(function (res) {
-                var session = res.data && res.data.session;
-                if (!session) { window.location.replace('/login.html'); return; }
-
+            uid().then(function (id) {
                 var row = {
                     name: nameEl.value.trim(),
                     birthday: dobEl.value,
@@ -309,24 +383,115 @@
                     row.partner_birthday = pdobEl.value;
                     row.partner_gender = state.partner_gender;
                 }
-
-                return sb().from('users').update(row).eq('id', session.user.id).then(function (r) {
-                    if (r.error) {
-                        submit.disabled = false; submit.textContent = original;
-                        track('OnboardingError', { message: r.error.message });
-                        err('Could not save that. Try again in a moment?');
-                        return;
-                    }
-                    track('OnboardingComplete');
-                    window.location.replace('/welcome.html');
-                });
-            }).catch(function () {
-                submit.disabled = false; submit.textContent = original;
+                return sb().from('users').update(row).eq('id', id);
+            }).then(function (r) {
+                next2.disabled = false; next2.textContent = label;
+                if (r && r.error) { track('OnboardingError', { message: r.error.message });
+                                    return err('Could not save that. Try again in a moment?'); }
+                show(3);
+            }).catch(function (e) {
+                if (e && e.message === 'no session') return;
+                next2.disabled = false; next2.textContent = label;
                 err('Could not reach the server. Check your connection and try again.');
             });
         });
 
-        // Anyone landing here without a session goes to sign-in first.
+        // ---- step 3, photos
+        var fileEl  = root.querySelector('[data-ob-file]');
+        var gridEl  = root.querySelector('[data-ob-grid]');
+        var countEl = root.querySelector('[data-ob-count]');
+
+        function renderGrid() {
+            gridEl.innerHTML = '';
+            photos.forEach(function (p, i) {
+                var cell = document.createElement('div');
+                cell.className = 'ob__photo';
+                var img = document.createElement('img');
+                img.src = p.url; img.alt = 'Photo ' + (i + 1);
+                var del = document.createElement('button');
+                del.type = 'button'; del.className = 'ob__photo-remove';
+                del.setAttribute('aria-label', 'Remove photo ' + (i + 1));
+                del.textContent = '×';
+                del.addEventListener('click', function () {
+                    URL.revokeObjectURL(p.url);
+                    photos.splice(i, 1); renderGrid(); clearErr();
+                });
+                cell.appendChild(img); cell.appendChild(del);
+                gridEl.appendChild(cell);
+            });
+            countEl.textContent = photos.length + ' of ' + MAX_PHOTOS;
+            fileEl.parentElement.hidden = photos.length >= MAX_PHOTOS;
+        }
+
+        fileEl.addEventListener('change', function () {
+            clearErr();
+            var files = Array.prototype.slice.call(fileEl.files || []);
+            fileEl.value = '';
+            if (!files.length) return;
+
+            var room = MAX_PHOTOS - photos.length;
+            if (files.length > room) { files = files.slice(0, room); err('You can add up to ' + MAX_PHOTOS + ' photos.'); }
+
+            Promise.all(files.map(function (f) {
+                if (!/^image\//.test(f.type)) return null;
+                return prepare(f).then(function (res) {
+                    return { blob: res.blob, type: res.type, url: URL.createObjectURL(res.blob) };
+                }).catch(function () { return null; });
+            })).then(function (made) {
+                var bad = 0;
+                made.forEach(function (m) { m ? photos.push(m) : bad++; });
+                if (bad) err("Could not read " + bad + (bad === 1 ? ' file.' : ' files.'));
+                renderGrid();
+            });
+        });
+
+        var finish = root.querySelector('[data-ob-finish]');
+        finish.addEventListener('click', function () {
+            clearErr();
+            if (!photos.length) return err('One photo is all we need, but we do need one.');
+
+            finish.disabled = true;
+            var label = finish.textContent;
+            var done = 0;
+            finish.textContent = 'Uploading 1 of ' + photos.length + '…';
+
+            uid().then(function (id) {
+                var ids = [];
+                // Sequential: a handful of images on a phone connection, and a
+                // clear per-photo progress label is worth more than parallelism.
+                return photos.reduce(function (chain, p) {
+                    return chain.then(function () {
+                        var pid = photoId();
+                        return sb().storage.from(PHOTO_BUCKET)
+                            .upload(id + '/' + pid, p.blob, { contentType: p.type, upsert: false })
+                            .then(function (r) {
+                                if (r.error) throw r.error;
+                                ids.push(pid);
+                                done++;
+                                if (done < photos.length) finish.textContent = 'Uploading ' + (done + 1) + ' of ' + photos.length + '…';
+                                else finish.textContent = 'Finishing…';
+                            });
+                    });
+                }, Promise.resolve()).then(function () {
+                    // Only now is the profile matchable, so only now is it complete.
+                    return sb().from('users')
+                        .update({ profile_photos: ids, is_profile_setup_complete: true })
+                        .eq('id', id);
+                });
+            }).then(function (r) {
+                if (r && r.error) throw r.error;
+                track('OnboardingComplete');
+                window.location.replace('/welcome.html');
+            }).catch(function (e) {
+                if (e && e.message === 'no session') return;
+                finish.disabled = false; finish.textContent = label;
+                track('OnboardingPhotoError', { message: (e && e.message) || 'unknown' });
+                err('Could not upload that. Check your connection and try again.');
+            });
+        });
+
+        renderGrid();
+
         sb().auth.getSession().then(function (res) {
             if (!res.data || !res.data.session) { window.location.replace('/login.html'); return; }
             root.hidden = false;
