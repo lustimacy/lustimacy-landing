@@ -11,8 +11,9 @@
 // markup would have localised one half and left the other, so there would be a
 // dictionary either way. This is the single source for both.
 //
-// Locale resolution: ?lang= → the lustimacy-locale cookie → sessionStorage →
-// <html lang> → navigator.language → en. The query parameter leads because the
+// Locale resolution: ?lang= → the lustimacy-locale cookie → the lustimacy-lang
+// cookie → <html lang> → navigator.language → en. Once a session exists,
+// auth.js overrides all of it with the language recorded on the auth user. The query parameter leads because the
 // middleware redirects by IP and language without setting a cookie, so a French
 // visitor arrives at /fr/ with nothing to carry forward; the site's links
 // append it.
@@ -20,9 +21,10 @@
 // It is deliberately NOT appended to the magic-link callback URL. Supabase
 // validates redirect_to against an allow list holding the exact callback URL,
 // and an exact entry does not match one carrying a query string — adding it
-// would strand every non-English sign-in at the Site URL. On the same device
-// sessionStorage and the cookie carry the language across the email round
-// trip; on another device navigator.language is the better guess anyway.
+// would strand every non-English sign-in at the Site URL. The lustimacy-lang
+// cookie carries the language across the email round trip on the same device,
+// and on any device the auth user's own metadata settles it — see
+// adoptUserLang() in auth.js.
 
 (function () {
     'use strict';
