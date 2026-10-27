@@ -25,7 +25,13 @@
     function sb() {
         if (!client) {
             client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-                auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true }
+                // detectSessionInUrl is OFF on purpose. It exchanges the code
+                // invisibly and asynchronously, which left the callback unable
+                // to tell a freshly-exchanged session from one already in
+                // storage — and it would happily accept the stale one, signing
+                // people in as whoever used the browser last. The callback now
+                // performs the exchange itself and uses only its result.
+                auth: { flowType: 'pkce', detectSessionInUrl: false, persistSession: true }
             });
         }
         return client;
@@ -111,13 +117,14 @@
     }
 
     // ---- /auth/callback -----------------------------------------------------
-    // The PKCE exchange that detectSessionInUrl performs is ASYNCHRONOUS. The
-    // first version of this called getSession() straight away, read the empty
-    // session that exists before the exchange resolves, and told everyone their
-    // link had expired. It had not — we just asked too early.
+    // Exchanges the code in the URL for a session, and trusts nothing else.
     //
-    // So: wait for the session to arrive by whichever route gets there first,
-    // an auth-state event or a poll, and only give up after a real timeout.
+    // The previous version waited for "a session to exist" — via a poll and an
+    // auth-state subscription — and treated whatever turned up as success. If
+    // the browser already held a session from an earlier sign-in, the first
+    // poll returned that one immediately and signed the visitor in as the
+    // previous user, before this link's code had been exchanged at all. A
+    // session being present is not evidence that THIS link worked.
     function initCallback() {
         var root = document.getElementById('authCallback');
         if (!root) return;
@@ -132,19 +139,14 @@
             statusEl.hidden = true;
             errEl.querySelector('[data-callback-message]').textContent = msg;
             errEl.hidden = false;
-            // Logged as well as shown: the generic copy is for the visitor,
-            // this is what makes the next report diagnosable.
             if (detail) console.error('[auth callback]', detail);
-            track('AuthCallbackError', { message: (detail || msg).toString().slice(0, 90) });
+            track('AuthCallbackError', { message: String(detail || msg).slice(0, 90) });
         }
 
         function succeeded(session) {
             if (settled) return;
             settled = true;
             track('AuthSignedIn');
-            // A row always exists by now — on_auth_user_created inserts it the
-            // moment last_sign_in_at stops being null — but a brand-new one
-            // holds only id, email and name. No birthday means no onboarding.
             sb().from('users').select('birthday').eq('id', session.user.id).single()
               .then(function (r) {
                   window.location.replace(r.data && r.data.birthday ? '/welcome' : '/onboarding');
@@ -152,10 +154,11 @@
               .catch(function () { window.location.replace('/welcome'); });
         }
 
-        // Supabase reports its own failures in the URL, as a query param or in
-        // the hash. Those are worth showing verbatim rather than guessing.
         var qs   = new URLSearchParams(window.location.search);
         var hash = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
+
+        // Supabase reports its own failures in the URL. Show them rather than
+        // inventing a reason.
         var urlError = qs.get('error_description') || hash.get('error_description')
                     || qs.get('error') || hash.get('error');
         if (urlError) {
@@ -166,42 +169,40 @@
             return;
         }
 
-        if (!qs.get('code') && !hash.get('access_token')) {
+        var code = qs.get('code');
+        var accessToken = hash.get('access_token');
+
+        if (!code && !accessToken) {
             failed('This page is only reachable from a sign-in link. Request one and you will land back here.',
-                   'no code or access_token in callback URL');
+                   'no code or access_token present');
             return;
         }
 
-        // Route 1: the client tells us the moment it has a session.
-        var sub = null;
-        try {
-            sub = sb().auth.onAuthStateChange(function (_event, session) {
-                if (session) succeeded(session);
-            });
-        } catch (e) { /* fall through to polling */ }
-
-        // Route 2: poll, in case the event fired before we subscribed.
-        var waited = 0;
-        var tick = setInterval(function () {
-            if (settled) { clearInterval(tick); return; }
-            waited += 250;
-            sb().auth.getSession().then(function (res) {
-                if (res && res.data && res.data.session) {
-                    clearInterval(tick);
+        // Whatever is in storage belongs to a previous visitor of this browser
+        // and has nothing to do with the link just opened. Clearing it first
+        // means a failed exchange cannot silently fall back to it.
+        sb().auth.signOut({ scope: 'local' }).catch(function () {}).then(function () {
+            if (code) {
+                return sb().auth.exchangeCodeForSession(code).then(function (res) {
+                    if (res.error) throw res.error;
+                    if (!res.data || !res.data.session) throw new Error('exchange returned no session');
                     succeeded(res.data.session);
-                } else if (waited >= 10000) {
-                    clearInterval(tick);
-                    failed('That link has expired or has already been used. Request a new one and it will work.',
-                           'no session after 10s; code=' + (qs.get('code') ? 'present' : 'absent'));
-                }
-            }).catch(function (e) {
-                clearInterval(tick);
-                failed('Something went wrong signing you in. Request a fresh link and try again.', e);
+                });
+            }
+            // Implicit flow, if it is ever turned on: the tokens are the result.
+            return sb().auth.setSession({
+                access_token: accessToken,
+                refresh_token: hash.get('refresh_token')
+            }).then(function (res) {
+                if (res.error) throw res.error;
+                if (!res.data || !res.data.session) throw new Error('setSession returned no session');
+                succeeded(res.data.session);
             });
-        }, 250);
-
-        window.addEventListener('beforeunload', function () {
-            if (sub && sub.data && sub.data.subscription) sub.data.subscription.unsubscribe();
+        }).catch(function (e) {
+            var m = (e && e.message) || String(e);
+            failed(/expired|invalid|not found|already/i.test(m)
+                ? 'That link has expired or has already been used. Request a new one and it will work.'
+                : 'Could not complete sign-in. Request a fresh link and try again.', m);
         });
     }
 
