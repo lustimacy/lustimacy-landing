@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0A14">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>You're in — Lustimacy</title>
+</head>
+<body class="auth-body">
+    <main class="auth" id="authWelcome">
+        <a href="/" class="auth__brand" aria-label="Lustimacy home">
+            <img src="/assets/favicon.svg" width="44" height="44" alt="">
+            <span>Lustimacy</span>
+        </a>
+
+        <!-- Session found -->
+        <div data-welcome-signedin hidden>
+            <div class="auth__sent-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h1 class="auth__title">You're in</h1>
+            <p class="auth__lede">
+                Signed in as <strong data-welcome-email></strong>.<br>
+                <span data-welcome-state>Checking your profile…</span>
+            </p>
+
+            <a class="btn btn--primary auth__submit"
+               href="https://play.google.com/store/apps/details?id=com.lustimacy"
+               target="_blank" rel="noopener" data-cta="playstore-welcome">
+                Open Lustimacy on Google Play
+            </a>
+
+            <p class="auth__legal">
+                On an iPhone? There is no iOS app yet —
+                <a href="/#waitlist">tell us where to reach you</a> and you will hear first.
+                <br><br>
+                <a href="#" data-welcome-signout>Sign out</a>
+            </p>
+        </div>
+
+        <!-- No session (link expired, or landed here directly) -->
+        <div data-welcome-signedout hidden>
+            <h1 class="auth__title">You're not signed in</h1>
+            <p class="auth__lede">Your session has expired, or you landed here without one. Getting a fresh link takes a few seconds.</p>
+            <a href="/login.html" class="btn btn--primary auth__submit">Email me a link</a>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/auth.js?v=20261027a" defer></script>
+</body>
+</html>

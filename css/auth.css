@@ -1,0 +1,136 @@
+/* Auth pages — deliberately minimal chrome. Nothing to click but the one
+   thing we want clicked. Uses the Velvet Mystery tokens from styles.css. */
+
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(900px 600px at 50% -10%, rgba(123, 47, 190, 0.22), transparent 70%),
+        var(--c-bg-deep);
+    padding: var(--s-5);
+}
+
+.auth {
+    width: 100%;
+    max-width: 440px;
+    text-align: center;
+}
+
+.auth__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-bottom: var(--s-7);
+    color: var(--c-text);
+    text-decoration: none;
+    font-family: var(--f-display);
+    font-size: 26px;
+    letter-spacing: 0.01em;
+}
+
+.auth__title {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 6vw, 36px);
+    line-height: 1.15;
+    color: var(--c-text);
+    margin: 0 0 var(--s-3);
+}
+
+.auth__lede {
+    color: var(--c-text-muted);
+    line-height: 1.6;
+    margin: 0 0 var(--s-6);
+}
+
+.auth__form { text-align: left; }
+
+.auth__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--c-text-soft);
+    margin-bottom: var(--s-2);
+}
+
+.auth__input {
+    width: 100%;
+    padding: 15px var(--s-4);
+    background: var(--c-bg-card);
+    border: 1px solid var(--c-border-hi);
+    border-radius: 11px;
+    color: var(--c-text);
+    font: inherit;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.auth__input::placeholder { color: var(--c-text-soft); }
+
+.auth__input:focus-visible {
+    outline: none;
+    border-color: var(--c-border-accent);
+    box-shadow: 0 0 0 3px rgba(233, 75, 123, 0.16);
+}
+
+.auth__submit {
+    width: 100%;
+    margin-top: var(--s-4);
+    justify-content: center;
+}
+
+.auth__error {
+    margin: var(--s-3) 0 0;
+    color: var(--c-accent-hi);
+    font-size: 14px;
+}
+
+/* Confirmation state, shown in place of the form once the link is away. */
+.auth__sent-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto var(--s-4);
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(123, 47, 190, 0.18);
+    border: 1px solid var(--c-border-accent);
+    color: var(--c-accent-hi);
+}
+
+.auth__sent-title {
+    font-family: var(--f-display);
+    font-size: 26px;
+    color: var(--c-text);
+    margin: 0 0 var(--s-3);
+}
+
+.auth__sent-body { color: var(--c-text-muted); line-height: 1.6; margin: 0; }
+.auth__sent-body strong { color: var(--c-text); }
+
+.auth__spinner {
+    width: 34px;
+    height: 34px;
+    margin: 0 auto var(--s-5);
+    border: 3px solid var(--c-border-hi);
+    border-top-color: var(--c-accent);
+    border-radius: 50%;
+    animation: authSpin 0.9s linear infinite;
+}
+
+@keyframes authSpin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .auth__spinner { animation-duration: 3s; }
+}
+
+.auth__legal {
+    margin: var(--s-6) 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--c-text-soft);
+}
+
+.auth__legal a { color: var(--c-text-muted); }

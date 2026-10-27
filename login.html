@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0A14">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>Sign in — Lustimacy</title>
+    <meta name="description" content="Sign in to Lustimacy with a link sent to your email. No password.">
+</head>
+<body class="auth-body">
+    <main class="auth">
+        <a href="/" class="auth__brand" aria-label="Lustimacy home">
+            <img src="/assets/favicon.svg" width="44" height="44" alt="">
+            <span>Lustimacy</span>
+        </a>
+
+        <h1 class="auth__title">Sign in or create an account</h1>
+        <p class="auth__lede">One email, no password. We send you a link — tap it and you are in. The same account works in the app.</p>
+
+        <form id="authForm" class="auth__form" novalidate>
+            <label class="auth__label" for="authEmail">Email</label>
+            <input id="authEmail" class="auth__input" type="email" name="email"
+                   autocomplete="email" inputmode="email" required placeholder="you@example.com">
+            <button type="submit" class="btn btn--primary auth__submit">Email me a link</button>
+            <p class="auth__error" data-auth-error hidden></p>
+        </form>
+
+        <div class="auth__sent" data-auth-sent hidden>
+            <div class="auth__sent-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 class="auth__sent-title">Check your inbox</h2>
+            <p class="auth__sent-body">We sent a sign-in link to <strong data-auth-sent-to></strong>. It is good for one use. If it is not there in a minute, look in spam — it comes from a lustimacy.com address.</p>
+        </div>
+
+        <p class="auth__legal">By continuing you agree to our <a href="/terms.html">Terms</a> and <a href="/privacy.html">Privacy Policy</a>. You must be 18 or over.</p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/auth.js?v=20261027a" defer></script>
+</body>
+</html>
