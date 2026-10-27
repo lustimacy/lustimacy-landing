@@ -75,21 +75,19 @@
     <nav class="nav" id="nav" aria-label="Primary">
         <div class="container nav__inner">
             <a href="/" class="nav__brand" aria-label="Lustimacy home">
-                <svg class="nav__logo" viewBox="0 0 465 465" width="36" height="36" aria-hidden="true">
+                <svg class="nav__logo" viewBox="0 0 1080 1080" width="36" height="36" aria-hidden="true">
                     <defs>
-                        <radialGradient id="navOrbA" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#C2185B" stop-opacity="0.95"/>
-                            <stop offset="100%" stop-color="#3A0F4F" stop-opacity="0.6"/>
-                        </radialGradient>
-                        <radialGradient id="navOrbB" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#7B2FBE" stop-opacity="0.9"/>
-                            <stop offset="100%" stop-color="#1E0B2B" stop-opacity="0.6"/>
+                        <radialGradient id="navLogoGlow" cx="50%" cy="52%" r="60%">
+                            <stop offset="0%" stop-color="#7B2FBE"/>
+                            <stop offset="45%" stop-color="#431D66"/>
+                            <stop offset="100%" stop-color="#160F22"/>
                         </radialGradient>
                     </defs>
-                    <circle cx="232.5" cy="232.5" r="232.5" fill="#0E0A14"/>
-                    <circle cx="181" cy="232" r="106" fill="url(#navOrbB)"/>
-                    <circle cx="282" cy="232" r="106" fill="url(#navOrbA)"/>
-                    <ellipse cx="232" cy="232" rx="56" ry="92" fill="#FAF9F7" fill-opacity="0.95"/>
+                    <circle cx="540" cy="540" r="540" fill="url(#navLogoGlow)"/>
+                    <g transform="translate(540,540) scale(1.25) translate(-540,-540)">
+                        <path d="M579.24,262.16C579.24,262.16 598.86,331.48 598.86,387.73C598.86,441.35 563.54,485.83 509.92,485.83C456.29,485.83 414.43,441.35 414.43,387.73C414.43,387.73 415.74,378.57 415.74,378.57C363.42,441.35 330.72,522.45 330.72,611.39C330.72,726.50 424.90,820.67 540.00,820.67C655.10,820.67 749.28,726.50 749.28,611.39C749.28,470.13 681.26,344.56 579.24,262.16Z" fill="#E94B7B"/>
+                        <path d="M532.15,742.20C485.06,742.20 448.44,705.57 448.44,659.79C448.44,617.93 475.91,587.85 521.69,578.70C567.47,569.54 615.86,546.00 642.02,510.68C652.49,544.69 657.72,580.00 657.72,616.63C657.72,685.95 601.48,742.20 532.15,742.20Z" fill="#F59DB6" fill-opacity="0.78"/>
+                    </g>
                 </svg>
                 <span class="nav__wordmark">Lustimacy</span>
             </a>
@@ -755,6 +753,6 @@
     </footer>
 
     <script src="/js/main.js?v=20260514a" defer></script>
-<!-- locale: en · built: 2026-10-27T10:54:19.720Z -->
+<!-- locale: en · built: 2026-10-27T14:16:20.921Z -->
 </body>
 </html>
