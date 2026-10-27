@@ -125,7 +125,7 @@
             errEl.hidden = true;
 
             var email = (input.value || '').trim();
-            if (!isEmail(email)) { fail("That doesn't look like an email address."); return; }
+            if (!isEmail(email)) { fail(t('login.errEmail')); return; }
 
             button.disabled = true;
             button.textContent = t('login.sending');
@@ -471,7 +471,7 @@
             if (a < 18)                      return err(t('ob.errAge'));
             if (state.account_type === null) return err(t('ob.errAccount'));
             if (state.account_type === 1) {
-                if (!pdobEl.value)           return err("We need your partner's date of birth too.");
+                if (!pdobEl.value)           return err(t('ob.errPartnerDob'));
                 var pa = age(pdobEl.value);
                 if (isNaN(pa) || pa > 120)   return err(t('ob.errDate'));
                 if (pa < 18)                 return err(t('ob.errBothAge'));
@@ -489,7 +489,7 @@
             clearErr();
             if (state.gender === null)             return err(t('ob.errGender'));
             if (state.account_type === 1 && state.partner_gender === null)
-                                                   return err("Pick your partner's gender too.");
+                                                   return err(t('ob.errPartnerGender'));
             if (state.looking_for === null)        return err(t('ob.errLooking'));
             if (state.sexual_orientation === null) return err(t('ob.errOrientation'));
 

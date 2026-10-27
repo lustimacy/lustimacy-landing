@@ -49,6 +49,9 @@
             'login.linkFail': 'Could not send the link. Try again in a moment?',
             'login.netFail': 'Could not reach the server. Check your connection and try again.',
 
+            'login.errEmail': "That doesn't look like an email address.",
+            'ob.errPartnerDob': "We need your partner's date of birth too.",
+            'ob.errPartnerGender': "Pick your partner's gender too.",
             'cb.pageTitle': "Signing you in — Lustimacy",
             'cb.signingIn': "Signing you in…",
             'cb.moment': "One moment.",
@@ -152,6 +155,9 @@
             'login.linkFail': 'Der Link konnte nicht gesendet werden. Gleich noch einmal versuchen?',
             'login.netFail': 'Server nicht erreichbar. Prüf deine Verbindung und versuch es erneut.',
 
+            'login.errEmail': "Das sieht nicht nach einer E-Mail-Adresse aus.",
+            'ob.errPartnerDob': "Wir brauchen auch das Geburtsdatum deines Partners.",
+            'ob.errPartnerGender': "Wähl auch das Geschlecht deines Partners.",
             'cb.pageTitle': "Anmeldung läuft — Lustimacy",
             'cb.signingIn': "Du wirst angemeldet…",
             'cb.moment': "Einen Moment.",
@@ -255,6 +261,9 @@
             'login.linkFail': 'De link kon niet worden verstuurd. Zo nog eens proberen?',
             'login.netFail': 'Server niet bereikbaar. Controleer je verbinding en probeer opnieuw.',
 
+            'login.errEmail': "Dat lijkt geen e-mailadres.",
+            'ob.errPartnerDob': "We hebben ook de geboortedatum van je partner nodig.",
+            'ob.errPartnerGender': "Kies ook het gender van je partner.",
             'cb.pageTitle': "Je wordt ingelogd — Lustimacy",
             'cb.signingIn': "Je wordt ingelogd…",
             'cb.moment': "Een moment.",
@@ -358,6 +367,9 @@
             'login.linkFail': 'Le lien n’a pas pu être envoyé. Réessayez dans un instant ?',
             'login.netFail': 'Serveur injoignable. Vérifiez votre connexion et réessayez.',
 
+            'login.errEmail': "Cela ne ressemble pas à une adresse e-mail.",
+            'ob.errPartnerDob': "Il nous faut aussi la date de naissance de votre partenaire.",
+            'ob.errPartnerGender': "Choisissez aussi le genre de votre partenaire.",
             'cb.pageTitle': "Connexion en cours — Lustimacy",
             'cb.signingIn': "Connexion en cours…",
             'cb.moment': "Un instant.",
