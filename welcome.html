@@ -68,7 +68,16 @@
                 </p>
             </section>
 
-            <a class="btn btn--primary auth__submit"
+            <!-- Shown with the card, for the same people: the selfie can be
+                 taken here now, so the next step is a link rather than an
+                 instruction to go and find it in the app. -->
+            <a class="btn btn--primary auth__submit" href="/verify"
+               data-i18n-href="/verify" data-welcome-verify-cta hidden
+               data-cta="verify-welcome">
+                <span data-i18n="welcome.verifyCta">Verify with a selfie</span>
+            </a>
+
+            <a class="btn btn--primary auth__submit" data-welcome-play
                href="https://play.google.com/store/apps/details?id=com.lustimacy"
                target="_blank" rel="noopener" data-cta="playstore-welcome">
                 <span data-i18n="welcome.openPlay">Open Lustimacy on Google Play</span>

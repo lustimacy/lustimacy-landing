@@ -327,6 +327,14 @@
                   // kind of thing that makes the rest look careless.
                   var verify = root.querySelector('[data-welcome-verify]');
                   if (verify && !verified) verify.hidden = false;
+                  // The store button stops being the primary action when
+                  // there is something left to do that can be done here.
+                  var verifyCta = root.querySelector('[data-welcome-verify-cta]');
+                  var play = root.querySelector('[data-welcome-play]');
+                  if (verifyCta && !verified) {
+                      verifyCta.hidden = false;
+                      if (play) play.className = 'btn btn--ghost auth__submit';
+                  }
               })
               .catch(function () {
                   stateEl.textContent = t('welcome.exists');
@@ -681,7 +689,246 @@
         });
     }
 
-    function init() { initLogin(); initCallback(); initWelcome(); initOnboarding(); }
+
+    // ── Selfie verification ───────────────────────────────────────────────
+    //
+    // The same submission the app makes: getUserMedia for a live frame, a
+    // square centre crop, and submit-verification with the bytes. The
+    // function is the only thing that writes - it holds the service role,
+    // checks for an open request and tells a human there is something to
+    // look at - so web and app cannot drift.
+    //
+    // Deliberately no file picker anywhere on this page. An upload is the
+    // one thing a verification selfie cannot be: NOT_LIVE is a rejection
+    // reason precisely because a photo of a photo proves nothing. If the
+    // camera will not open we say so and point at the app rather than
+    // quietly accepting something weaker.
+    var VF_SIZE = 600;
+
+    function initVerify() {
+        var root = document.getElementById('authVerify');
+        if (!root) return;
+
+        var stream = null;
+        var userId = null;
+        var shotBlob = null;
+        var shotType = 'image/webp';
+        var isCouple = false;
+
+        function steps() { return root.querySelectorAll('[data-vf-step]'); }
+
+        function show(name) {
+            for (var i = 0; i < steps().length; i++) {
+                var el = steps()[i];
+                el.hidden = el.getAttribute('data-vf-step') !== name;
+            }
+            clearErrors();
+            if (name !== 'camera') stopCamera();
+        }
+
+        function clearErrors() {
+            var all = root.querySelectorAll('[data-vf-error]');
+            for (var i = 0; i < all.length; i++) { all[i].hidden = true; all[i].textContent = ''; }
+        }
+
+        function err(step, msg) {
+            var el = root.querySelector('[data-vf-step="' + step + '"] [data-vf-error]');
+            if (!el) return;
+            el.textContent = msg;
+            el.hidden = false;
+        }
+
+        function stopCamera() {
+            if (!stream) return;
+            stream.getTracks().forEach(function (tr) { tr.stop(); });
+            stream = null;
+        }
+
+        // Nothing else stops the tracks if the page is closed mid-capture,
+        // and a camera light left on is its own kind of broken promise.
+        window.addEventListener('pagehide', stopCamera);
+
+        function openCamera() {
+            var media = navigator.mediaDevices;
+            if (!media || !media.getUserMedia) { show('nocamera'); return; }
+
+            show('camera');
+            media.getUserMedia({ video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 1280 } }, audio: false })
+                .then(function (s) {
+                    stream = s;
+                    var video = root.querySelector('[data-vf-video]');
+                    video.srcObject = s;
+                    return video.play().catch(function () { /* autoplay attr covers it */ });
+                })
+                .catch(function (e) {
+                    stopCamera();
+                    track('VerifyCameraDenied', { name: (e && e.name) || 'unknown' });
+                    var lede = root.querySelector('[data-vf-nocam-lede]');
+                    if (lede && e && e.name === 'NotAllowedError') lede.textContent = t('vf.noCamDenied');
+                    show('nocamera');
+                });
+        }
+
+        function capture() {
+            var video = root.querySelector('[data-vf-video]');
+            var w = video.videoWidth, h = video.videoHeight;
+            if (!w || !h) { err('camera', t('vf.errCapture')); return; }
+
+            // Square centre crop, mirrored to match the preview, then down to
+            // the same 600px the app sends.
+            var side = Math.min(w, h);
+            var sx = (w - side) / 2, sy = (h - side) / 2;
+            var c = document.createElement('canvas');
+            c.width = VF_SIZE; c.height = VF_SIZE;
+            var ctx = c.getContext('2d');
+            ctx.translate(VF_SIZE, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, sx, sy, side, side, 0, 0, VF_SIZE, VF_SIZE);
+
+            toBlob(c).then(function (res) {
+                shotBlob = res.blob;
+                shotType = res.type;
+                var img = root.querySelector('[data-vf-shot]');
+                if (img.src) URL.revokeObjectURL(img.src);
+                img.src = URL.createObjectURL(res.blob);
+                stopCamera();
+                show('review');
+            }).catch(function () { err('camera', t('vf.errCapture')); });
+        }
+
+        function toBase64(blob) {
+            return new Promise(function (resolve, reject) {
+                var r = new FileReader();
+                r.onerror = function () { reject(new Error('read failed')); };
+                r.onload = function () {
+                    // data:<type>;base64,<payload> — the function wants the
+                    // payload on its own.
+                    var out = String(r.result);
+                    resolve(out.slice(out.indexOf(',') + 1));
+                };
+                r.readAsDataURL(blob);
+            });
+        }
+
+        function send() {
+            if (!shotBlob) { show('intro'); return; }
+            var btn = root.querySelector('[data-vf-send]');
+            var label = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = t('vf.sending');
+
+            toBase64(shotBlob).then(function (b64) {
+                return sb().functions.invoke('submit-verification', {
+                    body: { selfieBase64: b64, contentType: shotType }
+                });
+            }).then(function (res) {
+                btn.disabled = false; btn.textContent = label;
+                // supabase-js hands back an error object rather than throwing,
+                // and the function's own refusals are 400s with a message
+                // written to be read.
+                if (res && res.error) throw res.error;
+                if (res && res.data && res.data.success === false) {
+                    throw new Error(res.data.message || '');
+                }
+                shotBlob = null;
+                track('VerifySubmitted');
+                show('pending');
+            }).catch(function (e) {
+                btn.disabled = false; btn.textContent = label;
+                track('VerifySubmitError', { message: (e && e.message) || 'unknown' });
+                serverMessage(e).then(function (msg) {
+                    err('review', msg || t('vf.errSend'));
+                });
+            });
+        }
+
+        // A FunctionsHttpError keeps the response, and the body is where the
+        // real sentence is - "you already have a pending request" is worth
+        // reading, "FunctionsHttpError" is not.
+        function serverMessage(e) {
+            if (!e) return Promise.resolve('');
+            if (e.context && typeof e.context.json === 'function') {
+                return e.context.json().then(function (body) {
+                    return (body && body.message) || '';
+                }).catch(function () { return ''; });
+            }
+            var m = (e.message || '');
+            return Promise.resolve(/^[A-Za-z]+Error$/.test(m) ? '' : m);
+        }
+
+        function reasonText(code) {
+            var known = ['UNCLEAR', 'FACE_HIDDEN', 'NOT_LIVE', 'NO_MATCH',
+                         'MULTIPLE_PEOPLE', 'PARTNER_MISSING', 'EXPLICIT'];
+            return t('vf.reason.' + (known.indexOf(code) === -1 ? 'UNKNOWN' : code));
+        }
+
+        // What the server says, in the order it matters: verified is done,
+        // pending is waiting, rejected needs the reason that came with it.
+        function route(userRow) {
+            isCouple = userRow && userRow.account_type === 1;
+            var couple = root.querySelector('[data-vf-couple]');
+            if (couple) couple.hidden = !isCouple;
+
+            var status = userRow && userRow.verification_status;
+            if (status === 2) { show('verified'); return Promise.resolve(); }
+            if (status === 1) { show('pending'); return Promise.resolve(); }
+            if (status !== 3) { show('intro'); return Promise.resolve(); }
+
+            return sb().from('verification_requests')
+                .select('rejection_reason, reviewer_notes, reviewed_at')
+                .eq('user_id', userId)
+                .eq('status', 3)
+                .order('reviewed_at', { ascending: false })
+                .limit(1)
+                .then(function (r) {
+                    var row = r.data && r.data[0];
+                    root.querySelector('[data-vf-reason]').textContent =
+                        reasonText(row && row.rejection_reason);
+                    var note = root.querySelector('[data-vf-note]');
+                    var text = row && row.reviewer_notes;
+                    note.textContent = text || '';
+                    note.hidden = !text;
+                    show('rejected');
+                })
+                .catch(function () {
+                    root.querySelector('[data-vf-reason]').textContent = reasonText(null);
+                    show('rejected');
+                });
+        }
+
+        // Filtered by id rather than left to RLS: this table is readable
+        // across accounts on purpose - it is how the deck works - so an
+        // unfiltered select here would route on whoever came back first.
+        function load() {
+            if (!userId) return Promise.resolve();
+            return sb().from('users')
+                .select('verification_status, account_type')
+                .eq('id', userId)
+                .single()
+                .then(function (r) { return route(r.data); });
+        }
+
+        root.querySelectorAll('[data-vf-open]').forEach(function (b) {
+            b.addEventListener('click', openCamera);
+        });
+        root.querySelector('[data-vf-capture]').addEventListener('click', capture);
+        root.querySelector('[data-vf-cancel]').addEventListener('click', function () {
+            stopCamera(); load();
+        });
+        root.querySelector('[data-vf-retake]').addEventListener('click', openCamera);
+        root.querySelector('[data-vf-send]').addEventListener('click', send);
+        root.querySelector('[data-vf-refresh]').addEventListener('click', function () { load(); });
+
+        sb().auth.getSession().then(function (res) {
+            if (!res.data || !res.data.session) { window.location.replace(withLang('/login')); return; }
+            adoptUserLang(res.data.session);
+            userId = res.data.session.user.id;
+            root.hidden = false;
+            return load();
+        });
+    }
+
+    function init() { initLogin(); initCallback(); initWelcome(); initOnboarding(); initVerify(); }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();

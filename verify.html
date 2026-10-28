@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0E0A14">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20261027f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css?v=20261027t">
+    <link rel="stylesheet" href="/css/auth.css?v=20261028v">
+    <title data-i18n-title="vf.pageTitle">Verify your profile — Lustimacy</title>
+</head>
+<body class="auth-body">
+    <main class="auth" id="authVerify" hidden>
+        <a href="/" class="auth__brand" aria-label="Lustimacy home">
+            <img src="/assets/favicon.svg?v=20261027f" width="40" height="40" alt="">
+            <span>Lustimacy</span>
+        </a>
+
+        <!-- 1 — the case, and the only button that opens the camera -->
+        <section data-vf-step="intro" hidden>
+            <h1 class="auth__title" data-i18n="vf.introTitle">Verify your profile</h1>
+            <p class="auth__lede" data-i18n="vf.introLede">One selfie. We check it against your photos, and then you are in.</p>
+
+            <section class="verify-card">
+                <h2 class="verify-card__title" data-i18n="verify.title">Lustimacy is verified-only</h2>
+
+                <div class="verify-card__row">
+                    <span class="verify-card__dot" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <p class="verify-card__text" data-i18n="verify.b1">Everyone here has shown us a real face. No bots, no stolen photos, nobody hiding behind someone else.</p>
+                </div>
+
+                <div class="verify-card__row">
+                    <span class="verify-card__dot" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <p class="verify-card__text" data-i18n="verify.b2">And they will know you are real. Your profile carries the same badge, so the people you message can trust it is you.</p>
+                </div>
+
+                <p class="verify-card__privacy">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span data-i18n="verify.privacy">Only our safety team sees that photo. It is never added to your profile and it is never shown to other members.</span>
+                </p>
+            </section>
+
+            <p class="vf__hint" data-vf-couple hidden data-i18n="vf.coupleNote">You share one account, so we need one photo with both of you in it.</p>
+
+            <div class="vf__actions">
+                <button type="button" class="btn btn--primary auth__submit" data-vf-open data-i18n="vf.open">Take a selfie</button>
+            </div>
+            <p class="auth__error" data-vf-error hidden></p>
+        </section>
+
+        <!-- 2 — the camera itself -->
+        <section data-vf-step="camera" hidden>
+            <h1 class="auth__title" data-i18n="vf.cameraTitle">Look at the camera</h1>
+            <p class="auth__lede" data-i18n="vf.cameraLede">Face the light, nothing covering your face, and keep it in frame.</p>
+
+            <div class="vf__stage">
+                <video data-vf-video playsinline muted autoplay></video>
+            </div>
+
+            <div class="vf__actions">
+                <button type="button" class="btn btn--primary auth__submit" data-vf-capture data-i18n="vf.capture">Take the photo</button>
+                <button type="button" class="btn btn--ghost auth__submit" data-vf-cancel data-i18n="vf.cancel">Cancel</button>
+            </div>
+            <p class="auth__error" data-vf-error hidden></p>
+        </section>
+
+        <!-- 3 — what was captured, before anything is sent -->
+        <section data-vf-step="review" hidden>
+            <h1 class="auth__title" data-i18n="vf.reviewTitle">Check your photo</h1>
+            <p class="auth__lede" data-i18n="vf.reviewLede">Your face should be clear and well lit. Send it when you are happy with it, or take another.</p>
+
+            <div class="vf__stage">
+                <img data-vf-shot alt="">
+            </div>
+
+            <div class="vf__actions">
+                <button type="button" class="btn btn--primary auth__submit" data-vf-send data-i18n="vf.send">Send for review</button>
+                <button type="button" class="btn btn--ghost auth__submit" data-vf-retake data-i18n="vf.retake">Take another</button>
+            </div>
+            <p class="auth__error" data-vf-error hidden></p>
+        </section>
+
+        <!-- 4 — sent, and waiting on a human -->
+        <section data-vf-step="pending" hidden>
+            <div class="auth__sent-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+            </div>
+            <h1 class="auth__title" data-i18n="vf.pendingTitle">We're checking your photo</h1>
+            <p class="auth__lede" data-i18n="vf.pendingLede">Usually within a day. Your profile is waiting for you either way.</p>
+
+            <div class="vf__bar" aria-hidden="true"><span></span></div>
+
+            <div class="vf__actions">
+                <a class="btn btn--primary auth__submit"
+                   href="https://play.google.com/store/apps/details?id=com.lustimacy"
+                   target="_blank" rel="noopener" data-cta="playstore-verify-pending">
+                    <span data-i18n="welcome.openPlay">Open Lustimacy on Google Play</span>
+                </a>
+                <button type="button" class="btn btn--ghost auth__submit" data-vf-refresh data-i18n="vf.refresh">Check again</button>
+            </div>
+        </section>
+
+        <!-- 5 — sent back, with the reason -->
+        <section data-vf-step="rejected" hidden>
+            <h1 class="auth__title" data-i18n="vf.rejectedTitle">We need another photo</h1>
+            <p class="auth__lede" data-i18n="vf.rejectedLede">Nothing is lost. Your profile is exactly as you left it.</p>
+
+            <div class="vf__status vf__status--bad">
+                <p class="vf__status-label" data-i18n="vf.reasonLabel">What we saw</p>
+                <p class="vf__status-text" data-vf-reason></p>
+                <p class="vf__note" data-vf-note hidden></p>
+            </div>
+
+            <div class="vf__actions">
+                <button type="button" class="btn btn--primary auth__submit" data-vf-open data-i18n="vf.retakeCta">Take a new photo</button>
+                <a class="btn btn--ghost auth__submit" href="/contact" data-i18n-href="/contact" data-i18n="vf.support">Contact support</a>
+            </div>
+            <p class="auth__error" data-vf-error hidden></p>
+        </section>
+
+        <!-- 6 — done -->
+        <section data-vf-step="verified" hidden>
+            <div class="auth__sent-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h1 class="auth__title" data-i18n="vf.verifiedTitle">You're verified</h1>
+            <p class="auth__lede" data-i18n="vf.verifiedLede">Your badge is on your profile. Open the app and you are straight into the deck.</p>
+
+            <div class="vf__actions">
+                <a class="btn btn--primary auth__submit"
+                   href="https://play.google.com/store/apps/details?id=com.lustimacy"
+                   target="_blank" rel="noopener" data-cta="playstore-verify-done">
+                    <span data-i18n="welcome.openPlay">Open Lustimacy on Google Play</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 7 — no camera here. Not an error: most desktops are this. -->
+        <section data-vf-step="nocamera" hidden>
+            <h1 class="auth__title" data-i18n="vf.noCamTitle">No camera here</h1>
+            <p class="auth__lede" data-vf-nocam-lede data-i18n="vf.noCamLede">This device has no camera we can use, or permission was turned down. Open this page on your phone, or verify in the app.</p>
+
+            <div class="vf__actions">
+                <a class="btn btn--primary auth__submit"
+                   href="https://play.google.com/store/apps/details?id=com.lustimacy"
+                   target="_blank" rel="noopener" data-cta="playstore-verify-nocam">
+                    <span data-i18n="welcome.openPlay">Open Lustimacy on Google Play</span>
+                </a>
+                <button type="button" class="btn btn--ghost auth__submit" data-vf-open data-i18n="vf.tryAgain">Try the camera again</button>
+            </div>
+        </section>
+
+        <p class="auth__legal">
+            <a href="/welcome" data-i18n-href="/welcome" data-i18n="vf.back">← Back</a>
+        </p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/auth-i18n.js?v=20261028v" defer></script>
+    <script src="/js/auth.js?v=20261028v" defer></script>
+</body>
+</html>
