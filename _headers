@@ -34,7 +34,18 @@
   Cache-Control: no-store
 
 # Security headers globally
+#
+# camera=(self) rather than camera=(): /verify takes the verification selfie
+# in the browser, and a blanket camera=() makes getUserMedia reject with
+# NotAllowedError before the browser ever asks - the page went straight to
+# "no camera here" on machines that have one. (self) keeps the camera away
+# from anything embedded and still requires the user's permission; the
+# browser prompt is the actual gate, this header only says who may ask.
+#
+# Rules are not scoped to /verify because Cloudflare applies every matching
+# rule, and two Permissions-Policy headers for one request is not something
+# worth guessing the merge order of.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Permissions-Policy: geolocation=(), microphone=(), camera=(self)
