@@ -35,6 +35,39 @@
                 <a href="/onboarding" data-i18n-href="/onboarding" data-i18n="welcome.finishLink">Finish your profile here</a><span data-i18n="welcome.finishRest"> — a minute, and one photo. Until then you are not in anyone's deck.</span>
             </p>
 
+            <!-- Hidden until the profile check comes back, and only for
+                 someone who is not verified yet. Nobody who has already done
+                 this should be told to go and do it. -->
+            <section class="verify-card" data-welcome-verify hidden>
+                <h2 class="verify-card__title" data-i18n="verify.title">Lustimacy is verified-only</h2>
+
+                <div class="verify-card__row">
+                    <span class="verify-card__dot" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <p class="verify-card__text" data-i18n="verify.b1">Everyone here has shown us a real face. No bots, no stolen photos, nobody hiding behind someone else.</p>
+                </div>
+
+                <div class="verify-card__row">
+                    <span class="verify-card__dot" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <p class="verify-card__text" data-i18n="verify.b2">And they will know you are real. Your profile carries the same badge, so the people you message can trust it is you.</p>
+                </div>
+
+                <div class="verify-card__row">
+                    <span class="verify-card__dot" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    <p class="verify-card__text" data-i18n="verify.b3">One selfie in the app. It takes about a minute, and you only do it once.</p>
+                </div>
+
+                <p class="verify-card__privacy">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span data-i18n="verify.privacy">Only our safety team sees that photo. It is never added to your profile and it is never shown to other members.</span>
+                </p>
+            </section>
+
             <a class="btn btn--primary auth__submit"
                href="https://play.google.com/store/apps/details?id=com.lustimacy"
                target="_blank" rel="noopener" data-cta="playstore-welcome">

@@ -320,3 +320,70 @@
 }
 
 .auth__or span { position: relative; background: var(--c-bg-deep); padding: 0 var(--s-3); }
+
+/* ── Verification, on the way out ──────────────────────────────────────────
+   Signup used to end on "You're in" and a store button, which stopped being
+   true when the app started gating unverified accounts: the next thing that
+   happens to a web signup is a wall nobody warned them about. This card is
+   the app's gate said once, early, next to the button that takes them there.
+   It sits above the store link for the same reason it does in the app - the
+   reason for an action belongs on the screen that asks for it. */
+.verify-card {
+    margin-top: var(--s-5);
+    padding: var(--s-5);
+    background: var(--c-bg-card);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    text-align: left;
+}
+
+.verify-card__title {
+    margin: 0 0 var(--s-4);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--c-text);
+}
+
+.verify-card__row {
+    display: flex;
+    gap: var(--s-3);
+    align-items: flex-start;
+}
+
+.verify-card__row + .verify-card__row { margin-top: var(--s-4); }
+
+.verify-card__dot {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    border-radius: 999px;
+    background: var(--c-violet-deep);
+    color: var(--c-accent-hi);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.verify-card__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--c-text-muted);
+}
+
+.verify-card__text strong { color: var(--c-text); font-weight: 600; }
+
+.verify-card__privacy {
+    display: flex;
+    gap: var(--s-2);
+    align-items: flex-start;
+    margin: var(--s-4) 0 0;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--c-border);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--c-text-soft);
+}
+
+.verify-card__privacy svg { flex: 0 0 auto; margin-top: 2px; }

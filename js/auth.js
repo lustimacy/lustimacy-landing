@@ -310,16 +310,23 @@
             emailEl.textContent = session.user.email || '';
             signedIn.hidden = false;
 
-            // Same flag the app reads to choose between onboarding and the deck.
-            sb().from('users').select('is_profile_setup_complete, birthday').eq('id', session.user.id).single()
+            // The same two flags the app routes on: a finished profile is no
+            // longer the last step, because an unverified account is held at
+            // the gate however complete it is.
+            sb().from('users').select('is_profile_setup_complete, birthday, verification_status').eq('id', session.user.id).single()
               .then(function (r) {
                   var complete = r.data && r.data.is_profile_setup_complete;
+                  var verified = r.data && r.data.verification_status === 2;
                   stateEl.textContent = complete
-                      ? t('welcome.ready')
+                      ? (verified ? t('welcome.ready') : t('welcome.readyVerify'))
                       : t('welcome.unfinished');
                   var finish = root.querySelector('[data-welcome-finish]');
                   // Only offer the web form to someone who never filled it in.
                   if (finish && !complete) finish.hidden = false;
+                  // Telling someone already verified to go and verify is the
+                  // kind of thing that makes the rest look careless.
+                  var verify = root.querySelector('[data-welcome-verify]');
+                  if (verify && !verified) verify.hidden = false;
               })
               .catch(function () {
                   stateEl.textContent = t('welcome.exists');
